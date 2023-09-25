@@ -78,3 +78,7 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
+
+Route::get('home', function (){
+  return view('/frontoffice/home');
+})->name('frontOfficeHome');
