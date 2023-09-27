@@ -55,6 +55,8 @@ return [
     */
 
   'url' => env('APP_URL', 'http://localhost'),
+  'front_url' => env('FRONT_URL', 'http://localhost:8000'), // URL du Front Office
+  'back_url' => env('BACK_URL', 'http://localhost:8001'),    // URL du Back Office
 
   'asset_url' => env('ASSET_URL'),
 

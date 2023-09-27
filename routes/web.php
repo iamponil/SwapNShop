@@ -79,6 +79,29 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
 
-Route::get('home', function (){
-  return view('/frontoffice/home');
-})->name('frontOfficeHome');
+
+
+Route::get('/frontoffice', function () {
+  return view('Template.master');
+})->name('index');
+
+
+Route::get('/blog', function () {
+  return view('Template.blog');
+})->name('blog');
+
+Route::get('/about', function () {
+  return view('Template.about');
+})->name('about');
+
+Route::get('/product', function () {
+  return view('Template.product');
+})->name('shop');
+
+Route::get('/contact', function () {
+  return view('Template.contact');
+})->name('contact');
+
+Route::get('/cart', function () {
+  return view('Template.cart');
+})->name('cart');
