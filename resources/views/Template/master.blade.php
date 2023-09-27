@@ -22,7 +22,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 </head>
 <body class="animsition">
-	
 	<!-- Header -->
 	<header>
 		<!-- Header desktop -->
