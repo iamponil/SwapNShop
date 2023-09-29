@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,7 +97,7 @@ Route::get('/about', function () {
 })->name('about');
 
 Route::get('/product', function () {
-  return view('Template.product');
+  return view('Template.shop');
 })->name('shop');
 
 Route::get('/contact', function () {
@@ -105,3 +107,14 @@ Route::get('/contact', function () {
 Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
+
+
+Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
+Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
+Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');;
+Route::get('/products/create',[ProductController::class,'create'])->name('products.create');;
+Route::post('/products/store',[ProductController::class,'store'])->name('products.store');;
+Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('products.edit');
+Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
+
+Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
