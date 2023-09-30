@@ -105,3 +105,9 @@ Route::get('/contact', function () {
 Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
+
+Route::get('communities', function (){
+  return view('communities');
+})->name('communities');
+
+Route::resource('community',\App\Http\Controllers\CommunityController::class);

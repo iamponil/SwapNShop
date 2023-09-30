@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
+        Schema::table('community_members', function (Blueprint $table) {
             $table->timestamps();
-        });
+          });
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        //
     }
 };
