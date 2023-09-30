@@ -118,3 +118,10 @@ Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('prod
 Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
 
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
+
+
+Route::get('communities', function (){
+  return view('communities');
+})->name('communities');
+
+Route::resource('community',\App\Http\Controllers\CommunityController::class);
