@@ -4,7 +4,7 @@
 	<title>Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }} "/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -16,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animsition/css/animsition.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/select2/select2.min.css') }}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/daterangepicker/daterangepicker.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/slick/slick.css') }}">
@@ -36,7 +36,7 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -70,14 +70,14 @@
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
-					<div class="menu-desktop">
+						<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="{{ route('index') }}">Home</a>
@@ -93,24 +93,26 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								
+
 								<a href="{{ route('cart') }}">Features</a>
 							</li>
 
 							<li>
-								
+
                                 <a href="{{ route('blog') }}">Blog</a>
 							</li>
 
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
-                            
+                 <li>
+								<a href="{{ route('reclamtion') }}">Reclamation</a>
+							</li>
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 						</ul>
-					</div>	
+					</div>
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
@@ -126,12 +128,12 @@
 						</a>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -256,7 +258,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -307,7 +309,7 @@
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -327,7 +329,7 @@
 		</div>
 	</div>
 
-	
+
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
@@ -371,7 +373,7 @@
 						Search
 					</div>
 				</div>
-				
+
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
@@ -380,7 +382,7 @@
 						</button>
 
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-					</div>	
+					</div>
 				</div>
 
 				<!-- Filter -->
@@ -748,7 +750,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Vintage Inspired Classic 
+									Vintage Inspired Classic
 								</a>
 
 								<span class="stext-105 cl3">
@@ -908,7 +910,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Herschel supply 
+									Herschel supply
 								</a>
 
 								<span class="stext-105 cl3">
@@ -1095,7 +1097,7 @@
 			</div>
 		</div>
 	</div>
-		
+
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -1147,7 +1149,7 @@
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
+								Returns
 							</a>
 						</li>
 
@@ -1301,7 +1303,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -1315,7 +1317,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							<p class="stext-102 cl3 p-t-23">
 								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 							</p>
-							
+
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
@@ -1374,7 +1376,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											Add to cart
 										</button>
 									</div>
-								</div>	
+								</div>
 							</div>
 
 							<!--  -->
@@ -1404,7 +1406,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
@@ -1484,7 +1486,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
-	
+
 	</script>
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>

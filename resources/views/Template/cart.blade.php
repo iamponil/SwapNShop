@@ -4,7 +4,7 @@
 	<title>Shoping Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animsition/css/animsition.min.css') }}">
@@ -30,7 +30,7 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -64,14 +64,14 @@
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
-					<div class="menu-desktop">
+							<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="{{ route('index') }}">Home</a>
@@ -87,24 +87,26 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								
+
 								<a href="{{ route('cart') }}">Features</a>
 							</li>
 
 							<li>
-								
+
                                 <a href="{{ route('blog') }}">Blog</a>
 							</li>
 
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
-                            
+                 <li>
+								<a href="{{ route('reclamtion') }}">Reclamation</a>
+							</li>
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 						</ul>
-					</div>		
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
@@ -121,12 +123,12 @@
 						</a>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -251,7 +253,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -302,7 +304,7 @@
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -336,7 +338,7 @@
 			</span>
 		</div>
 	</div>
-		
+
 
 	<!-- Shoping Cart -->
 	<form class="bg0 p-t-75 p-b-85">
@@ -407,7 +409,7 @@
 						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-									
+
 								<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
 									Apply coupon
 								</div>
@@ -451,7 +453,7 @@
 								<p class="stext-111 cl6 p-t-2">
 									There are no shipping methods available. Please double check your address, or contact us if you need any help.
 								</p>
-								
+
 								<div class="p-t-15">
 									<span class="stext-112 cl8">
 										Calculate Shipping
@@ -473,13 +475,13 @@
 									<div class="bor8 bg0 m-b-22">
 										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
 									</div>
-									
+
 									<div class="flex-w">
 										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
 											Update Totals
 										</div>
 									</div>
-										
+
 								</div>
 							</div>
 						</div>
@@ -506,9 +508,9 @@
 			</div>
 		</div>
 	</form>
-		
-	
-		
+
+
+
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-75 p-b-32">
@@ -560,7 +562,7 @@
 
 						<li class="p-b-10">
 							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns 
+								Returns
 							</a>
 						</li>
 
@@ -663,7 +665,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>

@@ -62,42 +62,42 @@
         </a>
 
         <!-- Menu desktop -->
-        <div class="menu-desktop">
-          <ul class="main-menu">
-            {{--
-            <li class="active-menu">--}}
-            <a href="{{ route('index') }}">Home</a>
-            {{--
-            <ul class="sub-menu">
-              <li><a href="{{ route('index') }}">Homepage 1</a></li>
-          <li><a href="home-02.html">Homepage 2</a></li>
-          <li><a href="home-03.html">Homepage 3</a></li>
-        </ul> --}}
-            </li>
+     		<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="{{ route('index') }}">Home</a>
+								<ul class="sub-menu">
+									<li><a href="{{ route('index') }}">Homepage 1</a></li>
+									<li><a href="home-02.html">Homepage 2</a></li>
+									<li><a href="home-03.html">Homepage 3</a></li>
+								</ul>
+							</li>
 
-            <li>
-              <a href="{{ route('shop') }}">Shop</a>
-            </li>
+							<li>
+								<a href="{{ route('shop') }}">Shop</a>
+							</li>
 
-            <li class="label1" data-label1="hot">
+							<li class="label1" data-label1="hot">
 
-              <a href="{{ route('cart') }}">Features</a>
-            </li>
+								<a href="{{ route('cart') }}">Features</a>
+							</li>
 
-            <li>
+							<li>
 
-              <a href="{{ route('blog') }}">Blog</a>
-            </li>
+                                <a href="{{ route('blog') }}">Blog</a>
+							</li>
 
-            <li>
-              <a href="{{ route('about') }}">About</a>
-            </li>
-
-            <li>
-              <a href="{{ route('contact') }}">Contact</a>
-            </li>
-          </ul>
-        </div>
+							<li>
+								<a href="{{ route('about') }}">About</a>
+							</li>
+                 <li>
+								<a href="{{ route('reclamtion') }}">Reclamation</a>
+							</li>
+							<li>
+								<a href="{{ route('contact') }}">Contact</a>
+							</li>
+						</ul>
+					</div>
 
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m">
