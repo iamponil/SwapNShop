@@ -90,6 +90,14 @@
       ]
     },
     {
+      "url": "/Blog",
+      "name": "blog",
+      "slug": "blog",
+      "icon": "menu-icon tf-icons bx bx-cube-alt",
+      "target": "_blank"
+    },
+
+    {
       "name": "Misc",
       "icon": "menu-icon tf-icons bx bx-cube-alt",
       "slug": "pages-misc",

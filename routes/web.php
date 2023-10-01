@@ -80,6 +80,13 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
+//Blog
+Route::get('/Blog', $controller_path . '\blog\BlogController@index')->name('blogg');
+Route::get('/Blog/add', $controller_path . '\blog\BlogController@create')->name('createBlog');
+Route::post('/Blog/addB', $controller_path . '\blog\BlogController@store')->name('store');
+Route::get('/Blog/updateB/{blog}', $controller_path . '\blog\BlogController@edit')->name('updateB');
+Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@update')->name('update');
+Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
 
 
@@ -87,10 +94,8 @@ Route::get('/frontoffice', function () {
   return view('Template.master');
 })->name('index');
 
+Route::get('/bloggggs', $controller_path . '\blog\BlogController@indexF')->name('blog');
 
-Route::get('/blog', function () {
-  return view('Template.blog');
-})->name('blog');
 
 Route::get('/about', function () {
   return view('Template.about');
