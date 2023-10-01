@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {
-   
+
     public function index()
     {
         $blogs = blog::all();
@@ -20,13 +20,13 @@ class BlogController extends Controller
         return view('Template.blog', compact('blogs'));
     }
 
-  
+
     public function create()
     {
         return view('content.blog.Create');
     }
 
-    
+
     public function store(Request $request)
     {
         {
@@ -35,7 +35,7 @@ class BlogController extends Controller
               'content' => 'required',
               'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
           ]);
-  
+
           $input = $request->all();
           if ($picture = $request->file('picture')) {
               $destinationPath = 'img/';
@@ -48,21 +48,21 @@ class BlogController extends Controller
               ->with('success','Blog created successfully.');
       }
       }
-    
 
-   
+
+
     public function show(blog $blog)
     {
         //
     }
 
-   
+
     public function edit(blog $blog)
     {
         return view('content.blog.Update', compact('blog'));
     }
 
-  
+
     public function update(Request $request, blog $blog)
     {
         {
@@ -70,7 +70,7 @@ class BlogController extends Controller
               'title' => 'required',
               'content' => 'required',
           ]);
-      
+
           $input = $request->all();
           if ($picture = $request->file('picture')) {
               $destinationPath = 'img/';
@@ -80,14 +80,14 @@ class BlogController extends Controller
           } else {
               unset($input['picture']);
           }
-      
+
           $blog->update($input);
           return redirect()->route('blogg')
               ->with('success','Blog updated successfully.');
           }
     }
 
-  
+
     public function destroy(blog $blog)
     {
         $blog->delete();

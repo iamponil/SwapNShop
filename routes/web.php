@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,8 +125,8 @@ Route::put('/product/{id}', [ProductController::class,'update'])->name('products
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
 
 
-Route::get('communities', function (){
-  return view('communities');
-})->name('communities');
-
 Route::resource('community',\App\Http\Controllers\CommunityController::class);
+
+// converstaion and messages routes 
+Route::get('/conversations',[ConversationController::class,'index'])->name('conversations');
+Route::get('/conversations/{$id}',[ConversationController::class,'show'])->name('conversations.show');
