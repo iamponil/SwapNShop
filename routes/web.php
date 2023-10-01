@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommunityController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +136,14 @@ Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('prod
 Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
 
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
+
+//Blog
+Route::get('/Blog', $controller_path . '\blog\BlogController@index')->name('blogg');
+Route::get('/Blog/add', $controller_path . '\blog\BlogController@create')->name('createBlog');
+Route::post('/Blog/addB', $controller_path . '\blog\BlogController@store')->name('store');
+Route::get('/Blog/updateB/{blog}', $controller_path . '\blog\BlogController@edit')->name('updateB');
+Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@update')->name('update');
+Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
 
 Route::resource('community',CommunityController::class);
