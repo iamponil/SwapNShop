@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }} "/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href=" {{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -17,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
 <!--===============================================================================================-->
@@ -31,6 +33,7 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
+
 
 	<!-- Header -->
 	<header class="header-v4">
@@ -67,12 +70,14 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
+
+					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
-					<div class="menu-desktop">
+						<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
 								<a href="{{ route('index') }}">Home</a>
@@ -89,10 +94,12 @@
 
 							<li class="label1" data-label1="hot">
 
+
 								<a href="{{ route('cart') }}">Features</a>
 							</li>
 
 							<li>
+
 
                                 <a href="{{ route('blog') }}">Blog</a>
 							</li>
@@ -100,12 +107,16 @@
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
+                 <li>
+								<a href="{{ route('reclamtion') }}">Reclamation</a>
+							</li>
 
 
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 						</ul>
+					</div>
 					</div>
 
 					<!-- Icon header -->
@@ -124,10 +135,12 @@
 					</div>
 				</nav>
 			</div>
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
@@ -254,6 +267,7 @@
 				</div>
 			</div>
 
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -305,6 +319,7 @@
 					</li>
 				</ul>
 
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -330,6 +345,7 @@
 		<h2 class="ltext-105 cl0 txt-center">
 			Blog
 		</h2>
+	</section>
 	</section>
 
 

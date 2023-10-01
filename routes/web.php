@@ -80,14 +80,15 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 
 // tables
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
-//Blog
-Route::get('/Blog', $controller_path . '\blog\BlogController@index')->name('blogg');
-Route::get('/Blog/add', $controller_path . '\blog\BlogController@create')->name('createBlog');
-Route::post('/Blog/addB', $controller_path . '\blog\BlogController@store')->name('store');
-Route::get('/Blog/updateB/{blog}', $controller_path . '\blog\BlogController@edit')->name('updateB');
-Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@update')->name('update');
-Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
+
+// Reclamtion
+Route::get('/Reclamtion', $controller_path . '\reclamation\ReclamtionController@index')->name('reclamation');
+Route::get('/Reclamtion/add', $controller_path . '\reclamation\ReclamtionController@create')->name('createR');
+Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('store');
+Route::get('/Reclamtion/update/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@edit')->name('updateR');
+Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('update');
+Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
 
 
 Route::get('/frontoffice', function () {
@@ -109,6 +110,15 @@ Route::get('/contact', function () {
   return view('Template.contact');
 })->name('contact');
 
+//reclamationFont
+Route::get('/Reclations', function () {
+  return view('Template.reclamation');
+})->name('reclamtion');
+
+
+Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('history');
+
+
 Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
@@ -125,8 +135,8 @@ Route::put('/product/{id}', [ProductController::class,'update'])->name('products
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
 
 
-Route::resource('community',\App\Http\Controllers\CommunityController::class);
+Route::resource('community',CommunityController::class);
 
-// converstaion and messages routes 
 Route::get('/conversations',[ConversationController::class,'index'])->name('conversations');
 Route::get('/conversations/{$id}',[ConversationController::class,'show'])->name('conversations.show');
+?>
