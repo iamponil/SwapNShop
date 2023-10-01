@@ -82,6 +82,14 @@ Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\Horizon
 Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
 
 
+// Reclamtion
+Route::get('/Reclamtion', $controller_path . '\reclamation\ReclamtionController@index')->name('reclamation');
+Route::get('/Reclamtion/add', $controller_path . '\reclamation\ReclamtionController@create')->name('createR');
+Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('store');
+Route::get('/Reclamtion/update/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@edit')->name('updateR');
+Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('update');
+Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
+
 
 Route::get('/frontoffice', function () {
   return view('Template.master');
@@ -103,6 +111,15 @@ Route::get('/product', function () {
 Route::get('/contact', function () {
   return view('Template.contact');
 })->name('contact');
+
+//reclamationFont
+Route::get('/Reclations', function () {
+  return view('Template.reclamation');
+})->name('reclamtion');
+
+
+Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('history');
+
 
 Route::get('/cart', function () {
   return view('Template.cart');

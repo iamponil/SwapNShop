@@ -90,6 +90,12 @@
       ]
     },
     {
+      "url": "Reclamtion",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Reclamation",
+      "slug": "reclamation"
+    },
+    {
       "name": "Misc",
       "icon": "menu-icon tf-icons bx bx-cube-alt",
       "slug": "pages-misc",
