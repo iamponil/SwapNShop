@@ -22,7 +22,7 @@ $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
 Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
-
+  
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', $controller_path . '\layouts\WithoutNavbar@index')->name('layouts-without-navbar');
@@ -39,6 +39,7 @@ Route::get('/pages/misc-under-maintenance', $controller_path . '\pages\MiscUnder
 
 // authentication
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
+Route::post('/login', $controller_path . '\authentications\LoginBasic@login')->name('login');
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name('auth-register-basic');
 Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name('auth-reset-password-basic');
 
@@ -149,5 +150,5 @@ Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@des
 Route::resource('community',CommunityController::class);
 
 Route::get('/conversations',[ConversationController::class,'index'])->name('conversations');
-Route::get('/conversations/{$id}',[ConversationController::class,'show'])->name('conversations.show');
+Route::get('/conversations/{$user}',[ConversationController::class,'show'])->name('conversations.show');
 ?>
