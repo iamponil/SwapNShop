@@ -101,7 +101,7 @@
 							</li>
                             
 							<li>
-								<a href="{{ route('createprod') }}">Add Product</a>
+								<a href="{{ route('create') }}">Add Product</a>
 							</li>
 						</ul>
 					</div>	
