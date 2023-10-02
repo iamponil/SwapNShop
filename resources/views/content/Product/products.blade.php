@@ -12,7 +12,7 @@
 <!--/ Basic Bootstrap Table -->
 <div class="card">
    
- <div><h5 class="card-header">All Products  <a href="{{ route('products.create') }}" style="margin-left: 1020px ;"> <img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAALNJREFUSEvtltENwjAMRF82YQNGKCOxAXSDjlQ2gA06Ahu0itRKkSIjx7Q4SInkP9t3ebmPBJxOcNKlCf+MfEPtjvpicPAGnto56Y1n7YKk7wGoDVcnrHae3HgX1AbSZSMSarcb/224RqADxKQfhdosXJaUvNssrA1XFIjntNZmYQDOwAu4Jr4mIJb4EdCGa3uqO3BTYOqB2FufsBtqBbWPLeZwNeFvCWTz7bO3O1JpoRvqBaPJLB8biop8AAAAAElFTkSuQmCC" /></a>
+ <div><h5 class="card-header">All Products 
 
  </h5>
      

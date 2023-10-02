@@ -107,6 +107,9 @@
 							<li>
 								<a href="contact.html">Contact</a>
 							</li>
+							<li>
+								<a href="addproduct.html">Add Product</a>
+							</li>
 						</ul>
 					</div>	
 
@@ -220,6 +223,9 @@
 
 				<li>
 					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="addproduct.html">Add Product</a>
 				</li>
 			</ul>
 		</div>

@@ -96,6 +96,9 @@
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
+							<li>
+								<a href="{{ route('create') }}">Add product</a>
+						</li>
 						</ul>
 					</div>	
 
@@ -209,6 +212,9 @@
 
 				<li>
 					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="addproduct.html">Contact</a>
 				</li>
 			</ul>
 		</div>
