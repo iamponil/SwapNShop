@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,23 @@ $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
 Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+// Payment routes
+Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+Route::get('/payments/create', [PaymentController::class, 'create'])->name('payments.create');
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
+Route::get('/payments/{id}', [PaymentController::class, 'show'])->name('payments.show');
+Route::get('/payments/{id}/edit', [PaymentController::class, 'edit'])->name('payments.edit');
+Route::put('/payments/{id}', [PaymentController::class, 'update'])->name('payments.update');
+Route::delete('/payments/{id}', [PaymentController::class, 'destroy'])->name('payments.destroy');
+
+// Payment Method routes
+Route::get('/payment_methods', [PaymentMethodController::class, 'index'])->name('payment_methods.index');
+Route::get('/payment_methods/create', [PaymentMethodController::class, 'create'])->name('payment_methods.create');
+Route::post('/payment_methods', [PaymentMethodController::class, 'store'])->name('payment_methods.store');
+Route::get('/payment_methods/{id}', [PaymentMethodController::class, 'show'])->name('payment_methods.show');
+Route::get('/payment_methods/{id}/edit', [PaymentMethodController::class, 'edit'])->name('payment_methods.edit');
+Route::put('/payment_methods/{id}', [PaymentMethodController::class, 'update'])->name('payment_methods.update');
+Route::delete('/payment_methods/{id}', [PaymentMethodController::class, 'destroy'])->name('payment_methods.destroy');
 
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
