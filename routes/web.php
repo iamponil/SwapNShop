@@ -150,5 +150,8 @@ Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@des
 Route::resource('community',CommunityController::class);
 
 Route::get('/conversations',[ConversationController::class,'index'])->name('conversations');
-Route::get('/conversations/{$user}',[ConversationController::class,'show'])->name('conversations.show');
+Route::get('/conversations/{user}',[ConversationController::class,'show'])->name('conversations.show');
+Route::post('/conversations/{user}',[ConversationController::class,'store'])->name('conversations.store');
+Route::get('/search-users', [ConversationController::class, 'searchUsers']);
+Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMessagesBetweenUsers'])
 ?>
