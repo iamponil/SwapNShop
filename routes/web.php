@@ -4,8 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
-
-
+use App\Models\Conversation;
 
 /*
 |--------------------------------------------------------------------------
@@ -149,9 +148,14 @@ Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@des
 
 Route::resource('community',CommunityController::class);
 
-Route::get('/conversations',[ConversationController::class,'index'])->name('conversations');
-Route::get('/conversations/{user}',[ConversationController::class,'show'])->name('conversations.show');
-Route::post('/conversations/{user}',[ConversationController::class,'store'])->name('conversations.store');
+Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
+Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
+Route::post('/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store');
 Route::get('/search-users', [ConversationController::class, 'searchUsers']);
-Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMessagesBetweenUsers'])
+Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMessagesBetweenUsers']);
+Route::post('/conversations/send-message/{from}/{to}', [ConversationController::class, 'sendMessage'])->name('conversations.sendMessage');
+Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class,'deleteMessage'])->name('conversations.deleteMessage');
+Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
+
+
 ?>

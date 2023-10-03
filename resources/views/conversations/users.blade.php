@@ -37,7 +37,7 @@
 				<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
 				<div class="meta">
 					<!-- Add a data attribute with user ID to each list item -->
-					<p class="name" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">{{ $user->name }}</p>
+					<p class="name" data-user={{$user}} data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">{{ $user->name }}</p>
 				</div>
 			</div>
 		</li>
@@ -59,34 +59,59 @@
 <div class="content">
     <div class="contact-profile">
         <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-        <p id="selectedUserName">{{$users[0]->name}}</p>
+        <p id="selectedUserName"></p>
     </div>
+    <div class="message-input">
+        <div class="wrap">
+            @if(isset($userId))
+            <form action="{{ route('conversations.sendMessage', ['from' => $currentUser->id, 'to' => $userId]) }}" method="post">
+                @csrf
+                <input type="text" name="content" placeholder="Write your message..." />
+                <button type="submit" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </form>
+             @endif
+        </div>
+</div>
 <script>
-	$(document).ready(function () {
-    // Initialize the selectedUserName with an empty string
+   	$(document).ready(function () {
+		$('#searchInput').on('input', function () {
+			var searchText = $(this).val();
+			
+			$.ajax({
+				url: '/search-users',
+				type: 'GET',
+				data: { searchText: searchText },
+				success: function (data) {
+					$('#contacts ul').html(data);
+				}
+			});
+		});
+	});
+  
+    $(document).ready(function () {
     var selectedUserName = "";
+    
+    var messageForm = $('#message-form');
 
-    // Use event delegation to handle click events on .contact elements
     $('#contacts').on('click', '.contact', function () {
-        // Get the user ID and user name from the data attributes
         var userId = $(this).find('.name').data('user-id');
         var userName = $(this).find('.name').data('user-name'); 
         var currentUserData = $('#current-user').data('current-user');
         var currentUser = currentUserData.id;
-        // Update the content of the #selectedUserName element with the selected user's name
+
         $('#selectedUserName').text(userName);
         selectedUserName = userName;
-
         $.ajax({
             url: '/conversations/{from}/{to}',
             type: 'GET',
             data: { from: currentUser, to: userId },
             success: function (data) {
-                console.log(data); 
 
                 $('.messages').html(data);
             }
         });
+        
     });
 });
+
 </script>

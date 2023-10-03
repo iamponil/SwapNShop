@@ -20,7 +20,7 @@ class ConversationRepository {
     } 
     public function createMessage( $content,int $from,int $to){
    return  $this->message->newQuery()->create([
-  'content'=> 'test',
+  'content'=> $content,
   'sender_id'=>$from,
   'receiver_id' => $to
    ]);
@@ -28,6 +28,6 @@ class ConversationRepository {
     public function getMessagesFor(int $from, int $to): Builder{
     return  $this->message->newQuery()
       ->whereRaw("((sender_id =$from AND receiver_id=$to) OR (receiver_id=$from AND sender_id=$to))")
-      ->orderBy('created_at', 'DESC');
+      ->orderBy('created_at', 'ASC');
     }
 }
