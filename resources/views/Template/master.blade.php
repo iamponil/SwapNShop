@@ -96,6 +96,9 @@
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
+							<li>
+								<a href="{{ route('create') }}">Add product</a>
+						</li>
 						</ul>
 					</div>
 
@@ -210,11 +213,14 @@
         <a href="about.html">About</a>
       </li>
 
-      <li>
-        <a href="contact.html">Contact</a>
-      </li>
-    </ul>
-  </div>
+				<li>
+					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="addproduct.html">Contact</a>
+				</li>
+			</ul>
+		</div>
 
   <!-- Modal Search -->
   <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">

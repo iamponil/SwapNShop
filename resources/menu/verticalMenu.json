@@ -293,6 +293,12 @@
       ]
     },
     {
+      "url": "products",
+      "icon": "menu-icon tf-icons bx bx-table",
+      "name": "Products",
+      "slug": "products"
+    },
+    {
       "url": "tables/basic",
       "icon": "menu-icon tf-icons bx bx-table",
       "name": "Tables",

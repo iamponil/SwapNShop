@@ -105,9 +105,7 @@ Route::get('/about', function () {
   return view('Template.about');
 })->name('about');
 
-Route::get('/product', function () {
-  return view('Template.shop');
-})->name('shop');
+
 
 Route::get('/contact', function () {
   return view('Template.contact');
@@ -126,11 +124,11 @@ Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
 
-
+Route::get('/product',[ProductController::class,'affichefront'])->name('shop');;
 Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
-Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
+// Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
 Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');;
-Route::get('/products/create',[ProductController::class,'create'])->name('products.create');;
+Route::get('/createprod',[ProductController::class,'create'])->name('create');;
 Route::post('/products/store',[ProductController::class,'store'])->name('products.store');;
 Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('products.edit');
 Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');

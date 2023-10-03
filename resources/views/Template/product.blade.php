@@ -111,6 +111,9 @@
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
+							<li>
+								<a href="{{ route('create') }}">Add product</a>
+						</li>
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -223,6 +226,9 @@
 
 				<li>
 					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="addproduct.html">Add Product</a>
 				</li>
 			</ul>
 		</div>
@@ -588,10 +594,20 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="{{ asset('images/' . $product->image) }}" alt="Product Image" style="width: 300px; height: 400px;" >
-
-							<a href="{{ route('product.details', ['productId' => $product->id]) }}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+			
+							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 show-product" data-bs-toggle="modal" data-bs-target="#Modal1" data-product-name="{{ $product->product_name }}"
+								data-product-price="{{ $product->price }}"
+								data-product-description="{{ $product->description }}"
+								data-product-image="{{ asset('images/' . $product->image) }}" >
 								Quick View
 							</a>
+							{{-- <button type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
+						data-product-name="{{ $product->product_name }}"
+						data-product-price="{{ $product->price }}"
+						data-product-description="{{ $product->description }}"
+						data-product-image="{{ asset('images/' . $product->image) }}">
+						Quick View
+				</button> --}}
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -798,160 +814,218 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+<!-- Modal1 -->
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="#Modal1" >
+	<div class="overlay-modal1 js-hide-modal1"></div>
 
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
+	<div class="container">
+		<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+			<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+				<img src="images/icons/icon-close.png" alt="CLOSE">
+			</button>
 
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
+			<div class="row">
+				<div class="col-md-6 col-lg-7 p-b-30">
+					<div class="p-l-25 p-r-30 p-lr-0-lg">
+						<div class="wrap-slick3 flex-sb flex-w">
+						
 
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+							<div class="slick3 gallery-lb">
+							
+							
 
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+								<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+									<div class="wrap-pic-w pos-relative">
+										<img id="productImage" src="" alt="Product Image">
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
+									
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							<span id="productName"></span>
+						</h4>
 
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
+						<span class="mtext-106 cl2">
+							$<span id="productPrice"></span>
+						</span>
 
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
+						<p class="stext-102 cl3 p-t-23">
+							<span id="productDescription"></span>	</p>
+						
+						<!--  -->
+					
+							
+						<br/>	
+						<br/>	
+						<br/>	
+						<br/>
+							<div class="flex-w flex-r-m p-b-10">
+								<div class="size-204 flex-w flex-m respon6-next">
+									
 
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										Add to cart
+									</button>
 								</div>
+							</div>	
+						</div>
 
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
+						<!--  -->
+						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+							<div class="flex-m bor9 p-r-10 m-r-11">
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+									<i class="zmdi zmdi-favorite"></i>
 								</a>
 							</div>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+								<i class="fa fa-facebook"></i>
+							</a>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+								<i class="fa fa-twitter"></i>
+							</a>
+
+							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+								<i class="fa fa-google-plus"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+
+<!-- Modal -->
+{{-- <div class="modal fade col-lg-12 col-md-4" id="basicModal" tabindex="-1" aria-hidden="true" style="height: 400px; width:1900px;  margin-top: 200px;" >
+    
+<div class="modal-dialog  modal-content  " role="document">
+		
+<div class="row ">
+
+        <div class="col">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Product Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <p><strong>Name:</strong> <span id="productName"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-0">
+                        <p><strong>Price:</strong> <span id="productPrice"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-0">
+                        <p><strong>Description:</strong> <span id="productDescription"></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-0">
+                        <p><strong>Image:</strong></p>
+                        <img id="productImage" src="" alt="Product Image" width="400">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+		<div class="col " style="margin-right: 100px">
+			<br/><br/><br/><br/><br/>
+			<div class="p-t-33">
+				<div class="flex-w flex-r-m p-b-12">
+					<div class="size-204 flex-w flex-m respon6-next">
+						
+						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+							Add to cart
+						</button>
+					</div>
+				</div>	
+			</div>
+		
+			
+			<div class="flex-w flex-m p-l-100 p-t-40 respon7" style="margin-left: 50px">
+				<div class="flex-m bor9 p-r-10 m-r-11">
+					<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+						<i class="zmdi zmdi-favorite"></i>
+					</a>
+				</div>
+			
+				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" style="display: inline-block;">
+					<i class="fa fa-facebook"></i>
+				</a>
+			
+				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" style="display: inline-block;">
+					<i class="fa fa-twitter"></i>
+				</a>
+			
+				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" style="display: inline-block;">
+					<i class="fa fa-google-plus"></i>
+				</a>
+			</div>
+			
+
+		</div>
+
+	</div>
+    </div>
+</div> --}}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.show-product').click(function () {
+            
+            console.log('Button clicked'); // Add this line
+            var productName = $(this).data('product-name');
+            var productPrice = $(this).data('product-price');
+            var productDescription = $(this).data('product-description');
+            var productImage = $(this).data('product-image');
+
+            // Set the modal content with product details
+            $('#productName').text(productName);
+            $('#productPrice').text(productPrice);
+            $('#productDescription').text(productDescription);
+            $('#productImage').attr('src', productImage);
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

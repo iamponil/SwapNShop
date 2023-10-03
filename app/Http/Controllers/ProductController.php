@@ -34,7 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('content.Product.Addproduct');
+        return view('Template.addproduct');
     }
 
     /**
@@ -58,7 +58,7 @@ if ($request->hasFile('image')) {
     $product->image = $imageName;
 }
         $product->save();
-        return redirect('/products');
+        return redirect('/product');
     }
 
     /**

@@ -104,7 +104,7 @@
 								<a href="{{ route('reclamtion') }}">Reclamation</a>
 							</li>
 							<li>
-								<a href="{{ route('contact') }}">Contact</a>
+								<a href="{{ route('create') }}">Add product</a>
 							</li>
 						</ul>
 					</div>
@@ -219,6 +219,9 @@
 
 				<li>
 					<a href="contact.html">Contact</a>
+				</li>
+				<li>
+					<a href="addproduct.html">Add product</a>
 				</li>
 			</ul>
 		</div>

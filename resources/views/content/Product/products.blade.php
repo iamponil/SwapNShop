@@ -11,9 +11,15 @@
 
 <!--/ Basic Bootstrap Table -->
 <div class="card">
-  <h5 class="card-header">All Products</h5>
+   
+ <div><h5 class="card-header">All Products 
+
+ </h5>
+     
+   </div> 
   <div class="table-responsive text-nowrap">
-	@if(isset($listproducts) && count($listproducts) > 0)
+ 
+   	@if(isset($listproducts) && count($listproducts) > 0)
   <table class="table">
     <thead>
         <tr>
