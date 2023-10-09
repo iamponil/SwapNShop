@@ -104,7 +104,6 @@
             <li>
               <a href="{{ route('about') }}">About</a>
             </li>
-
             <li>
               <a href="{{ route('contact') }}">Contact</a>
             </li>
@@ -447,77 +446,38 @@
 <!-- Banner -->
 
 
-<!-- Communities -->
-<div class="services section-background">
+<!-- Events -->
+<div class="happy-clients">
   <div class="container">
     <div class="row">
-      @foreach ($communities as $c)
-        <div class="col-md-4">
-          {{-- <i class="fa-solid fa-ellipsis-vertical" style="position: relative;left: 345px;top: 40px;"></i> --}}
-          <div class="dropdown">
-            <button style="position: relative;
-                              left: 400px;
-                              top: 40px;" class="btn p-0"
-                    type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-              <i class="bx bx-dots-vertical-rounded"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-              <a class="dropdown-item" href="{{ route('community.edit', ['community' => $c]) }}"><i
-                  class="fa-solid fa-pen-to-square"></i>Edit</a>
-              {{-- <a class="dropdown-item" href="{{route('community.destroy',['community'=>$c])}}"><i class="fa-solid fa-trash"></i>Delete</a> --}}
-              <form method="POST" action="{{ route('community.destroy', ['community' => $c]) }}">
-                @csrf
-                @method('DELETE')
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Upcoming Events</h2>
 
-                <button type="submit" class="dropdown-item">
-                  <i class="fa-solid fa-trash"></i> Delete
-                </button>
-              </form>
-
-            </div>
-          </div>
-          <div class="service-item">
-            <div class="icon">
-              {{-- <img  style="height: 140px; width: 200px;" src="{{asset('assets/images/blog-01.jpg')}}"> --}}
-              <i class="fa-solid fa-people-group"></i>
-            </div>
-            <div class="down-content">
-              <a href = "{{route('community.show',['community'=>$c])}}"><h4>{{ $c->name }}</h4></a>
-              <p class="n-m"><em>{{ $c->description }}</em></p>
-              <hr>
-              {{ $c->members->count() }} <i class="fa-solid fa-user"></i>
-              @if ($c->events->count() > 0)
-                • <i class="fa-solid fa-calendar-days"></i>
-                {{ $c->events->sortByDesc('date_time')->first()->date_time }}
-              @endif
-              @if ($c->members->contains('id', 1))
-                <div>
-                  <a href="{{ route('event.form', ['id' => $c->id]) }}">
-                    <button style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                      Create Event <i class="fa-solid fa-plus"></i>
-                    </button>
-                  </a>
-                </div>
-              @else
-                <form method="POST" action="{{ route('community.join', ['community' => $c]) }}">
-                  @csrf
-                  <button type="submit" style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                    Join <i class="fa-solid fa-right-to-bracket"></i>
-                  </button>
-                  {{--           <div style="margin-top : 10px;">
-                                        <span class="badge rounded-pill bg-label-primary">Primary</span>
-                            <span class="badge rounded-pill bg-label-success">Success</span>
-                                      <span class="badge rounded-pill bg-label-danger">Danger</span>
-                            <span class="badge rounded-pill bg-label-warning">Warning</span>
-                            <span class="badge rounded-pill bg-label-info">Info</span>
-                            </div>--}}
-                </form>
-              @endif
-            </div>
-          </div>
+          {{--              <a href="testimonials.html">read more <i class="fa fa-angle-right"></i></a>--}}
         </div>
-      @endforeach
+      </div>
+      <div class="col-md-12">
+        <div class="owl-clients owl-carousel text-center">
+          @foreach ($events as $e)
+            <div class="service-item" style="
+  border-width: 1px;border-style: groove;">
+              <div class="icon">
+                <i class="fa-solid fa-calendar-day"></i>
+              </div>
+              <div class="down-content">
+                <h4>{{$e->title}}</h4>
+                {{--                  <p class="n-m"><em>{{$e->description}}</em></p>--}}
+                <div>
+                  {{$e->description}}
+                </div>
+                <i class="fa-regular fa-calendar-check"></i> {{$e->date_time}}
+                <div><i class="fa-solid fa-location-dot"></i> {{$e->location}}</div>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -869,7 +829,7 @@
 <!--===============================================================================================-->
 <script src="vendor/select2/select2.min.js"></script>
 <script>
-  $(".js-select2").each(function() {
+  $(".js-select2").each(function () {
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
@@ -890,7 +850,7 @@
 <!--===============================================================================================-->
 <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
-  $('.gallery-lb').each(function() { // the containers for all your galleries
+  $('.gallery-lb').each(function () { // the containers for all your galleries
     $(this).magnificPopup({
       delegate: 'a', // the selector for gallery item
       type: 'image',
@@ -906,13 +866,13 @@
 <!--===============================================================================================-->
 <script src="vendor/sweetalert/sweetalert.min.js"></script>
 <script>
-  $('.js-addwish-b2').on('click', function(e) {
+  $('.js-addwish-b2').on('click', function (e) {
     e.preventDefault();
   });
 
-  $('.js-addwish-b2').each(function() {
+  $('.js-addwish-b2').each(function () {
     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-b2');
@@ -920,10 +880,10 @@
     });
   });
 
-  $('.js-addwish-detail').each(function() {
+  $('.js-addwish-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-detail');
@@ -933,9 +893,9 @@
 
   /*---------------------------------------------*/
 
-  $('.js-addcart-detail').each(function() {
+  $('.js-addcart-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to cart !", "success");
     });
   });
@@ -943,7 +903,7 @@
 <!--===============================================================================================-->
 <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-  $('.js-pscroll').each(function() {
+  $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');
     $(this).css('overflow', 'hidden');
     var ps = new PerfectScrollbar(this, {
@@ -952,7 +912,7 @@
       wheelPropagation: false,
     });
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
       ps.update();
     })
   });
