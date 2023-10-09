@@ -30,6 +30,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="{{ asset('osw/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('osw/assets/css/owl.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body class="animsition">
@@ -445,42 +449,32 @@
 
 <!-- Banner -->
 
-
-<!-- Events -->
-<div class="happy-clients">
+<div class="services section-background">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="section-heading">
-          <h2>Upcoming Events</h2>
-
-          {{--              <a href="testimonials.html">read more <i class="fa fa-angle-right"></i></a>--}}
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="owl-clients owl-carousel text-center">
-          @foreach ($events as $e)
-            <div class="service-item" style="
-  border-width: 1px;border-style: groove;">
-              <div class="icon">
-                <i class="fa-solid fa-calendar-day"></i>
-              </div>
-              <div class="down-content">
-                <h4>{{$e->title}}</h4>
-                {{--                  <p class="n-m"><em>{{$e->description}}</em></p>--}}
-                <div>
-                  {{$e->description}}
-                </div>
-                <i class="fa-regular fa-calendar-check"></i> {{$e->date_time}}
-                <div><i class="fa-solid fa-location-dot"></i> {{$e->location}}</div>
-              </div>
+      @foreach ($events as $e)
+        <div class="col-md-4">
+          <div class="service-item">
+            <div class="icon">
+              <i class="fa-solid fa-calendar-day"></i>
             </div>
-          @endforeach
+            <div class="down-content">
+              <a href = "{{route('community.show',['community'=>$e])}}"><h4>{{ $e->title }}</h4></a>
+              <p class="n-m"><em>{{ $e->description }}</em></p>
+              <i class="fa-regular fa-calendar-check"></i> {{$e->date_time}}
+              <hr>
+            </div>
+            <input type="hidden" id="latitude" name="latitude" value="{{$e->location['latitude']}}">
+            <input type="hidden" id="longitude" name="{{$e->location['longitude']}}">
+            <div id="map_{{ $e->id }}" style="height: 200px;"></div>
+          </div>
         </div>
-      </div>
+      @endforeach
     </div>
   </div>
 </div>
+
+<!-- Events -->
 
 
 <!-- Footer -->
@@ -844,6 +838,30 @@
 <script src="js/slick-custom.js"></script>
 <!--===============================================================================================-->
 <script src="vendor/parallax100/parallax100.js"></script>
+{{--
+<script>
+  var map = L.map('map').setView([document.getElementById('latitude').value, document.getElementById('longitude').value], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  L.marker([document.getElementById('latitude').value, document.getElementById('longitude').value]).addTo(map)
+          .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+          .openPopup();
+</script>
+--}}
+<script>
+  @foreach ($events as $event)
+  var map_{{ $event->id }} = L.map('map_{{ $event->id }}').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map_{{ $event->id }});
+
+  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}]).addTo(map_{{ $event->id }});
+  eventMarker.bindPopup('{{ $event->title }}<br> Will be Held Here @ ');
+  @endforeach
+</script>
+
 <script>
   $('.parallax100').parallax100();
 </script>

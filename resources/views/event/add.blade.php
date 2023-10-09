@@ -29,6 +29,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
   <!--===============================================================================================-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body class="animsition">
 
@@ -356,15 +358,19 @@
           <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="description"
                     placeholder="Event Description"></textarea>
         </div>
+        {{--
         <div class="bor8 m-b-20 how-pos4-parent">
           <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="location"
                  placeholder="Event Location">
-                 <i class="how-pos4 pointer-none fa-solid fa-location-dot"></i>
-        </div>
+          <i class="how-pos4 pointer-none fa-solid fa-location-dot"></i>
+        </div>--}}
         <div class="bor8 m-b-20 how-pos4-parent">
            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="datetime-local" name="date_time">
            <i class="how-pos4 pointer-none fa-solid fa-calendar-plus"></i>
         </div>
+        <div id="map" style="height: 400px;"></div>
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
         <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
           Submit
         </button>
@@ -543,6 +549,48 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
 <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
+
+<script>
+  // Initialize the map
+  var map = L.map('map').setView([51.505, -0.09], 13);
+
+  // Add a tile layer (you can use different tile layers depending on your preference)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Add a click event to the map to get coordinates
+  map.on('click', function (e) {
+    var latLng = e.latlng;
+    var latitude = latLng.lat;
+    var longitude = latLng.lng;
+
+    document.getElementById('latitude').value = latitude;
+    document.getElementById('longitude').value = longitude;
+    L.marker([latitude, longitude]).addTo(map)
+    .bindPopup('Your Event Will be Held Here')
+    .openPopup();
+  });
+</script>
+
+
+<script>
+ // var map = L.map('map').setView([51.505, -0.09], 13); // Set initial coordinates and zoom level
+  //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  //}).addTo(map);
+
+ //var map = L.map('map').setView([51.505, -0.09], 13);
+ //L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+   //attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+ //}).addTo(map);
+ //L.marker([51.5, -0.09]).addTo(map)
+   //.bindPopup('A pretty CSS popup.<br> Easily customizable.')
+   //.openPopup();
+
+
+</script>
+
 <script>
   $(".js-select2").each(function () {
     $(this).select2({
@@ -575,6 +623,5 @@
 <script src="{{asset('js/map-custom.js')}}"></script>
 <!--===============================================================================================-->
 <script src="{{asset('js/main.js')}}"></script>
-
 </body>
 </html>
