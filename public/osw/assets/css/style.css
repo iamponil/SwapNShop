@@ -272,7 +272,7 @@ header .navbar {
 }
 .navbar .navbar-toggler {
 	border-color: #fff;
-	background-color: #fff;	
+	background-color: #fff;
 	height: 36px;
 	outline: none;
 	border-radius: 0px;
@@ -456,8 +456,8 @@ header .navbar {
 	margin-bottom: 3px;
 }
 
-.modal-dialog { 
-	margin-top: 10%; 
+.modal-dialog {
+	margin-top: 10%;
 }
 
 /* Best Features */
@@ -626,12 +626,12 @@ footer .inner-content p a {
   color: #f33f3f;
 }
 
-.dropdown-menu { 
+.dropdown-menu {
 	border-radius: 0;
 }
 
-.dropdown-item { 
-	padding: .5rem 1.5rem; 
+.dropdown-item {
+	padding: .5rem 1.5rem;
 }
 
 .page-heading {
@@ -764,8 +764,8 @@ footer .inner-content p a {
 	padding: 100px 0px;
 }
 
-.services .section-heading h2 { 
-	color: #fff; 
+.services .section-heading h2 {
+	color: #fff;
 }
 
 .service-item {
@@ -800,7 +800,7 @@ footer .inner-content p a {
 	margin-bottom: 20px;
 }
 
-.service-item .down-content h6 { 
+.service-item .down-content h6 {
 	margin-bottom: 15px;
 }
 
@@ -808,24 +808,24 @@ footer .inner-content p a {
 	margin-bottom: 25px;
 }
 
-.services-item-image { 
-	display: block; 
+.services-item-image {
+	display: block;
 }
 
-.n-m { 
-	margin: 0!important; 
+.n-m {
+	margin: 0!important;
 }
 
-.owl-clients button.owl-dot { 
-	background: #f1f1f1!important; 
-	width: 10px!important; 
-	height: 10px!important; 
-	margin: 0 10px!important; 
+.owl-clients button.owl-dot {
+	background: #f1f1f1!important;
+	width: 10px!important;
+	height: 10px!important;
+	margin: 0 10px!important;
 	border-radius: 50%;
 }
 
-.owl-clients button.owl-dot.active { 
-	background: #f33f3f!important; 
+.owl-clients button.owl-dot.active {
+  background: #717fe0!important;
 }
 
 /* Clients */
@@ -842,8 +842,8 @@ footer .inner-content p a {
 	cursor: pointer;
 }
 
-.client-item h6 { 
-	line-height: 1.6;  
+.client-item h6 {
+	line-height: 1.6;
 }
 
 .happy-clients .client-item img:hover {
@@ -972,8 +972,8 @@ footer .inner-content p a {
 	padding: 15px 0px;
 }
 
-.section-background { 
-	background: #f1f1f1; 
+.section-background {
+	background: #f1f1f1;
 }
 
 .section {

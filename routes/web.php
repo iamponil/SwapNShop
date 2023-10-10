@@ -21,7 +21,7 @@ $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
 Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
-  
+
 // layout
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', $controller_path . '\layouts\WithoutNavbar@index')->name('layouts-without-navbar');
@@ -145,6 +145,11 @@ Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@des
 
 
 Route::resource('community',CommunityController::class);
+Route::post('/join-community/{community}', [\App\Http\Controllers\CommunityController::class,'join'])
+  ->name('community.join');
+Route::resource('event',\App\Http\Controllers\EventController::class);
+//Route::post('/event/{community}', [\App\Http\Controllers\EventController::class,'save'])->name('event.save');
+Route::get('event/create/{id}', [\App\Http\Controllers\EventController::class,'form'])->name('event.form');
 
 Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
@@ -154,6 +159,3 @@ Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMes
 Route::post('/conversations/send-message/{from}/{to}', [ConversationController::class, 'sendMessage'])->name('conversations.sendMessage');
 Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class,'deleteMessage'])->name('conversations.deleteMessage');
 Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
-
-
-?>

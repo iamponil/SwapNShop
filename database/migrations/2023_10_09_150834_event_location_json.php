@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
-            $table->id();
-            $table->string( 'title');
-            $table->string( 'content');
-            $table->string( 'picture');
-           
-
-            $table->timestamps();
-        });
+      Schema::table('events', function (Blueprint $table) {
+        $table->json('location');
+      });
     }
 
     /**
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+      Schema::table('events', function (Blueprint $table) {
+        $table->dropColumn('location');
+      });
     }
 };
