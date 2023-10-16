@@ -454,12 +454,32 @@
     <div class="row">
       @foreach ($events as $e)
         <div class="col-md-4">
+          <div class="dropdown">
+            <button style="position: relative;
+                              left: 400px;
+                              top: 40px;" class="btn p-0"
+                    type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              <i class="bx bx-dots-vertical-rounded"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+              <a class="dropdown-item" href="{{ route('event.edit', ['event' => $e]) }}"><i
+                  class="fa-solid fa-pen-to-square"></i>Edit</a>
+              <form method="POST" action="{{ route('event.destroy', ['event' => $e]) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="dropdown-item">
+                  <i class="fa-solid fa-trash"></i> Delete
+                </button>
+              </form>
+            </div>
+          </div>
           <div class="service-item">
             <div class="icon">
               <i class="fa-solid fa-calendar-day"></i>
             </div>
             <div class="down-content">
-              <a href = "{{route('community.show',['community'=>$e])}}"><h4>{{ $e->title }}</h4></a>
+              <a href = "{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
               <p class="n-m"><em>{{ $e->description }}</em></p>
               <i class="fa-regular fa-calendar-check"></i> {{$e->date_time}}
               <hr>

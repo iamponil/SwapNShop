@@ -474,7 +474,6 @@
                   <i class="fa-solid fa-trash"></i> Delete
                 </button>
               </form>
-
             </div>
           </div>
           <div class="service-item">
@@ -483,7 +482,7 @@
               <i class="fa-solid fa-people-group"></i>
             </div>
             <div class="down-content">
-              <a href = "{{route('community.show',['community'=>$c])}}"><h4>{{ $c->name }}</h4></a>
+              <a href="{{route('community.show',['community'=>$c])}}"><h4>{{ $c->name }}</h4></a>
               <p class="n-m"><em>{{ $c->description }}</em></p>
               <hr>
               {{ $c->members->count() }} <i class="fa-solid fa-user"></i>
@@ -502,7 +501,8 @@
               @else
                 <form method="POST" action="{{ route('community.join', ['community' => $c]) }}">
                   @csrf
-                  <button type="submit" style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                     Join <i class="fa-solid fa-right-to-bracket"></i>
                   </button>
                   {{--           <div style="margin-top : 10px;">
@@ -869,7 +869,7 @@
 <!--===============================================================================================-->
 <script src="vendor/select2/select2.min.js"></script>
 <script>
-  $(".js-select2").each(function() {
+  $(".js-select2").each(function () {
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
@@ -890,7 +890,7 @@
 <!--===============================================================================================-->
 <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
-  $('.gallery-lb').each(function() { // the containers for all your galleries
+  $('.gallery-lb').each(function () { // the containers for all your galleries
     $(this).magnificPopup({
       delegate: 'a', // the selector for gallery item
       type: 'image',
@@ -906,13 +906,13 @@
 <!--===============================================================================================-->
 <script src="vendor/sweetalert/sweetalert.min.js"></script>
 <script>
-  $('.js-addwish-b2').on('click', function(e) {
+  $('.js-addwish-b2').on('click', function (e) {
     e.preventDefault();
   });
 
-  $('.js-addwish-b2').each(function() {
+  $('.js-addwish-b2').each(function () {
     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-b2');
@@ -920,10 +920,10 @@
     });
   });
 
-  $('.js-addwish-detail').each(function() {
+  $('.js-addwish-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-detail');
@@ -933,9 +933,9 @@
 
   /*---------------------------------------------*/
 
-  $('.js-addcart-detail').each(function() {
+  $('.js-addcart-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-    $(this).on('click', function() {
+    $(this).on('click', function () {
       swal(nameProduct, "is added to cart !", "success");
     });
   });
@@ -943,7 +943,7 @@
 <!--===============================================================================================-->
 <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
-  $('.js-pscroll').each(function() {
+  $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');
     $(this).css('overflow', 'hidden');
     var ps = new PerfectScrollbar(this, {
@@ -952,7 +952,7 @@
       wheelPropagation: false,
     });
 
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
       ps.update();
     })
   });
