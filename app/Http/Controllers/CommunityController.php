@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -45,8 +46,8 @@ class CommunityController extends Controller
     $community->description=$request->description;
     $community->creator_id=1;
     $community->save();
-    //$user = Auth::user();
-    $user = User::find(2);
+    $user = Auth::user();
+    //$user = User::find(2);
     $community->members()->attach($user);
     return redirect('/community');
   }
@@ -107,8 +108,8 @@ class CommunityController extends Controller
   }
   public function join(Community $community)
   {
-    //$user = Auth::user();
-    $user = User::find(1);
+    $user = Auth::user();
+    //$user = User::find(1);
     if (!$community->members->contains($user)) {
       $community->members()->attach($user);
     }

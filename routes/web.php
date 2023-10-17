@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
@@ -94,9 +95,7 @@ Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\
 Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
 
 
-Route::get('/frontoffice', function () {
-  return view('Template.master');
-})->name('index');
+
 
 Route::get('/bloggggs', $controller_path . '\blog\BlogController@indexF')->name('blog');
 
@@ -144,12 +143,6 @@ Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@updat
 Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
 
-Route::resource('community',CommunityController::class);
-Route::post('/join-community/{community}', [\App\Http\Controllers\CommunityController::class,'join'])
-  ->name('community.join');
-Route::resource('event',\App\Http\Controllers\EventController::class);
-//Route::post('/event/{community}', [\App\Http\Controllers\EventController::class,'save'])->name('event.save');
-Route::get('event/create/{id}', [\App\Http\Controllers\EventController::class,'form'])->name('event.form');
 
 Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
@@ -159,3 +152,21 @@ Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMes
 Route::post('/conversations/send-message/{from}/{to}', [ConversationController::class, 'sendMessage'])->name('conversations.sendMessage');
 Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class,'deleteMessage'])->name('conversations.deleteMessage');
 Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+  Route::get('/frontoffice', function () {
+    return view('Template.master');
+  })->name('index');
+  Route::resource('community',CommunityController::class);
+  Route::post('/join-community/{community}', [CommunityController::class,'join'])
+    ->name('community.join');
+  Route::resource('event', EventController::class);
+  Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
+});
