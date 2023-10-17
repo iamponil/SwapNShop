@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Community;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -48,7 +52,7 @@ class EventController extends Controller
     $e = new Event();
     $e->title = $request->title;
     $e->description = $request->description;
-    //$e->location=$request->location;
+    $e->creator_id=Auth::user()->id;
 
     $latitude = $request->input('latitude');
     $longitude = $request->input('longitude');
@@ -63,6 +67,8 @@ class EventController extends Controller
     $e->date_time = $request->date_time;
     $e->community_id = $request->id;
     $e->save();
+    $user = Auth::user();
+    $e->attendees()->attach($user);
     return redirect('/event');
   }
 
@@ -74,7 +80,9 @@ class EventController extends Controller
    */
   public function show(Event $event)
   {
-    return view('event.show',compact('event'));
+    $event->location = json_decode($event->location, true);
+    //$event->date_time = Carbon::parse($event->date_time)->format('d M, Y H:i');
+    return view('event.show', compact('event'));
   }
 
   /**

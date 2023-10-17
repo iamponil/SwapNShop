@@ -454,6 +454,7 @@
       @foreach ($communities as $c)
         <div class="col-md-4">
           {{-- <i class="fa-solid fa-ellipsis-vertical" style="position: relative;left: 345px;top: 40px;"></i> --}}
+          @if ($c->creator_id == Auth::user()->id)
           <div class="dropdown">
             <button style="position: relative;
                               left: 400px;
@@ -476,6 +477,7 @@
               </form>
             </div>
           </div>
+          @endif
           <div class="service-item">
             <div class="icon">
               {{-- <img  style="height: 140px; width: 200px;" src="{{asset('assets/images/blog-01.jpg')}}"> --}}

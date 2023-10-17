@@ -454,6 +454,7 @@
     <div class="row">
       @foreach ($events as $e)
         <div class="col-md-4">
+          @if ($e->creator_id == Auth::user()->id)
           <div class="dropdown">
             <button style="position: relative;
                               left: 400px;
@@ -474,12 +475,13 @@
               </form>
             </div>
           </div>
+          @endif
           <div class="service-item">
             <div class="icon">
               <i class="fa-solid fa-calendar-day"></i>
             </div>
             <div class="down-content">
-              <a href = "{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
+              <a href="{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
               <p class="n-m"><em>{{ $e->description }}</em></p>
               <i class="fa-regular fa-calendar-check"></i> {{$e->date_time}}
               <hr>

@@ -44,10 +44,9 @@ class CommunityController extends Controller
     $community=new Community();
     $community->name=$request->name;
     $community->description=$request->description;
-    $community->creator_id=1;
+    $community->creator_id=Auth::user()->id;
     $community->save();
     $user = Auth::user();
-    //$user = User::find(2);
     $community->members()->attach($user);
     return redirect('/community');
   }
@@ -89,7 +88,6 @@ class CommunityController extends Controller
     }
     $c->name=$request->input('name');
     $c->description=$request->input('description');
-    //$c->creator_id=1;
     $c->save();
     return redirect('/community');
   }
