@@ -490,7 +490,7 @@
                 • <i class="fa-solid fa-calendar-days"></i>
                 {{ $c->events->sortByDesc('date_time')->first()->date_time }}
               @endif
-              @if ($c->members->contains('id', 1))
+              @if ($c->members->contains('id',Auth::user()->id))
                 <div>
                   <a href="{{ route('event.form', ['id' => $c->id]) }}">
                     <button style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
