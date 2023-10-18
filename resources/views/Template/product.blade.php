@@ -593,12 +593,12 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="{{ asset('images/' . $product->image) }}" alt="Product Image" style="width: 300px; height: 400px;" >
-			
+							<img src="{{ asset('images/' . $product->images) }}" alt="Product Image" style="width: 300px; height: 400px;" >
+
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 show-product" data-bs-toggle="modal" data-bs-target="#Modal1" data-product-name="{{ $product->product_name }}"
 								data-product-price="{{ $product->price }}"
 								data-product-description="{{ $product->description }}"
-								data-product-image="{{ asset('images/' . $product->image) }}" >
+								data-product-image="{{ asset('images/' . $product->images) }}" >
 								Quick View
 							</a>
 							{{-- <button type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
@@ -828,24 +828,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<div class="col-md-6 col-lg-7 p-b-30">
 					<div class="p-l-25 p-r-30 p-lr-0-lg">
 						<div class="wrap-slick3 flex-sb flex-w">
-						
+
 
 							<div class="slick3 gallery-lb">
-							
-							
+
+
 
 								<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
 									<div class="wrap-pic-w pos-relative">
 										<img id="productImage" src="" alt="Product Image">
 
-									
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -858,23 +858,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 						<p class="stext-102 cl3 p-t-23">
 							<span id="productDescription"></span>	</p>
-						
+
 						<!--  -->
-					
-							
-						<br/>	
-						<br/>	
-						<br/>	
+
+
+						<br/>
+						<br/>
+						<br/>
 						<br/>
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									
+
 
 									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 								</div>
-							</div>	
+							</div>
 						</div>
 
 						<!--  -->
@@ -907,9 +907,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!-- Modal -->
 {{-- <div class="modal fade col-lg-12 col-md-4" id="basicModal" tabindex="-1" aria-hidden="true" style="height: 400px; width:1900px;  margin-top: 200px;" >
-    
+
 <div class="modal-dialog  modal-content  " role="document">
-		
+
 <div class="row ">
 
         <div class="col">
@@ -950,35 +950,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<div class="p-t-33">
 				<div class="flex-w flex-r-m p-b-12">
 					<div class="size-204 flex-w flex-m respon6-next">
-						
+
 						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 							Add to cart
 						</button>
 					</div>
-				</div>	
+				</div>
 			</div>
-		
-			
+
+
 			<div class="flex-w flex-m p-l-100 p-t-40 respon7" style="margin-left: 50px">
 				<div class="flex-m bor9 p-r-10 m-r-11">
 					<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
 						<i class="zmdi zmdi-favorite"></i>
 					</a>
 				</div>
-			
+
 				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" style="display: inline-block;">
 					<i class="fa fa-facebook"></i>
 				</a>
-			
+
 				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" style="display: inline-block;">
 					<i class="fa fa-twitter"></i>
 				</a>
-			
+
 				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" style="display: inline-block;">
 					<i class="fa fa-google-plus"></i>
 				</a>
 			</div>
-			
+
 
 		</div>
 
@@ -992,7 +992,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script>
     $(document).ready(function () {
         $('.show-product').click(function () {
-            
+
             console.log('Button clicked'); // Add this line
             var productName = $(this).data('product-name');
             var productPrice = $(this).data('product-price');

@@ -115,4 +115,8 @@ class CommunityController extends Controller
     //  ->with('success', 'You have successfully joined the community.');
     return redirect('/community');
   }
+  public function indexAdmin(){
+    $communities=Community::all();
+    return view('community.listAdmin',compact('communities'));
+  }
 }

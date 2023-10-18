@@ -389,7 +389,7 @@
 								</span>
 
 								<span>
-                  {{$event->created_at}}
+                  {{$event->created_at->format('d M, Y H:i')}}
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 

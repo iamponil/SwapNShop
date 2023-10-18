@@ -169,4 +169,6 @@ Route::middleware([
     ->name('community.join');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
+  Route::get('communities', [CommunityController::class,'indexAdmin'])->name('community.indexAdmin');
+  Route::get('events', [EventController::class,'indexAdmin'])->name('event.indexAdmin');
 });

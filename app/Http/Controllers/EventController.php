@@ -139,4 +139,8 @@ class EventController extends Controller
     $c->delete();
     return redirect('/event');
   }
+  public function indexAdmin(){
+    $events=Event::all();
+    return view('event.listAdmin',compact('events'));
+  }
 }
