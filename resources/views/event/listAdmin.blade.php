@@ -10,7 +10,7 @@
   <div class="card">
     <h5 class="card-header">Events</h5>
     <div class="table-responsive text-nowrap">
-      <table class="table">
+      <table class="table table-hover">
         <thead>
         <tr>
           <th>#</th>

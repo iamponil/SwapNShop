@@ -6,6 +6,9 @@ use App\Models\Community;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class CommunityController extends Controller
 {
@@ -73,6 +76,11 @@ class CommunityController extends Controller
     return view('community.edit',compact('community'));
   }
 
+  public function editAdmin(Community $community)
+  {
+    return view('community.editAdmin',compact('community'));
+  }
+
   /**
    * Update the specified resource in storage.
    *
@@ -89,7 +97,12 @@ class CommunityController extends Controller
     $c->name=$request->input('name');
     $c->description=$request->input('description');
     $c->save();
-    return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/communities/')) {
+      return redirect('/communities');
+    } else {
+      return redirect('/community');
+    }
   }
 
   /**
@@ -102,7 +115,12 @@ class CommunityController extends Controller
   {
     $c=Community::find($community->id);
     $c->delete();
-    return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/communities')) {
+      return redirect('/communities');
+    } else {
+      return redirect('/community');
+    }
   }
   public function join(Community $community)
   {
