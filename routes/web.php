@@ -167,6 +167,8 @@ Route::middleware([
   Route::resource('community',CommunityController::class);
   Route::post('/join-community/{community}', [CommunityController::class,'join'])
     ->name('community.join');
+  Route::post('/join-event/{event}', [EventController::class,'join'])
+    ->name('event.join');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
   Route::get('communities', [CommunityController::class,'indexAdmin'])->name('community.indexAdmin');

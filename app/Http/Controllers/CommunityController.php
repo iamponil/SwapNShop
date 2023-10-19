@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Community;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,8 @@ class CommunityController extends Controller
    */
   public function show(Community $community)
   {
-    return view('community.detail',compact('community'));
+    $products = Product::whereIn('user_id', $community->members->pluck('id'))->get();
+    return view('community.detail',compact('products'));
   }
 
   /**
@@ -131,7 +133,13 @@ class CommunityController extends Controller
     }
     //return redirect()->route('community.show', ['community' => $community])
     //  ->with('success', 'You have successfully joined the community.');
-    return redirect('/community');
+    //return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/event')) {
+      return redirect('/event');
+    } else {
+      return redirect('/community');
+    }
   }
   public function indexAdmin(){
     $communities=Community::all();

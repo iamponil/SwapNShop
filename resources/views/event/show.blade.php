@@ -438,21 +438,22 @@
             </h4>
             <ul>
               @foreach($event->attendees as  $attendee)
-              <li class="flex-w flex-t p-b-30">
-                <a  class="wrao-pic-w size-214 m-r-20">
-                  <img style="width: 110px ; height: 110px" src="{{asset('assets/images/user.jpg')}}" alt="PRODUCT">
-                </a>
-
-                <div class="size-215 flex-col-t p-t-8">
-                  <a class="stext-116 cl8 hov-cl1 trans-04">
-                    {{$attendee->name}}
+                <li class="flex-w flex-t p-b-30">
+                  <a class="wrao-pic-w size-214 m-r-20">
+                    <img style="width: 110px ; height: 110px" src="{{asset('assets/images/user.jpg')}}" alt="PRODUCT">
                   </a>
-                  <div style="width: 90px;margin-top: 30px;" class="flex-c-m stext-106 cl6 size-107 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-                    <i class="fa-solid fa-message cl2 m-r-6 fs-15 trans-04"></i>
-                     Chat
+
+                  <div class="size-215 flex-col-t p-t-8">
+                    <a class="stext-116 cl8 hov-cl1 trans-04">
+                      {{$attendee->name}}
+                    </a>
+                    <div style="width: 90px;margin-top: 30px;"
+                         class="flex-c-m stext-106 cl6 size-107 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                      <i class="fa-solid fa-message cl2 m-r-6 fs-15 trans-04"></i>
+                      Chat
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
               @endforeach
             </ul>
           </div>

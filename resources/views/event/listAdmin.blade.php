@@ -57,7 +57,14 @@
               </ul>
             </td>
             <td>{{$event->date_time->format('d M, Y')}}</td>
-            <td><span class="badge bg-label-success me-1">Upcoming</span></td>
+            <td>
+              @if ($event->isUpcoming())
+                <span class="badge bg-label-success me-1">Upcoming</span>
+              @else
+                <span class="badge bg-label-danger me-1">Passed</span>
+              @endif
+            </td>
+
             <td>
               <div class="dropdown">
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i

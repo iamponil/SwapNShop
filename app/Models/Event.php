@@ -11,6 +11,10 @@ class Event extends Model
 
   protected $fillable = ['title', 'description', 'date_time', 'location', 'community_id','creator_id'];
   protected $dates = ['date_time'];
+  public function isUpcoming()
+  {
+    return $this->date_time > now();
+  }
 
 
   public function community()

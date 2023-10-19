@@ -143,4 +143,12 @@ class EventController extends Controller
     $events=Event::all();
     return view('event.listAdmin',compact('events'));
   }
+  public function join(Event $event)
+  {
+    $user = Auth::user();
+    if (!$event->attendees->contains($user)) {
+      $event->attendees()->attach($user);
+    }
+    return redirect('/event');
+  }
 }
