@@ -409,95 +409,13 @@
 </section>
 
 
-<!-- Banner -->
-<div class="sec-banner bg0 p-t-80 p-b-50">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-01.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Women
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-02.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-03.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accessories
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <!-- Product -->
-<section class="bg0 p-t-23 p-b-140">
+<section class="bg0 p-t-23 p-b-50">
   <div class="container">
     <div class="p-b-10">
       <h3 class="ltext-103 cl5">
-        Product Overview
+        Product By {{$community->name}} Members
       </h3>
     </div>
 
@@ -777,53 +695,44 @@
       </div>
       @endforeach
     </div>
+    <hr>
+  </div>
+</section>
+<!-- Banner -->
+<div class="sec-banner bg0 p-t-10 p-b-50">
+  <div class="container">
+      <h4 class="ltext-109 cl3 p-b-28">
+        Blogs By {{$community->name}} Members
+      </h4>
+    <div class="row">
+      @foreach($blogs as $blog)
+      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+        <!-- Block1 -->
+        <div class="block1 wrap-pic-w">
+          <img src="/img/{{ $blog->picture }}" alt="IMG-BANNER">
+          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+            <div class="block1-txt-child1 flex-col-l">
+								<span class="block1-title ltext-102 trans-04 p-b-8">
+									{{$blog->title}}
+								</span>
 
-    <div class="services" style="background-image: url({{asset('assets/images/other-image-fullscren-1-1920x900.jpg')}});" >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading" style="padding-bottom:5px;">
-              <h2>Latest blog posts</h2>
+              <span class="block1-info stext-102 trans-04">
+									By {{$blog->author->name}}
+								</span>
             </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-01.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
+            <div class="block1-txt-child2 p-b-4 trans-05">
+              <div class="block1-link stext-101 cl0 trans-09">
+                Read
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-02.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-03.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Aperiam modi voluptatum fuga officiis cumque</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
+      @endforeach
     </div>
-</section>
+  </div>
+</div>
 
 
 <!-- Footer -->

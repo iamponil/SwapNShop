@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\blog;
 use App\Models\Community;
 use App\Models\Product;
 use App\Models\User;
@@ -64,7 +65,8 @@ class CommunityController extends Controller
   public function show(Community $community)
   {
     $products = Product::whereIn('user_id', $community->members->pluck('id'))->get();
-    return view('community.detail',compact('products'));
+    $blogs = blog::whereIn('user_id', $community->members->pluck('id'))->inRandomOrder()->take(6)->get();
+    return view('community.detail',compact('products','blogs' , 'community'));
   }
 
   /**
