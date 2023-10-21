@@ -104,8 +104,8 @@
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 							<li>
-				              	<a href="{{ route('create') }}">Add product</a>
-				          </li>
+								<a href="{{ route('myproduct') }}">My products </a>
+							  </li>
 						</ul>
 					</div>	
 					<!-- Icon header -->
@@ -344,6 +344,8 @@
       <div class="card-body" style="margin-left: 250px">
         <form action="{{ route('products.store') }}" method="Post" enctype="multipart/form-data">
             @csrf
+			<input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+           
           <div class="mb-3">
             <label class="form-label" for="basic-default-fullname">Product Name</label>
             <input type="text" class="form-control" name="product_name" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>
@@ -359,9 +361,10 @@
                 
                   <select name="category" class="form-select form-select-lg" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;">
                     <option>Select Category</option>
-                    <option value="Women">Women</option>
-                    <option value="Men">Men</option>
+                    <option value="Clothes">Clothes</option>
+                    <option value="Electronicique"> Electronicique</option>
                     <option value="Accessory">Accessory</option>
+					
                   </select>
                 
            
@@ -370,7 +373,11 @@
           <div class="mb-3">
             <label class="form-label" for="basic-default-message">price</label>
             <input type="text" class="form-control" name="price"  style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>  </div>
-            <div class="mb-3">
+			<div class="mb-3">
+				<label class="form-label" for="basic-default-message">order</label>
+				<input type="text" class="form-control" name="order"  style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>  </div>
+			  
+			<div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Image</label>
                 <input class="form-control" type="file" name="image" id="formFileMultiple" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;" multiple>
               </div>

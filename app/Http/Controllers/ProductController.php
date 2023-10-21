@@ -27,6 +27,20 @@ class ProductController extends Controller
        $listproductss = \App\Models\Product::all();
           return view('Template.product',compact('listproductss'));
    }
+/**
+     * Display a listing of the resource.
+     *
+    * @return \Illuminate\Http\Response
+    */
+
+   public function afficherMesproduits()
+{
+    // Récupérez les produits de l'utilisateur connecté
+    $listproductss = \App\Models\Product::where('user_id', auth()->user()->id)->get();
+    
+    return view('Template.myproducts', compact('listproductss'));
+}
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,6 +64,8 @@ class ProductController extends Controller
         $product->description=$request->description;
         $product->category=$request->category;
         $product->price=$request->price;
+        $product->order=$request->order;
+        $product->user_id = auth()->user()->id;
 // Handle image upload
 if ($request->hasFile('image')) {
     $image = $request->file('image');
@@ -60,7 +76,21 @@ if ($request->hasFile('image')) {
         $product->save();
         return redirect('/product');
     }
+ /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getMyProducts()
+    {
+        // Récupérez les produits de l'utilisateur connecté (supposons que vous utilisiez l'authentification de Laravel)
+        $user = auth()->user();
+        $myProducts = Product::where('user_id', $user->id)->get();
 
+        // Retournez la vue avec les produits de l'utilisateur
+        return view('Template.product', ['myProducts' => $myProducts]);
+    }
     /**
      * Display the specified resource.
      *
@@ -75,7 +105,7 @@ if ($request->hasFile('image')) {
         // Return the product details view with the product data
         return view('Template.DetailsProduct', ['product' => $product]);
     }
-    /**
+      /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -85,6 +115,18 @@ if ($request->hasFile('image')) {
     {
         $product = Product::findOrFail($id); // Retrieve the product by ID
         return view('content.Product.Editproduct', compact('product'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editfront($id)
+    {
+        $product = Product::findOrFail($id); // Retrieve the product by ID
+        return view('Template.editerProduct', compact('product'));
     }
 
     /**
@@ -110,6 +152,7 @@ if ($request->hasFile('image')) {
         'description' => $request->input('description'),
         'category' => $request->input('category'),
         'price' => $request->input('price'),
+        'order' => $request->input('order'),
        
     ]);
 
