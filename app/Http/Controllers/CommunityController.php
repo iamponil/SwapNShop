@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\blog;
 use App\Models\Community;
+use App\Models\Event;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,6 +47,10 @@ class CommunityController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
     $community=new Community();
     $community->name=$request->name;
     $community->description=$request->description;
@@ -64,9 +69,17 @@ class CommunityController extends Controller
    */
   public function show(Community $community)
   {
+    $events = Event::where('community_id',$community->id)
+      ->where('date_time', '>', now())
+      ->orderBy('date_time', 'asc')
+      ->take(3)->get();
+    $events = $events->map(function ($event) {
+      $event->location = json_decode($event->location, true); // Convert JSON string to an array
+      return $event;
+    });
     $products = Product::whereIn('user_id', $community->members->pluck('id'))->get();
     $blogs = blog::whereIn('user_id', $community->members->pluck('id'))->inRandomOrder()->take(6)->get();
-    return view('community.detail',compact('products','blogs' , 'community'));
+    return view('community.detail',compact('products','blogs' , 'community', 'events'));
   }
 
   /**
@@ -94,6 +107,10 @@ class CommunityController extends Controller
    */
   public function update(Request $request, Community $community)
   {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
     $c = Community::find($community->id);
     if (!$c) {
       return redirect()->route('community.list');

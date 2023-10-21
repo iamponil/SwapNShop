@@ -408,9 +408,9 @@
               <p class="n-m"><em>{{ $c->description }}</em></p>
               <hr>
               {{ $c->members->count() }} <i class="fa-solid fa-user"></i>
-              @if ($c->events->count() > 0)
+              @if ($c->events->where('date_time', '>', now())->count() > 0)
                 • <i class="fa-solid fa-calendar-days"></i>
-                {{ $c->events->sortByDesc('date_time')->first()->date_time->format('d M, Y H:i') }}
+                {{ $c->events->where('date_time', '>', now())->sortBy('date_time')->first()->date_time->format('d M, Y H:i') }}
               @endif
               @if ($c->members->contains('id',Auth::user()->id))
                 <div>

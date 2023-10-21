@@ -6,11 +6,11 @@
   <div>
     <h4 class="mb-3 mb-md-0">Update Community</h4>
   </div>
-  {{--<div class="d-flex align-items-center flex-wrap text-nowrap">
-    <a href="{{route('blogg')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-      All Blogs
+  <div class="d-flex align-items-center flex-wrap text-nowrap">
+    <a href="{{route('community.indexAdmin')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
+      Show Communities
     </a>
-  </div>--}}
+  </div>
 </div>
 <h4 class="fw-bold py-3 mb-4">
 

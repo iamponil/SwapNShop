@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -18,7 +20,10 @@ class EventController extends Controller
    */
   public function index()
   {
-    $events = Event::all();
+    $events = Event::where('date_time', '>', now())
+      //->orderBy('date_time', 'asc')
+      ->get();
+
     $events = $events->map(function ($event) {
       $event->location = json_decode($event->location, true); // Convert JSON string to an array
       return $event;
@@ -49,6 +54,22 @@ class EventController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'title' => 'required',
+      'description' => 'required',
+      'latitude' => 'required',
+      //'longitude' => 'required',
+      'date_time' => 'required|date|after:'.now()->toDateString(),
+    ], [
+      'title.required' => 'The title is required.',
+      'description.required' => 'The description is required.',
+      'latitude.required' => "Select the Event's Location.",
+      //'longitude.required' => "Select the Event's Location.",
+      'date_time.required' => "Please Select The Event's Date.",
+      'date_time.date' => 'The date and time must be a valid date.',
+      'date_time.after' => "The Event's Date must be after the current date.",
+    ]);
+
     $e = new Event();
     $e->title = $request->title;
     $e->description = $request->description;
@@ -96,7 +117,11 @@ class EventController extends Controller
     $event->location = json_decode($event->location, true);
     return view('event.edit', compact('event'));
   }
-
+  public function editAdmin(Event $event)
+  {
+    $event->location = json_decode($event->location, true);
+    return view('event.editAdmin',compact('event'));
+  }
   /**
    * Update the specified resource in storage.
    *
@@ -106,6 +131,21 @@ class EventController extends Controller
    */
   public function update(Request $request, Event $event)
   {
+    $request->validate([
+      'title' => 'required',
+      'description' => 'required',
+      'latitude' => 'required',
+      //'longitude' => 'required',
+      'date_time' => 'required|date|after:'.now()->toDateString(),
+    ], [
+      'title.required' => 'The title is required.',
+      'description.required' => 'The description is required.',
+      'latitude.required' => "Select the Event's Location.",
+      //'longitude.required' => "Select the Event's Location.",
+      'date_time.required' => "Please Select The Event's Date.",
+      'date_time.date' => 'The date and time must be a valid date.',
+      'date_time.after' => "The Event's Date must be after the current date.",
+    ]);
     $e = Event::find($event->id);
     if (!$e) {
       return redirect()->route('event.list');
@@ -122,9 +162,13 @@ class EventController extends Controller
     ];
 
     $e->location = json_encode($location); // Convert the array to JSON
-    //$c->creator_id=1;
     $e->save();
-    return redirect('/event');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/events/')) {
+      return redirect('/events');
+    } else {
+      return redirect('/event');
+    }
   }
 
   /**
@@ -145,10 +189,12 @@ class EventController extends Controller
   }
   public function join(Event $event)
   {
+    $previousURL = URL::previous();
     $user = Auth::user();
     if (!$event->attendees->contains($user)) {
       $event->attendees()->attach($user);
     }
-    return redirect('/event');
+    //return redirect('/event');
+    return redirect($previousURL);
   }
 }

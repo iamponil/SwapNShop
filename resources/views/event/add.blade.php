@@ -1,3 +1,9 @@
+<!-- Include Styles -->
+@extends('layouts/sections/styles')
+<!-- Include Scripts for customizer, helper, analytics, config -->
+@extends('layouts/sections/scriptsIncludes')
+<!-- Include Scripts -->
+@include('layouts/sections/scripts')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -342,6 +348,16 @@
     display: flex;justify-content: center;">
     <div class="size-209 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
       <form action="{{route('event.store' , ['id' => $id] ) }}" method="POST">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
         @csrf
         <h4 class="mtext-105 cl2 txt-center p-b-30">
           Create a New Event
@@ -369,8 +385,10 @@
            <i class="how-pos4 pointer-none fa-solid fa-calendar-plus"></i>
         </div>
         <div id="map" style="height: 400px;"></div>
-        <input type="hidden" id="latitude" name="latitude">
+          <div class="bor8 m-b-20 how-pos4-parent">
+          <input type="hidden" id="latitude" name="latitude">
         <input type="hidden" id="longitude" name="longitude">
+          </div>
         <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
           Submit
         </button>

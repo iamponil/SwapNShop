@@ -10,7 +10,7 @@
   <div class="card">
     <h5 class="card-header">Events</h5>
     <div class="table-responsive text-nowrap">
-      <table class="table table-hover">
+      <table class="table">
         <thead>
         <tr>
           <th>#</th>
@@ -70,7 +70,7 @@
                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i
                     class="bx bx-dots-vertical-rounded"></i></button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{{ route('event.edit', ['event' => $event]) }}"><i
+                  <a class="dropdown-item" href="{{ route('event.editAdmin', ['event' => $event]) }}"><i
                       class="bx bx-edit-alt me-1"></i> Edit</a>
                   <form method="POST" action="{{ route('event.destroy', ['event' => $event]) }}">
                     @csrf
