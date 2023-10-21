@@ -97,7 +97,7 @@
               <a href="{{ route('contact') }}">Contact</a>
             </li>
             <li>
-              <a href="{{ route('create') }}">Add product</a>
+              <a href="{{ route('myproduct') }}">My products </a>
             </li>
           </ul>
         </div>

@@ -5,6 +5,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\EchangeController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\OffreController;
 use App\Models\Conversation;
 
 /*
@@ -124,15 +127,28 @@ Route::get('/cart', function () {
 })->name('cart');
 
 Route::get('/product',[ProductController::class,'affichefront'])->name('shop');;
+Route::get('/myproduct',[ProductController::class,'afficherMesproduits'])->name('myproduct');;
 Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
 // Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
 Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');;
 Route::get('/createprod',[ProductController::class,'create'])->name('create');;
 Route::post('/products/store',[ProductController::class,'store'])->name('products.store');;
 Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('products.edit');
+Route::get('/productsedit/{id}', [ProductController::class,'editfront'])->name('productseditf');
 Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
+Route::post('/create-offre', [OffreController::class,'create'])->name('offre.create');
+Route::get('/getProductOffers/{productId}', [OffreController::class,'getProductOffers'])->name('product.offers');
 
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
+
+Route::post('/sendConfirmationEmail/{userId}/{productId}', [EmailController::class,'sendConfirmationEmail'])->name('sendConfirmationEmail');
+Route::post('/createEchange', );
+Route::post('/confirmEchange/{offreId}', [EchangeController::class,'confirmEchange'])->name('confirmEchange');
+
+Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct']);
+
+
+
 
 //Blog
 Route::get('/Blog', $controller_path . '\blog\BlogController@index')->name('blogg');

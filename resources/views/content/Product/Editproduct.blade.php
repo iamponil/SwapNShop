@@ -3,7 +3,7 @@
 @section('title', ' Vertical Layouts - Forms')
 
 @section('content')
-<h4 class="fw-bold py-3 mb-4"> Add Product</h4>
+<h4 class="fw-bold py-3 mb-4"> Edit Product</h4>
 
 
 
