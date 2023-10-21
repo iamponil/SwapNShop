@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Reclamation</title>
+	<title>Processus Livraison</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -99,13 +99,13 @@
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
- <li>
-								<a href="{{ route('reclamtion') }}">Reclamation</a>
-							</li>
+
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
-
+							<li>
+				              	<a href="{{ route('create') }}">Add product</a>
+				          </li>
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -219,6 +219,9 @@
 				<li>
 					<a href="contact.html">Contact</a>
 				</li>
+				<li>
+					<a href="addproduct.html">Add Product</a>
+				</li>
 			</ul>
 		</div>
 
@@ -325,61 +328,92 @@
 	</div>
 
 
+
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Reclamation
+			Livraison
 		</h2>
 	</section>
 
-  <h4 class="fw-bold py-3 mb-4"></h4>
 
- <section class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-        <div>
 
-        </div>
-        <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('history')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-               Add New Reclamation
-            </a>
-        </div>
-    </section>
 
-	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
-		<div class="container">
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+	<div class=" size-310 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 
-					<form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-						 {{ csrf_field() }}
-            <h4 class="mtext-105 cl2 txt-center p-b-30">
-							Send A Reclamtion Message
-						</h4>
-  
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="nomRec" name="nomRec" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text"  placeholder="object">
-							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-						</div>
+      <div class="card-body" style="margin-left: 250px">
+          @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+       <form action="{{ route('addAddreslivraison') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+          <div class="mb-3">
+            <label class="form-label" for="basic-default-fullname">Name</label>
+            <input type="text" class="form-control" name="nom" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="basic-default-company">FirstName</label>
+            <input type="text" class="form-control" name="prenom" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;" />
 
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="body" id="body"  placeholder="Reclamation Message "></textarea>
-						</div>
+               <div class="mb-3">
+            <label class="form-label" for="basic-default-company">Phone</label>
+            <input type="text" class="form-control" name="tel" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;" />
+
+          </div>
+           <div class="mb-3">
+            <label class="form-label" for="pays">Country</label>
+            <input type="text" class="form-control" id="pays"  name="pays" value="tunisia" readonly  style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>  </div>
+          <div class="mb-3" >
+            <label class="form-label" for="basic-default-email">Government</label>
+
+                  <select name="ville" class="form-select form-select-lg" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;">
+                    <option>Select government</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Beja">Beja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Gabes">Gabes</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kebili">Kebili</option>
+                    <option value="Kef">Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Manouba">Manouba</option>
+                    <option value="Medenine">Medenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                  </select>
+          </div>
+
   <div class="mb-3">
-                    <label for="image" class="form-label">Reclamtion Image <span class="text-danger">*</span></label>
-                    <input id="image" name="image" type="file" class="form-control">
-                </div>
-						<button  type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
-						</button>
-					</form>
-				</div>
+            <label class="form-label" for="basic-default-company">Postal Code</label>
+            <input type="text" class="form-control" name="codepostal" style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;" />
 
+          </div>
+           <div class="mb-3">
+            <label class="form-label" for="basic-default-message">Full Address</label>
+            <input type="text" class="form-control" name="Adressecomp"  style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>  </div>
 
-				</div>
-			</div>
-		</div>
-	</section>
+          <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" style="width:60% ; margin-left: 150px">Send</button>
+        </form>
+      </div>
+    </div>
 
 
 
@@ -575,7 +609,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

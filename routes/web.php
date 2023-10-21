@@ -3,9 +3,11 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\AdresseLivraisonController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
 use App\Models\Conversation;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +125,24 @@ Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
 
+//AdresseLivraison
+Route::get('/AdrresseLivraison', [AdresseLivraisonController::class, 'showDeliveryAddresses'], function () {
+  return view('Template.adresselivraison');
+})->name('AdrresseLivraison');
+
+
+//Route::post('/adresselivraison/add', $controller_path . '\AdresseLivraisonController@store')->name('addAddreslivraison');
+//Route::get('/livraisons', [AdresseLivraisonController::class, 'showDeliveryAddresses'])->name('livraisons');
+Route::group(['middleware' => 'auth'], function () {
+  // Vos routes protégées ici
+  Route::post('/adresselivraison/add',[AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
+});
+Route::delete('/delet/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@destroy')->name('destroyL');
+Route::get('/update/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@edit')->name('updateLIV');
+Route::put('/updateLIV/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@update')->name('updateL');
+
+
+
 Route::get('/product',[ProductController::class,'affichefront'])->name('shop');;
 Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
 // Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
@@ -153,6 +173,7 @@ Route::post('/conversations/send-message/{from}/{to}', [ConversationController::
 Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class,'deleteMessage'])->name('conversations.deleteMessage');
 Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -169,4 +190,6 @@ Route::middleware([
     ->name('community.join');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
+  Route::get('/addlivraisonAdresse',[AdresseLivraisonController::class, 'create'])->name('createL');
+  Route::post('/adresselivraison/add',[AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
 });

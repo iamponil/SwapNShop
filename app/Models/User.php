@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\AdresseLivraison;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+     // Relation avec les adresses
+     public function adresses()
+     {
+         return $this->hasMany(AdresseLivraison::class);
+     }
 }
