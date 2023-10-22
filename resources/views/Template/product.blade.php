@@ -112,8 +112,8 @@
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 							<li>
-								<a href="{{ route('create') }}">Add product</a>
-						</li>
+								<a href="{{ route('myproduct') }}">My products </a>
+							  </li>
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -589,6 +589,7 @@
 
 			<div class="row isotope-grid">
 				@foreach($listproductss as $product)
+				@if($product->user_id !== auth()->user()->id)
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
@@ -598,7 +599,10 @@
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 show-product" data-bs-toggle="modal" data-bs-target="#Modal1" data-product-name="{{ $product->product_name }}"
 								data-product-price="{{ $product->price }}"
 								data-product-description="{{ $product->description }}"
-								data-product-image="{{ asset('images/' . $product->images) }}" >
+								data-product-order="{{ $product->order }}"
+								data-product-image="{{ asset('images/' . $product->image) }}"
+								data-product-id="{{ $product->id }}"
+								>
 								Quick View
 							</a>
 							{{-- <button type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
@@ -630,6 +634,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 				@endforeach
 			</div>
 
@@ -815,7 +820,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 <!-- Modal1 -->
-<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="#Modal1" >
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="#Modal1"  >
 	<div class="overlay-modal1 js-hide-modal1"></div>
 
 	<div class="container">
@@ -848,17 +853,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							<span id="productName"></span>
-						</h4>
-
+						<h1 class="mtext-105 cl2 js-name-detail p-b-14">
+						<h1>	<span id="productName"></span></h1>
+						</h1>
+<br/>
 						<span class="mtext-106 cl2">
-							$<span id="productPrice"></span>
+						 	$<span id="productPrice"></span>
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
 							<span id="productDescription"></span>	</p>
 
+							<p class="stext-102 cl3 p-t-23">
+							<h5>	I WANT TO EXCHANGE FOR:</h5>
+								<br/>
+								<span id="productorder"></span>	</p>
 						<!--  -->
 
 
@@ -868,11 +877,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<br/>
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
+									<div class="p-b-10">
+
+										<span id="productId" style="display: none;"></span>
+										<label id="selectedProduct" style="display: none;">Sélectionnez un produit :</label>
+										<select id="userProducts" style="display: none; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+											@foreach ($listproductss as $productt)
+											@if($productt->user_id === auth()->user()->id)
+												<option value="{{ $productt->id }}" data-product-id="{{ $productt->id }}" style="padding: 10px;">{{ $productt->product_name }}</option>
+											@endif
+											@endforeach
+										</select>
+									</div>
+
+									<!-- Boutons "Besoin", "Confirmer" et "Annuler" -->
+									<div class="flex-w flex-r-m p-b-10">
+										<div class="size-204 flex-w flex-m respon6-next">
+											<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-show-products" data-product-id="{{ $product->id }}">
+												Besoin
+											</button>
+											<div class="flex-w flex-r-m p-b-10">
+												<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-confirm" style="display: none;">
+													Confirmer
+												</button>
+												<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-cancel" style="display: none; margin-top: 20px">
+													Annuler
+												</button>
+											</div>
 
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Add to cart
-									</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -903,89 +938,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 </div>
-
-
-<!-- Modal -->
-{{-- <div class="modal fade col-lg-12 col-md-4" id="basicModal" tabindex="-1" aria-hidden="true" style="height: 400px; width:1900px;  margin-top: 200px;" >
-
-<div class="modal-dialog  modal-content  " role="document">
-
-<div class="row ">
-
-        <div class="col">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Product Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <p><strong>Name:</strong> <span id="productName"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Price:</strong> <span id="productPrice"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Description:</strong> <span id="productDescription"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Image:</strong></p>
-                        <img id="productImage" src="" alt="Product Image" width="400">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-		<div class="col " style="margin-right: 100px">
-			<br/><br/><br/><br/><br/>
-			<div class="p-t-33">
-				<div class="flex-w flex-r-m p-b-12">
-					<div class="size-204 flex-w flex-m respon6-next">
-
-						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-							Add to cart
-						</button>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="flex-w flex-m p-l-100 p-t-40 respon7" style="margin-left: 50px">
-				<div class="flex-m bor9 p-r-10 m-r-11">
-					<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-						<i class="zmdi zmdi-favorite"></i>
-					</a>
-				</div>
-
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" style="display: inline-block;">
-					<i class="fa fa-facebook"></i>
-				</a>
-
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" style="display: inline-block;">
-					<i class="fa fa-twitter"></i>
-				</a>
-
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" style="display: inline-block;">
-					<i class="fa fa-google-plus"></i>
-				</a>
-			</div>
-
-
-		</div>
-
-	</div>
-    </div>
-</div> --}}
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
@@ -995,23 +947,85 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
             console.log('Button clicked'); // Add this line
             var productName = $(this).data('product-name');
+			var productId = $(this).data('product-id');
             var productPrice = $(this).data('product-price');
             var productDescription = $(this).data('product-description');
+			var productorder = $(this).data('product-order');
             var productImage = $(this).data('product-image');
 
             // Set the modal content with product details
             $('#productName').text(productName);
+			$('#productId').text(productId);
             $('#productPrice').text(productPrice);
             $('#productDescription').text(productDescription);
+			$('#productorder').text(productorder);
             $('#productImage').attr('src', productImage);
         });
     });
 </script>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
+
+<script>
+	let productExchangeId;
+    const showProductsButton = document.querySelector('.js-show-products');
+    const confirmButton = document.querySelector('.js-confirm');
+    const cancelButton = document.querySelector('.js-cancel');
+    const userProductsSelect = document.querySelector('#userProducts');
+	const selectedProductLabel = document.querySelector('#selectedProduct');
+
+	const productIdLabel = document.querySelector('#productId');
+    showProductsButton.addEventListener('click', function() {
+		console.log()
+        showProductsButton.style.display = 'none';
+        confirmButton.style.display = 'inline';
+        cancelButton.style.display = 'inline';
+        userProductsSelect.style.display = 'inline';
+		selectedProductLabel.style.display = 'inline';
+		productExchangeId = productIdLabel.textContent;
+		console.log('productExchangeId:', productExchangeId);
+		//const productExchangeId = showProductsButton.getAttribute('data-product-id');
+
+    });
+
+    cancelButton.addEventListener('click', function() {
+        showProductsButton.style.display = 'inline';
+        confirmButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+        userProductsSelect.style.display = 'none';
+		selectedProductLabel.style.display = 'none';
+    });
+
+
+	confirmButton.addEventListener('click', function() {
+        const selectedOption = userProductsSelect.options[userProductsSelect.selectedIndex];
+        const selectedProductId = selectedOption.value;
+        const selectedProductText = selectedOption.textContent;
+		const modalElement = document.querySelector('.js-modal1');
+		 // Envoyer une requête AJAX au serveur pour créer une offre
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('offre.create') }}', // L'URL du contrôleur qui crée l'offre
+            data: {
+                _token: '{{ csrf_token() }}', // Assurez-vous d'inclure le jeton CSRF
+                id_produit_a_echanger: selectedProductId, // L'ID du produit à échanger
+                id_produit_pour_echanger_avec: productExchangeId,
+            },
+            success: function(data) {
+                // Traitez la réponse du serveur, par exemple, affichez un message de succès
+                alert('Offre créée avec succès pour le produit : ' + selectedProductText + productExchangeId);
+            },
+            error: function(xhr) {
+                // Traitez les erreurs, par exemple, affichez un message d'erreur
+                alert('Une erreur s\'est produite : ' + xhr.responseText);
+            }
+        });
+    });
+</script>
 
 
 

@@ -12,12 +12,15 @@ class Product extends Model
         'product_name',
         'description',
         'category',
+        'location',
         'price',
-        'images',
+        'order',
+        'image',
         'user_id'
     ];
   public function creator()
   {
     return $this->belongsTo(User::class, 'user_id');
   }
+
 }
