@@ -637,6 +637,7 @@ button:hover {
 
 
 			<div class="row isotope-grid">
+				@if(count($listproductss) > 0)
 				@foreach($listproductss as $product)
 				@if($product->user_id === auth()->user()->id)
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
@@ -676,7 +677,12 @@ button:hover {
 					</div>
 				</div>
 				@endif
-				@endforeach
+        @endforeach
+    @else
+        <div class="col-12">
+            <p>No products available.</p>
+        </div>
+    @endif
 			</div>
 
 
@@ -866,8 +872,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
 									<div class="wrap-pic-w pos-relative">
 										<img id="productImage" src="" alt="Product Image">
-
-									
 									</div>
 								</div>
 							</div>
@@ -900,16 +904,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<br/>	
 						<br/>	
 						<br/>
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
-									
-
+						<div class="flex-w flex-r-m p-b-10">
+							<div class="size-204 flex-w flex-m respon6-next">
+								@if(isset($product) && $product->user_id === auth()->user()->id)
 									<a class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-edit-product"
-									href="{{ route('productseditf', ['id' => $product->id]) }}"
-									data-product-id="{{ $product->id }}">Éditer le produit</a>
-											
-								</div>
-							</div>	
+										href="{{ route('productseditf', ['id' => $product->id]) }}"
+										data-product-id="{{ $product->id }}">Éditer le produit</a>
+								@else
+									<p>No products available to edit.</p>
+								@endif
+							</div>
+						</div>
+						
 							
 							<div id="exchangeMessage" style="display: none">
 								The exchange is made. This product is in the shipping phase, being exchanged for a <span id="productNameToExchange"></span> owned by <span id="userNameOffering"></span>.
@@ -1007,7 +1013,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             var actionCell = $('<td>');
                             
                             var confirmButton = $('<button>')
-                                .text('Confirmer')
+                                .text('confirm')
 								.addClass('confirmer-button')
                                 .data('userId', offer.user.id)
                                 .data('productId', offer.produit_pour_echanger.id)
@@ -1015,7 +1021,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								.data('isconfirmed', offer.is_confirmed)  //; Utilisez le bon nom de relation
 
                             var messageButton = $('<button>')
-                                .text('Message direct')
+                                .text(' Direct Message')
                                 .data('userId', offer.user.id);
 		            if (offer.is_confirmed) {
 		            hasConfirmedOffer = true;
@@ -1071,20 +1077,19 @@ $.ajax({
 
 
     
-            // Effectuez une requête AJAX pour envoyer un e-mail
-// 	$.ajax({
-//     type: 'POST', // Si c'est une requête POST
-//     url: '/sendConfirmationEmail/' + userId + '/' + productId,
-//     data: {
-//         _token: '{{ csrf_token() }}', // Ajoutez le jeton CSRF
-//         userId: userId,
-//         productId: productId
-//     },
-//     error: function (xhr) {
-//         // Gérez les erreurs
-//         alert('Une erreur s\'est produite : ' + xhr.responseText);
-//     }
-// });
+            Effectuez une requête AJAX pour envoyer un e-mail
+	$.ajax({
+    type: 'POST', // Si c'est une requête POST
+    url: '/sendConfirmationEmail/' + userId + '/' + productId,
+    data: {
+        _token: '{{ csrf_token() }}', // Ajoutez le jeton CSRF
+        userId: userId,
+        productId: productId
+    },
+    error: function (xhr) {
+        // Gérez les erreurs
+        alert('Une erreur s\'est produite : ' + xhr.responseText);
+    }});
         });
 
         // Écoutez les clics sur les boutons "Message direct" pour la redirection

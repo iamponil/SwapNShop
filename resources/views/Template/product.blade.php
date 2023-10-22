@@ -122,13 +122,14 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+						{{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</div> --}}
 
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2" id="wishlistButton">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
+						
 					</div>
 				</nav>
 			</div>
@@ -151,9 +152,8 @@
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
+				
+				
 			</div>
 
 			<!-- Button show menu -->
@@ -249,15 +249,32 @@
 			</div>
 		</div>
 	</header>
-
-	<!-- Cart -->
+{{-- wishlist----------------------------------- --}}
+	{{-- <div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Wishlist
+				</span>
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full" id="wishlistContainer">
+					<!-- Wishlist items will be dynamically added here using JavaScript -->
+				</ul>
+			</div>
+		</div>
+	</div> --}}
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Your Wishlist
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -266,74 +283,16 @@
 			</div>
 
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+				
+				<ul class="header-cart-wrapitem w-full" id="wishlistContainer">
+					<!-- Wishlist items will be dynamically added here using JavaScript -->
 				</ul>
-
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
+
+	
 
 
 	<!-- Product -->
@@ -605,13 +564,7 @@
 								>
 								Quick View
 							</a>
-							{{-- <button type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
-						data-product-name="{{ $product->product_name }}"
-						data-product-price="{{ $product->price }}"
-						data-product-description="{{ $product->description }}"
-						data-product-image="{{ asset('images/' . $product->image) }}">
-						Quick View
-				</button> --}}
+						
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -626,11 +579,12 @@
 							</div>
 
 							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-product-id="{{ $product->id }}">
 									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -780,27 +734,7 @@
 			</div>
 
 			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
+				
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -964,13 +898,107 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
     });
 </script>
+{{-- addwishliste --}}
+{{-- <script>
+    $(document).ready(function() {
+        $('.js-addwish-b2').click(function(e) {
+            e.preventDefault();
+            var productId = $(this).data('product-id');
+            var button = $(this);
+
+            $.ajax({
+                url: '{{ route('wishlist.toggle') }}',
+                method: 'POST',
+                data: { product_id: productId, _token: '{{ csrf_token() }}' },
+                success: function(response) {
+                    if (response.success) {
+                        if (response.added) {
+                            // Product added to wishlist
+                            button.find('.icon-heart1').hide();
+                            button.find('.icon-heart2').show();
+                            // Show an alert message when liked
+							swal(nameProduct, "is added to wishlist !", "success");
+
+                          $(this).addClass('js-addedwish-b2');
+                          $(this).off('click');
+                        } else {
+                            // Product removed from wishlist
+                            button.find('.icon-heart2').hide();
+                            button.find('.icon-heart1').show();
+                            // Show an alert message when unliked
+                           alert('Product removed from wishlist');
+							
+                        }
+                    } else {
+                        // Handle errors
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    // Handle errors
+                    alert('Error: ' + xhr.statusText);
+                }
+            });
+        });
+    });
+</script> --}}
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- getwishliste --}}
+<script>
+    $(document).ready(function() {
+        var wishlistContainer = $('.wrap-header-cart'); // Wishlist container
+        var wishlistButton = $('#wishlistButton');
+
+        wishlistButton.on('click', function(e) {
+            e.preventDefault();
+            wishlistContainer.toggleClass('show'); // Toggle the visibility of the wishlist container
+
+            // Check if the wishlist is visible and load it only when it's shown
+            if (wishlistContainer.hasClass('show')) {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("wishlist.show") }}', // Make sure this route exists in your Laravel routes
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            var wishlistProducts = response.wishlistProducts;
+                            var wishlistContent = wishlistContainer.find('#wishlistContainer');
+
+                            // Clear the existing content
+                            wishlistContent.empty();
+
+                            // Loop through the wishlist products and append them to the container
+                            $.each(wishlistProducts, function(index, product) {
+                                wishlistContent.append(
+                                    '<li class="header-cart-item flex-w flex-t m-b-12">' +
+                                    '   <div class="header-cart-item-img">' +
+                                    '       <img src="{{ asset('images/') }}/' + product.image + '" alt="Product Image">' +
+                                    '   </div>' +
+                                    '   <div class="header-cart-item-txt p-t-8">' +
+                                    '       <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' +
+                                    '           ' + product.product_name +
+                                    '       </a>' +
+                                    '       <span class="header-cart-item-info">Price: $' + product.price + '</span>' +
+                                    '   </div>' +
+                                    '</li>'
+                                );
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 
 
 
+{{-- Exchange_____________________ --}}
 <script>
 	let productExchangeId; 
     const showProductsButton = document.querySelector('.js-show-products');
@@ -1089,41 +1117,124 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
+		$(document).ready(function() {
+			$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+				e.preventDefault();
+			});
+	
+			$('.js-addwish-b2').each(function(){
+				$(this).on('click', function(){
+					var productId = $(this).data('product-id');
+					var button = $(this);
+	
+					$.ajax({
+						url: '{{ route('wishlist.toggle') }}',
+						method: 'POST',
+						data: { product_id: productId, _token: '{{ csrf_token() }}' },
+						success: function(response) {
+							
+							if (response.success) {
+								if (response.added) {
+									// Product added to wishlist
+									button.find('.icon-heart1').hide();
+									button.find('.icon-heart2').show();
+									var nameProduct = button.parent().parent().find('.js-name-b2').html();
+									swal(nameProduct, "is added to wishlist !", "success");
+								} else {
+									// Product removed from wishlist
+									swal({
+										title: 'Remove from Wishlist',
+										text: 'Do you want to remove this product from your wishlist?',
+										icon: 'warning',
+										buttons: ["Cancel", "Remove"],
+									})
+									.then((confirmed) => {
+										if (confirmed) {
+											//button.find('.icon-heart2').hide();
+											button.find('.icon-heart1').show();
+											var nameProduct = button.parent().parent().find('.js-name-b2').html();
+											swal(nameProduct, "Product removed from wishlist !", "success");
+										}
+									});
+								}
+							} else {
+								// Handle errors
+								swal('Error', response.message, "error");
+							}
+						},
+						error: function(xhr) {
+							// Handle errors
+							swal('Error', xhr.statusText, "error");
+						}
+					});
+	
+					$(this).addClass('js-addedwish-b2');
+					$(this).off('click');
+				});
+			});
+	
+			$('.js-addwish-detail').each(function(){
+				$(this).on('click', function(){
+					var productId = $(this).data('product-id');
+					var button = $(this);
+	
+					$.ajax({
+						url: '{{ route('wishlist.toggle') }}',
+						method: 'POST',
+						data: { product_id: productId, _token: '{{ csrf_token() }}' },
+						success: function(response) {
+							if (response.success) {
+								if (response.added) {
+									// Product added to wishlist
+									button.find('.icon-heart1').hide();
+									button.find('.icon-heart2').show();
+									var nameProduct = button.parent().parent().parent().find('.js-name-detail').html();
+									swal(nameProduct, "is added to wishlist !", "success");
+								} else {
+									// Product removed from wishlist
+									swal({
+										title: 'Remove from Wishlist',
+										text: 'Do you want to remove this product from your wishlist?',
+										icon: 'warning',
+										buttons: ["Cancel", "Remove"],
+									})
+									.then((confirmed) => {
+										if (confirmed) {
+											button.find('.icon-heart2').hide();
+											button.find('.icon-heart1').show();
+											var nameProduct = button.parent().parent().parent().find('.js-name-detail').html();
+											swal(nameProduct, "Product removed from wishlist !", "success");
+										}
+									});
+								}
+							} else {
+								// Handle errors
+								swal('Error', response.message, "error");
+							}
+						},
+						error: function(xhr) {
+							// Handle errors
+							swal('Error', xhr.statusText, "error");
+						}
+					});
+	
+					$(this).addClass('js-addedwish-detail');
+					$(this).off('click');
+				});
+			});
+	
+			/*---------------------------------------------*/
+	
+			$('.js-addcart-detail').each(function(){
+				var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+				$(this).on('click', function(){
+					swal(nameProduct, "is added to cart !", "success");
+				});
 			});
 		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-
 	</script>
+	
+	
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>

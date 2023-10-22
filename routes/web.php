@@ -8,6 +8,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EchangeController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OffreController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Conversation;
 
 /*
@@ -138,13 +139,14 @@ Route::get('/productsedit/{id}', [ProductController::class,'editfront'])->name('
 Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
 Route::post('/create-offre', [OffreController::class,'create'])->name('offre.create');
 Route::get('/getProductOffers/{productId}', [OffreController::class,'getProductOffers'])->name('product.offers');
-
+Route::post('/wishlist/toggle',[WishlistController::class,'toggleProduct'])->name('wishlist.toggle');
+Route::get('/wishlist/show',[WishlistController::class,'showWishlist'])->name('wishlist.show');
+Route::get('/wishlist', [WishlistController::class,'index'])->name('wishlist.index');
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
 
 Route::post('/sendConfirmationEmail/{userId}/{productId}', [EmailController::class,'sendConfirmationEmail'])->name('sendConfirmationEmail');
 Route::post('/createEchange', );
 Route::post('/confirmEchange/{offreId}', [EchangeController::class,'confirmEchange'])->name('confirmEchange');
-
 Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct']);
 
 

@@ -74,7 +74,7 @@ if ($request->hasFile('image')) {
     $product->image = $imageName;
 }
         $product->save();
-        return redirect('/product');
+        return redirect('/myproduct');
     }
  /**
      * Display the specified resource.
@@ -167,7 +167,7 @@ if ($request->hasFile('image')) {
         $product->save();
     }
 
-    return redirect('/products')->with('success', 'Product updated successfully');
+    return redirect('/myproduct')->with('success', 'Product updated successfully');
 }
 
 
