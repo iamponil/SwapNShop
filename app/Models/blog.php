@@ -12,9 +12,13 @@ class blog extends Model
         'id',
         'title',
         'content',
-        'picture'
+        'picture',
+        'user_id'
 
     ];
-
+  public function author()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
 
 }

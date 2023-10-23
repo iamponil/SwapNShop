@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -37,7 +38,7 @@ class ProductController extends Controller
 {
     // Récupérez les produits de l'utilisateur connecté
     $listproductss = \App\Models\Product::where('user_id', auth()->user()->id)->get();
-    
+
     return view('Template.myproducts', compact('listproductss'));
 }
 
@@ -87,7 +88,8 @@ if ($request->hasFile('image')) {
     $image = $request->file('image');
     $imageName = time() . '.' . $image->getClientOriginalExtension();
     $image->move(public_path('images'), $imageName);
-    $product->image = $imageName;
+    $product->images = $imageName;
+    $product->user_id = Auth::user()->id;
 }
         $product->save();
         return redirect('/myproduct');
@@ -117,7 +119,7 @@ if ($request->hasFile('image')) {
     {
         // Fetch the product details from the database using the $productId
         $product = Product::find($productId);
-    
+
         // Return the product details view with the product data
         return view('Template.DetailsProduct', ['product' => $product]);
     }
@@ -169,7 +171,6 @@ if ($request->hasFile('image')) {
         'category' => $request->input('category'),
         'price' => $request->input('price'),
         'order' => $request->input('order'),
-       
     ]);
 
     // Handle image upload

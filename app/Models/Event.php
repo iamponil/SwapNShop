@@ -9,7 +9,13 @@ class Event extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['title', 'description', 'date_time', 'location', 'community_id'];
+  protected $fillable = ['title', 'description', 'date_time', 'location', 'community_id','creator_id'];
+  protected $dates = ['date_time'];
+  public function isUpcoming()
+  {
+    return $this->date_time > now();
+  }
+
 
   public function community()
   {
@@ -19,5 +25,9 @@ class Event extends Model
   public function attendees()
   {
     return $this->belongsToMany(User::class, 'event_attendees')->withTimestamps();
+  }
+  public function creator()
+  {
+    return $this->belongsTo(User::class, 'creator_id');
   }
 }
