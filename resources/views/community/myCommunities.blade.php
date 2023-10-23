@@ -113,7 +113,7 @@
               <ul class="sub-menu">
                 <li><a href="{{ route('community.index') }}">Communities List</a></li>
                 <li><a href="{{ route('community.myCommunities') }}">My Communities</a></li>
-                <li><a href="{{ route('community.create') }}">Create Community</a></li>
+<li><a href="{{ route('community.create') }}">Create Community</a></li>
               </ul>
             </li>
             <li>
@@ -374,40 +374,37 @@
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
           </a>
           <a href="{{route('community.index')}}" class="stext-109 cl8 hov-cl1 trans-04">
-            Communities
+            My Communities
             <i class="fa fa-angle-double-down m-l-9 m-r-10" aria-hidden="true"></i>
           </a>
         </div>
       </div>
       @foreach ($communities as $c)
         <div class="col-md-4">
-          {{-- <i class="fa-solid fa-ellipsis-vertical" style="position: relative;left: 345px;top: 40px;"></i> --}}
           @if ($c->creator_id == Auth::user()->id)
-          <div class="dropdown">
-            <button style="position: relative;
+            <div class="dropdown">
+              <button style="position: relative;
                               left: 400px;
                               top: 40px;" class="btn p-0"
-                    type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-              <i class="bx bx-dots-vertical-rounded"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-              <a class="dropdown-item" href="{{ route('community.edit', ['community' => $c]) }}"><i
-                  class="fa-solid fa-pen-to-square"></i>Edit</a>
-              {{-- <a class="dropdown-item" href="{{route('community.destroy',['community'=>$c])}}"><i class="fa-solid fa-trash"></i>Delete</a> --}}
-              <form method="POST" action="{{ route('community.destroy', ['community' => $c]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="dropdown-item">
-                  <i class="fa-solid fa-trash"></i> Delete
-                </button>
-              </form>
+                      type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                <a class="dropdown-item" href="{{ route('community.edit', ['community' => $c]) }}"><i
+                    class="fa-solid fa-pen-to-square"></i>Edit</a>
+                <form method="POST" action="{{ route('community.destroy', ['community' => $c]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
           @endif
           <div class="service-item">
             <div class="icon">
-              {{-- <img  style="height: 140px; width: 200px;" src="{{asset('assets/images/blog-01.jpg')}}"> --}}
               <i class="fa-solid fa-people-group"></i>
             </div>
             <div class="down-content">
@@ -441,13 +438,6 @@
                           class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                     Join <i class="fa-solid fa-right-to-bracket"></i>
                   </button>
-                  {{--           <div style="margin-top : 10px;">
-                                        <span class="badge rounded-pill bg-label-primary">Primary</span>
-                            <span class="badge rounded-pill bg-label-success">Success</span>
-                                      <span class="badge rounded-pill bg-label-danger">Danger</span>
-                            <span class="badge rounded-pill bg-label-warning">Warning</span>
-                            <span class="badge rounded-pill bg-label-info">Info</span>
-                            </div>--}}
                 </form>
               @endif
             </div>

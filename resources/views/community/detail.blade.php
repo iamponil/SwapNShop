@@ -10,7 +10,6 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="{{asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{asset('fonts/iconic/css/material-design-iconic-font.min.css')}}">
   <!--===============================================================================================-->
@@ -34,12 +33,19 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('osw/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('osw/assets/css/owl.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!--===============================================================================================-->
 </head>
 <body class="animsition">
 
 <!-- Header -->
-<header>
+<header style="height:40px;">
   <!-- Header desktop -->
   <div class="container-menu-desktop">
     <!-- Topbar -->
@@ -117,11 +123,13 @@
             <i class="zmdi zmdi-search"></i>
           </div>
 
-          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+               data-notify="2">
             <i class="zmdi zmdi-shopping-cart"></i>
           </div>
 
-          <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+          <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+             data-notify="0">
             <i class="zmdi zmdi-favorite-outline"></i>
           </a>
         </div>
@@ -146,7 +154,8 @@
         <i class="zmdi zmdi-shopping-cart"></i>
       </div>
 
-      <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+      <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+         data-notify="0">
         <i class="zmdi zmdi-favorite-outline"></i>
       </a>
     </div>
@@ -314,7 +323,8 @@
         </div>
 
         <div class="header-cart-buttons flex-w w-full">
-          <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+          <a href="shoping-cart.html"
+             class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
             View Cart
           </a>
 
@@ -326,7 +336,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!-- Slider -->
@@ -409,95 +418,12 @@
 </section>
 
 
-<!-- Banner -->
-<div class="sec-banner bg0 p-t-80 p-b-50">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-01.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Women
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-02.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-        <!-- Block1 -->
-        <div class="block1 wrap-pic-w">
-          <img src="{{asset('images/banner-03.jpg')}}" alt="IMG-BANNER">
-
-          <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accessories
-								</span>
-
-              <span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
-            </div>
-
-            <div class="block1-txt-child2 p-b-4 trans-05">
-              <div class="block1-link stext-101 cl0 trans-09">
-                Shop Now
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <!-- Product -->
-<section class="bg0 p-t-23 p-b-140">
+<section class="bg0 p-t-23 p-b-50">
   <div class="container">
     <div class="p-b-10">
       <h3 class="ltext-103 cl5">
-        Product Overview
+        Product By {{$community->name}} Members
       </h3>
     </div>
 
@@ -744,310 +670,151 @@
     </div>
 
     <div class="row isotope-grid">
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-01.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Esprit Ruffle Shirt
+      @foreach($products as $prod)
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+          <!-- Block2 -->
+          <div class="block2">
+            <div class="block2-pic hov-img0">
+              <img src="{{ asset('images/' . $prod->images) }}" alt="IMG-PRODUCT">
+              <a href="#"
+                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                Quick View
               </a>
+            </div>
 
-              <span class="stext-105 cl3">
+            <div class="block2-txt flex-w flex-t p-t-14">
+              <div class="block2-txt-child1 flex-col-l ">
+                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                  {{$prod->product_name}}
+                </a>
+
+                <span class="stext-105 cl3">
 									$16.64
 								</span>
-            </div>
+              </div>
 
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-02.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Herschel supply
-              </a>
-
-              <span class="stext-105 cl3">
-									$35.31
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
+              <div class="block2-txt-child2 flex-r p-t-3">
+                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                  <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}"
+                       alt="ICON">
+                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}"
+                       alt="ICON">
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-03.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Only Check Trouser
-              </a>
-
-              <span class="stext-105 cl3">
-									$25.50
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-04.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Classic Trench Coat
-              </a>
-
-              <span class="stext-105 cl3">
-									$75.00
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-05.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Front Pocket Jumper
-              </a>
-
-              <span class="stext-105 cl3">
-									$34.75
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-06.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Vintage Inspired Classic
-              </a>
-
-              <span class="stext-105 cl3">
-									$93.20
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-07.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Shirt in Stretch Cotton
-              </a>
-
-              <span class="stext-105 cl3">
-									$52.66
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-        <!-- Block2 -->
-        <div class="block2">
-          <div class="block2-pic hov-img0">
-            <img src="{{asset('images/product-08.jpg')}}" alt="IMG-PRODUCT">
-
-            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-              Quick View
-            </a>
-          </div>
-
-          <div class="block2-txt flex-w flex-t p-t-14">
-            <div class="block2-txt-child1 flex-col-l ">
-              <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                Pieces Metallic Printed
-              </a>
-
-              <span class="stext-105 cl3">
-									$18.96
-								</span>
-            </div>
-
-            <div class="block2-txt-child2 flex-r p-t-3">
-              <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
-
-    <div class="services" style="background-image: url(assets/images/other-image-fullscren-1-1920x900.jpg);" >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading" style="padding-bottom:5px;">
-              <h2>Latest blog posts</h2>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-01.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit hic</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-02.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="service-item">
-              <a href="#" class="services-item-image"><img src="{{asset('assets/images/blog-03.jpg')}}" class="img-fluid" alt=""></a>
-
-              <div class="down-content">
-                <h4><a href="#">Aperiam modi voluptatum fuga officiis cumque</a></h4>
-
-                <p style="margin: 0;"> John Doe &nbsp;&nbsp;|&nbsp;&nbsp; 12/06/2020 10:30 &nbsp;&nbsp;|&nbsp;&nbsp; 114</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <hr>
+  </div>
 </section>
+<!-- Banner -->
+<div class="sec-banner bg0 p-t-10 p-b-50">
+  <div class="container">
+    <h4 class="ltext-109 cl3 p-b-28">
+      Blogs By {{$community->name}} Members
+    </h4>
+    <div class="row">
+      @foreach($blogs as $blog)
+        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+          <!-- Block1 -->
+          <div class="block1 wrap-pic-w">
+            <img src="/img/{{ $blog->picture }}" alt="IMG-BANNER">
+            <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+              <div class="block1-txt-child1 flex-col-l">
+								<span class="block1-title ltext-102 trans-04 p-b-8">
+									{{$blog->title}}
+								</span>
 
+                <span class="block1-info stext-102 trans-04">
+									By {{$blog->author->name}}
+								</span>
+              </div>
+
+              <div class="block1-txt-child2 p-b-4 trans-05">
+                <div class="block1-link stext-101 cl0 trans-09">
+                  Read
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      @endforeach
+    </div>
+    <hr>
+  </div>
+</div>
+<!-- Events -->
+<div class="sec-banner bg0 p-t-10 p-b-50">
+  <div class="container">
+    <h4 class="ltext-109 cl3 p-b-28">
+      Upcoming Events
+    </h4>
+    <div class="row">
+      @foreach ($events as $e)
+        <div class="col-md-4">
+          @if ($e->creator_id == Auth::user()->id)
+            <div class="dropdown">
+              <button style="position: relative;
+                              left: 400px;
+                              top: 40px;" class="btn p-0"
+                      type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                <a class="dropdown-item" href="{{ route('event.edit', ['event' => $e]) }}"><i
+                    class="fa-solid fa-pen-to-square"></i>Edit</a>
+                <form method="POST" action="{{ route('event.destroy', ['event' => $e]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </button>
+                </form>
+              </div>
+            </div>
+          @endif
+          <div class="service-item">
+            <div class="icon">
+              <i class="fa-solid fa-calendar-day"></i>
+            </div>
+            <div class="down-content">
+              <a href="{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
+              <p class="n-m"><em>{{ $e->description }}</em></p>
+              <hr>
+              {{ $e->attendees->count() }} <i class="fa-solid fa-user"></i>
+              • <i class="fa-solid fa-calendar-days"></i>
+              {{ $e->date_time->format('d M, Y H:i')}}
+              @if ($e->community->members->contains('id',Auth::user()->id) && !$e->attendees->contains('id',Auth::user()->id))
+                <form method="POST" action="{{ route('event.join', ['event' => $e]) }}">
+                  @csrf
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                    Join Event<i class="fa-solid fa-right-to-bracket"></i>
+                  </button>
+                </form>
+              @endif
+              @if (!$e->community->members->contains('id',Auth::user()->id))
+                <form method="POST" action="{{ route('community.join', ['community' => $e->community]) }}">
+                  @csrf
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                    Join Community<i class="fa-solid fa-right-to-bracket"></i>
+                  </button>
+                </form>
+              @endif
+            </div>
+            <input type="hidden" id="latitude" name="latitude" value="{{$e->location['latitude']}}">
+            <input type="hidden" id="longitude" name="{{$e->location['longitude']}}">
+            <div id="map_{{ $e->id }}" style="height: 200px;"></div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
@@ -1123,7 +890,8 @@
         </h4>
 
         <p class="stext-107 cl7 size-201">
-          Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+          Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716
+          6879
         </p>
 
         <div class="p-t-27">
@@ -1186,7 +954,10 @@
 
       <p class="stext-107 cl6 txt-center">
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+        All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
+          href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com"
+                                                                                           target="_blank">ThemeWagon</a>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
       </p>
@@ -1224,7 +995,8 @@
                   <div class="wrap-pic-w pos-relative">
                     <img src="{{asset('images/product-detail-01.jpg')}}" alt="IMG-PRODUCT">
 
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-01.jpg">
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                       href="assets/images/product-detail-01.jpg">
                       <i class="fa fa-expand"></i>
                     </a>
                   </div>
@@ -1234,7 +1006,8 @@
                   <div class="wrap-pic-w pos-relative">
                     <img src="{{asset('images/product-detail-02.jpg')}}" alt="IMG-PRODUCT">
 
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-02.jpg">
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                       href="assets/images/product-detail-02.jpg">
                       <i class="fa fa-expand"></i>
                     </a>
                   </div>
@@ -1244,7 +1017,8 @@
                   <div class="wrap-pic-w pos-relative">
                     <img src="{{asset('images/product-detail-03.jpg')}}" alt="IMG-PRODUCT">
 
-                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="assets/images/product-detail-03.jpg">
+                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                       href="assets/images/product-detail-03.jpg">
                       <i class="fa fa-expand"></i>
                     </a>
                   </div>
@@ -1332,20 +1106,24 @@
             <!--  -->
             <div class="flex-w flex-m p-l-100 p-t-40 respon7">
               <div class="flex-m bor9 p-r-10 m-r-11">
-                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
+                   data-tooltip="Add to Wishlist">
                   <i class="zmdi zmdi-favorite"></i>
                 </a>
               </div>
 
-              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                 data-tooltip="Facebook">
                 <i class="fa fa-facebook"></i>
               </a>
 
-              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                 data-tooltip="Twitter">
                 <i class="fa fa-twitter"></i>
               </a>
 
-              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+              <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
+                 data-tooltip="Google Plus">
                 <i class="fa fa-google-plus"></i>
               </a>
             </div>
@@ -1366,7 +1144,7 @@
 <!--===============================================================================================-->
 <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
 <script>
-  $(".js-select2").each(function(){
+  $(".js-select2").each(function () {
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
@@ -1387,12 +1165,12 @@
 <!--===============================================================================================-->
 <script src="{{asset('vendor/MagnificPopup/jquery.magnific-popup.min.js')}}"></script>
 <script>
-  $('.gallery-lb').each(function() { // the containers for all your galleries
+  $('.gallery-lb').each(function () { // the containers for all your galleries
     $(this).magnificPopup({
       delegate: 'a', // the selector for gallery item
       type: 'image',
       gallery: {
-        enabled:true
+        enabled: true
       },
       mainClass: 'mfp-fade'
     });
@@ -1403,13 +1181,13 @@
 <!--===============================================================================================-->
 <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script>
-  $('.js-addwish-b2').on('click', function(e){
+  $('.js-addwish-b2').on('click', function (e) {
     e.preventDefault();
   });
 
-  $('.js-addwish-b2').each(function(){
+  $('.js-addwish-b2').each(function () {
     var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-    $(this).on('click', function(){
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-b2');
@@ -1417,10 +1195,10 @@
     });
   });
 
-  $('.js-addwish-detail').each(function(){
+  $('.js-addwish-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-    $(this).on('click', function(){
+    $(this).on('click', function () {
       swal(nameProduct, "is added to wishlist !", "success");
 
       $(this).addClass('js-addedwish-detail');
@@ -1430,9 +1208,9 @@
 
   /*---------------------------------------------*/
 
-  $('.js-addcart-detail').each(function(){
+  $('.js-addcart-detail').each(function () {
     var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-    $(this).on('click', function(){
+    $(this).on('click', function () {
       swal(nameProduct, "is added to cart !", "success");
     });
   });
@@ -1441,22 +1219,40 @@
 <!--===============================================================================================-->
 <script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 <script>
-  $('.js-pscroll').each(function(){
-    $(this).css('position','relative');
-    $(this).css('overflow','hidden');
+  $('.js-pscroll').each(function () {
+    $(this).css('position', 'relative');
+    $(this).css('overflow', 'hidden');
     var ps = new PerfectScrollbar(this, {
       wheelSpeed: 1,
       scrollingThreshold: 1000,
       wheelPropagation: false,
     });
 
-    $(window).on('resize', function(){
+    $(window).on('resize', function () {
       ps.update();
     })
   });
 </script>
 <!--===============================================================================================-->
-<script src="{{asset('js/main.js')}}"></script>
+<script>
+  @foreach ($events as $event)
+  var map_{{ $event->id }} = L.map('map_{{ $event->id }}').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
 
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map_{{ $event->id }});
+
+  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}]).addTo(map_{{ $event->id }});
+  eventMarker.bindPopup('{{ $event->title }}<br> Will be Held Here @ ');
+  @endforeach
+</script>
+<!--===============================================================================================-->
+<script src="{{asset('js/main.js')}}"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{{ asset('osw/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('osw/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Additional Scripts -->
+<script src="{{ asset('osw/assets/js/custom.js') }}"></script>
+<script src="{{ asset('osw/assets/js/owl.js') }}"></script>
 </body>
 </html>

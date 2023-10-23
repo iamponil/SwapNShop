@@ -594,13 +594,13 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="{{ asset('images/' . $product->image) }}" alt="Product Image" style="width: 300px; height: 400px;" >
-			
+							<img src="{{ asset('images/' . $product->images) }}" alt="Product Image" style="width: 300px; height: 400px;" >
+
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 show-product" data-bs-toggle="modal" data-bs-target="#Modal1" data-product-name="{{ $product->product_name }}"
 								data-product-price="{{ $product->price }}"
 								data-product-description="{{ $product->description }}"
 								data-product-order="{{ $product->order }}"
-								data-product-image="{{ asset('images/' . $product->image) }}" 
+								data-product-image="{{ asset('images/' . $product->image) }}"
 								data-product-id="{{ $product->id }}"
 								>
 								Quick View
@@ -833,24 +833,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				<div class="col-md-6 col-lg-7 p-b-30">
 					<div class="p-l-25 p-r-30 p-lr-0-lg">
 						<div class="wrap-slick3 flex-sb flex-w">
-						
+
 
 							<div class="slick3 gallery-lb">
-							
-							
+
+
 
 								<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
 									<div class="wrap-pic-w pos-relative">
 										<img id="productImage" src="" alt="Product Image">
 
-									
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h1 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -868,18 +868,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 							<h5>	I WANT TO EXCHANGE FOR:</h5>
 								<br/>
 								<span id="productorder"></span>	</p>
-						
 						<!--  -->
-					
-							
-						<br/>	
-						<br/>	
-						<br/>	
+
+
+						<br/>
+						<br/>
+						<br/>
 						<br/>
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="p-b-10">
-										
+
 										<span id="productId" style="display: none;"></span>
 										<label id="selectedProduct" style="display: none;">Sélectionnez un produit :</label>
 										<select id="userProducts" style="display: none; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
@@ -890,7 +889,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 											@endforeach
 										</select>
 									</div>
-									
+
 									<!-- Boutons "Besoin", "Confirmer" et "Annuler" -->
 									<div class="flex-w flex-r-m p-b-10">
 										<div class="size-204 flex-w flex-m respon6-next">
@@ -905,12 +904,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 													Annuler
 												</button>
 											</div>
-											
-											
+
+
 										</div>
 									</div>
 								</div>
-							</div>	
+							</div>
 						</div>
 
 						<!--  -->
@@ -945,7 +944,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script>
     $(document).ready(function () {
         $('.show-product').click(function () {
-            
+
             console.log('Button clicked'); // Add this line
             var productName = $(this).data('product-name');
 			var productId = $(this).data('product-id');
@@ -972,13 +971,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 <script>
-	let productExchangeId; 
+	let productExchangeId;
     const showProductsButton = document.querySelector('.js-show-products');
     const confirmButton = document.querySelector('.js-confirm');
     const cancelButton = document.querySelector('.js-cancel');
     const userProductsSelect = document.querySelector('#userProducts');
 	const selectedProductLabel = document.querySelector('#selectedProduct');
-	
+
 	const productIdLabel = document.querySelector('#productId');
     showProductsButton.addEventListener('click', function() {
 		console.log()
@@ -986,11 +985,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         confirmButton.style.display = 'inline';
         cancelButton.style.display = 'inline';
         userProductsSelect.style.display = 'inline';
-		selectedProductLabel.style.display = 'inline'; 
+		selectedProductLabel.style.display = 'inline';
 		productExchangeId = productIdLabel.textContent;
 		console.log('productExchangeId:', productExchangeId);
 		//const productExchangeId = showProductsButton.getAttribute('data-product-id');
-		
+
     });
 
     cancelButton.addEventListener('click', function() {
@@ -1014,7 +1013,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             data: {
                 _token: '{{ csrf_token() }}', // Assurez-vous d'inclure le jeton CSRF
                 id_produit_a_echanger: selectedProductId, // L'ID du produit à échanger
-                id_produit_pour_echanger_avec: productExchangeId, 
+                id_produit_pour_echanger_avec: productExchangeId,
             },
             success: function(data) {
                 // Traitez la réponse du serveur, par exemple, affichez un message de succès
