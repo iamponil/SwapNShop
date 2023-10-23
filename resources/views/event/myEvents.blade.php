@@ -30,6 +30,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="{{ asset('osw/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('osw/assets/css/owl.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body class="animsition">
@@ -104,7 +108,6 @@
             <li>
               <a href="{{ route('about') }}">About</a>
             </li>
-
             <li>
               <a href="{{ route('contact') }}">Contact</a>
             </li>
@@ -113,7 +116,7 @@
               <ul class="sub-menu">
                 <li><a href="{{ route('community.index') }}">Communities List</a></li>
                 <li><a href="{{ route('community.myCommunities') }}">My Communities</a></li>
-                <li><a href="{{ route('community.create') }}">Create Community</a></li>
+<li><a href="{{ route('community.create') }}">Create Community</a></li>
               </ul>
             </li>
             <li>
@@ -361,96 +364,88 @@
     </div>
   </div>
 </div>
-
-<!-- Communities -->
+<!-- Events -->
 <div class="services section-background">
   <div class="container">
     <div class="row">
       <!-- breadcrumb -->
-      <div class="container" style="padding-bottom: 25px;">
+      <div class="container" style="padding-bottom: 8px;">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
           <a href="{{route('index')}}" class="stext-109 cl8 hov-cl1 trans-04">
             Home
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
           </a>
-          <a href="{{route('community.index')}}" class="stext-109 cl8 hov-cl1 trans-04">
-            Communities
+          <a href="{{route('event.index')}}" class="stext-109 cl8 hov-cl1 trans-04">
+            My Upcoming Events
             <i class="fa fa-angle-double-down m-l-9 m-r-10" aria-hidden="true"></i>
           </a>
         </div>
       </div>
-      @foreach ($communities as $c)
+      @foreach ($events as $e)
         <div class="col-md-4">
-          {{-- <i class="fa-solid fa-ellipsis-vertical" style="position: relative;left: 345px;top: 40px;"></i> --}}
-          @if ($c->creator_id == Auth::user()->id)
-          <div class="dropdown">
-            <button style="position: relative;
+          @if ($e->creator_id == Auth::user()->id)
+            <div class="dropdown">
+              <button style="position: relative;
                               left: 400px;
                               top: 40px;" class="btn p-0"
-                    type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-              <i class="bx bx-dots-vertical-rounded"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-              <a class="dropdown-item" href="{{ route('community.edit', ['community' => $c]) }}"><i
-                  class="fa-solid fa-pen-to-square"></i>Edit</a>
-              {{-- <a class="dropdown-item" href="{{route('community.destroy',['community'=>$c])}}"><i class="fa-solid fa-trash"></i>Delete</a> --}}
-              <form method="POST" action="{{ route('community.destroy', ['community' => $c]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="dropdown-item">
-                  <i class="fa-solid fa-trash"></i> Delete
-                </button>
-              </form>
+                      type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                <a class="dropdown-item" href="{{ route('event.edit', ['event' => $e]) }}"><i
+                    class="fa-solid fa-pen-to-square"></i>Edit</a>
+                <form method="POST" action="{{ route('event.destroy', ['event' => $e]) }}">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
           @endif
           <div class="service-item">
             <div class="icon">
-              {{-- <img  style="height: 140px; width: 200px;" src="{{asset('assets/images/blog-01.jpg')}}"> --}}
-              <i class="fa-solid fa-people-group"></i>
+              <i class="fa-solid fa-calendar-day"></i>
             </div>
             <div class="down-content">
-              <a href="{{route('community.show',['community'=>$c])}}"><h4>{{ $c->name }}</h4></a>
-              <p class="n-m"><em>{{ $c->description }}</em></p>
+              <a href="{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
+              <p class="n-m"><em>{{ $e->description }}</em></p>
               <hr>
-              {{ $c->members->count() }} <i class="fa-solid fa-user"></i>
-              @if ($c->events->where('date_time', '>', now())->count() > 0)
-                • <i class="fa-solid fa-calendar-days"></i>
-                {{ $c->events->where('date_time', '>', now())->sortBy('date_time')->first()->date_time->format('d M, Y H:i') }}
-              @endif
-              @if ($c->members->contains('id',Auth::user()->id))
-                <div>
-                  <a href="{{ route('event.form', ['id' => $c->id]) }}">
-                    <button style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                      Create Event <i class="fa-solid fa-plus"></i>
-                    </button>
-                  </a>
-                </div>
-                <form method="POST" action="{{ route('community.leave', ['community' => $c]) }}">
+              {{ $e->attendees->count() }} <i class="fa-solid fa-user"></i>
+              • <i class="fa-solid fa-calendar-days"></i>
+              {{ $e->date_time->format('d M, Y H:i')}}
+              @if ($e->community->members->contains('id',Auth::user()->id) && !$e->attendees->contains('id',Auth::user()->id))
+                <form method="POST" action="{{ route('event.join', ['event' => $e]) }}">
                   @csrf
-                  <button type="submit" style="margin-top : 5px;"
-                          class="stext-101 cl0 size-104 bg10 bor1 hov-btn1 p-lr-15 trans-04">
-                    Leave Community <i class="fa-solid fa-person-walking-arrow-right"></i>
+                  <button type="submit" style="margin-top : 5px; backgroundcolor : #F74877"
+                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                    Join Event<i class="fa-solid fa-right-to-bracket"></i>
                   </button>
                 </form>
               @else
-                <form method="POST" action="{{ route('community.join', ['community' => $c]) }}">
+                <form method="POST" action="{{ route('event.leave', ['event' => $e]) }}">
+                  @csrf
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg10 bor1 hov-btn1 p-lr-15 trans-04">
+                    Leave Event <i class="fa-solid fa-person-walking-arrow-right"></i>
+                  </button>
+                </form>
+              @endif
+              @if (!$e->community->members->contains('id',Auth::user()->id))
+                <form method="POST" action="{{ route('community.join', ['community' => $e->community]) }}">
                   @csrf
                   <button type="submit" style="margin-top : 5px;"
                           class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                    Join <i class="fa-solid fa-right-to-bracket"></i>
+                    Join Community<i class="fa-solid fa-right-to-bracket"></i>
                   </button>
-                  {{--           <div style="margin-top : 10px;">
-                                        <span class="badge rounded-pill bg-label-primary">Primary</span>
-                            <span class="badge rounded-pill bg-label-success">Success</span>
-                                      <span class="badge rounded-pill bg-label-danger">Danger</span>
-                            <span class="badge rounded-pill bg-label-warning">Warning</span>
-                            <span class="badge rounded-pill bg-label-info">Info</span>
-                            </div>--}}
                 </form>
               @endif
             </div>
+            <input type="hidden" id="latitude" name="latitude" value="{{$e->location['latitude']}}">
+            <input type="hidden" id="longitude" name="{{$e->location['longitude']}}">
+            <div id="map_{{ $e->id }}" style="height: 200px;"></div>
           </div>
         </div>
       @endforeach
@@ -820,6 +815,30 @@
 <script src="js/slick-custom.js"></script>
 <!--===============================================================================================-->
 <script src="vendor/parallax100/parallax100.js"></script>
+{{--
+<script>
+  var map = L.map('map').setView([document.getElementById('latitude').value, document.getElementById('longitude').value], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  L.marker([document.getElementById('latitude').value, document.getElementById('longitude').value]).addTo(map)
+          .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+          .openPopup();
+</script>
+--}}
+<script>
+  @foreach ($events as $event)
+  var map_{{ $event->id }} = L.map('map_{{ $event->id }}').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map_{{ $event->id }});
+
+  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}]).addTo(map_{{ $event->id }});
+  eventMarker.bindPopup('{{ $event->title }}<br> Will be Held Here @ ');
+  @endforeach
+</script>
+
 <script>
   $('.parallax100').parallax100();
 </script>

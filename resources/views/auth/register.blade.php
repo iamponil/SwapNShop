@@ -31,7 +31,6 @@
                 <x-label for="image" value="{{ __('profile_photo_path') }}" />
                 <input id="image" class="block mt-1 w-full" type="file" name="image" accept="image/*" />
             </div>
-
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">

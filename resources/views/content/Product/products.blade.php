@@ -11,14 +11,14 @@
 
 <!--/ Basic Bootstrap Table -->
 <div class="card">
-   
- <div><h5 class="card-header">All Products 
+
+ <div><h5 class="card-header">All Products
 
  </h5>
-     
-   </div> 
+
+   </div>
   <div class="table-responsive text-nowrap">
- 
+
    	@if(isset($listproducts) && count($listproducts) > 0)
   <table class="table">
     <thead>
@@ -27,7 +27,7 @@
             <th>price</th>
             <th>Description</th>
             <th>Category</th>
-            
+
             <th>Image</th>
             <th>Actions</th>
         </tr>
@@ -39,21 +39,21 @@
             <td>{{$l->price}}$</td>
             <td>{{$l->description}}</td>
             <td>{{$l->category}}</td>
-            
+
             <td>
-                <img src="{{ asset('images/' . $l->image) }}" alt="Product Image" width="100">
+                <img src="{{ asset('images/' . $l->images) }}" alt="Product Image" width="100">
             </td>
             <td>
                 <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                     <div class="dropdown-menu">
-                     
+
                         <a href="{{ route('products.edit', ['id' => $l->id]) }}" class="btn btn-link"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                         <button type="button" class="btn btn-link show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
         data-product-name="{{ $l->product_name }}"
         data-product-price="{{ $l->price }}"
         data-product-description="{{ $l->description }}"
-        data-product-image="{{ asset('images/' . $l->image) }}">
+        data-product-image="{{ asset('images/' . $l->images) }}">
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAoVJREFUSEvt1l3IzncYB/DP07CUmLdsTSbilKYoNbM1EStvJ0Ro0ZQ2RcnOyYHC1sp7pHBgQ2rEgY1y4EBC2kLCTsQkcSDy0vV03fr1738/7mcHnsRVd93373dd1/d3fa+3u00XSVsX4XoP/MaYfyuo7ou5GIn+GJD0/Id7uIK9eNAKba1EPAarMAvdXuP0KX7DWlzuSLcj4H74GfNrHNzFrTwfgoEVnRfYiRV4WPeAZsB98BdGp9ET7MIfeV51Fvpf4lssQve0O4Nv8LgKXgf8IU5hXCofxFJElK3Ix/nIKal8HFPxvDSuA96POam0PvNb2vTGckTufywor/rdiiV5uDFpf6VTBV6M7Xl7BDMQ+WpIVPZ5fJYHPetozLsP8Ce+yN8R9bGGoxL4I9xERHQNn9cUxjqsLh4yMdPSLAVB+6VsvRsY3qC8BP4Bv6SHyThR4+33bKvG1b/4HifRK/u5aha9vy8PF2JPfC+BI2+bUmEmDtcAh4NwVCdxN6/mYnb2dlxFcL9WgYPqq0lLRDIK9yuOoli2NQH+Lqu5vI7pdhGf4DZG4FEVOH6XUUchRF+WbRAFcxrjK+DR819XCrFaXPHoHXXFFWc9cLYYHBuwsgISw2EZJuSjonK34FmhFykMkGAhJObCV+XD6vr4U5zDoDQ6lAXU6gAJ+905scLFdYytFl6zkTk0qzpyEhIjMyI4mq9vz1MhMdejtaZngQXNIRcwqW7qdbQkYvUF1QtqiulOTqzYVoOLFdlQjbrYjJ86uyRKrJjZ4WBaC2sxmDmANfinSfW3H7eyjxv2QWesyGEZYTASEn8E4vM3Ys7XrsHqIzoD3FEAnb57D9xpyv6vwbtH9UszLnYfuL6nrgAAAABJRU5ErkJggg=="/>
     Show Product
 </button>
@@ -126,7 +126,7 @@
 <script>
     $(document).ready(function () {
         $('.show-product').click(function () {
-            
+
             console.log('Button clicked'); // Add this line
             var productName = $(this).data('product-name');
             var productPrice = $(this).data('product-price');

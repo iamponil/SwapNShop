@@ -15,7 +15,12 @@ class Product extends Model
         'location',
         'price',
         'order',
-        'image', 
+        'image',
+        'user_id'
     ];
-   
+  public function creator()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
+
 }
