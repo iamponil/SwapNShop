@@ -412,9 +412,17 @@
               @if ($e->community->members->contains('id',Auth::user()->id) && !$e->attendees->contains('id',Auth::user()->id))
                 <form method="POST" action="{{ route('event.join', ['event' => $e]) }}">
                   @csrf
-                  <button type="submit" style="margin-top : 5px;"
+                  <button type="submit" style="margin-top : 5px; backgroundcolor : #F74877"
                           class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                     Join Event<i class="fa-solid fa-right-to-bracket"></i>
+                  </button>
+                </form>
+                @else
+                 <form method="POST" action="{{ route('event.leave', ['event' => $e]) }}">
+                  @csrf
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg10 bor1 hov-btn1 p-lr-15 trans-04">
+                    Leave Event <i class="fa-solid fa-person-walking-arrow-right"></i>
                   </button>
                 </form>
               @endif

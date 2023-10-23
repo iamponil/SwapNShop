@@ -164,4 +164,13 @@ class CommunityController extends Controller
     $communities=Community::all();
     return view('community.listAdmin',compact('communities'));
   }
+  public function leave(Community $community)
+  {
+    $previousURL = URL::previous();
+    $user = Auth::user();
+    if ($community->members()->contains($user)) {
+      $community->attendees()->detach($user);
+    }
+    return redirect($previousURL);
+  }
 }

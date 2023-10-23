@@ -71,6 +71,9 @@ $controller_path = 'App\Http\Controllers';
 Route::get('/', function () {
   return view('Template.master');
 })->name('index');
+Route::get('/qr', function () {
+  return view('emails.participationTicket');
+})->name('ticket');
 
 
 Route::middleware([
@@ -86,6 +89,10 @@ Route::middleware([
     ->name('community.join');
   Route::post('/join-event/{event}', [EventController::class,'join'])
     ->name('event.join');
+  Route::post('/leave-event/{event}', [EventController::class,'leave'])
+    ->name('event.leave');
+  Route::post('/leave-community/{community}', [CommunityController::class,'leave'])
+    ->name('community.leave');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
   Route::get('communities', [CommunityController::class,'indexAdmin'])->name('community.indexAdmin');

@@ -420,6 +420,13 @@
                     </button>
                   </a>
                 </div>
+                <form method="POST" action="{{ route('community.leave', ['community' => $c]) }}">
+                  @csrf
+                  <button type="submit" style="margin-top : 5px;"
+                          class="stext-101 cl0 size-104 bg10 bor1 hov-btn1 p-lr-15 trans-04">
+                    Leave Community <i class="fa-solid fa-person-walking-arrow-right"></i>
+                  </button>
+                </form>
               @else
                 <form method="POST" action="{{ route('community.join', ['community' => $c]) }}">
                   @csrf

@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmationEmail;
+use App\Mail\EmailWithAttachment;
 use App\Models\Community;
 use App\Models\Event;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class EventController extends Controller
 {
@@ -192,9 +197,24 @@ class EventController extends Controller
     $previousURL = URL::previous();
     $user = Auth::user();
     if (!$event->attendees->contains($user)) {
-      $event->attendees()->attach($user);
+
+      $qrcode = QrCode::size(150)->generate("http://127.0.0.1:8000/event/{$event->id}",public_path("qrcodes/qrcode{$event->id}{$user->id}.svg"));
+
+        $pdf = PDF::loadView('emails.participationTicket', compact('event', 'user'));
+        $pdf->save(public_path('pdfs/ticket.pdf'));
+        $event->attendees()->attach($user);
+
+     Mail::to($user->email)->send(new EmailWithAttachment($event , $user));
     }
-    //return redirect('/event');
+    return redirect($previousURL);
+  }
+  public function leave(Event $event)
+  {
+    $previousURL = URL::previous();
+    $user = Auth::user();
+    if ($event->attendees->contains($user)) {
+      $event->attendees()->detach($user);
+    }
     return redirect($previousURL);
   }
 }
