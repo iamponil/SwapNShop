@@ -96,6 +96,8 @@ Route::middleware([
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
   Route::get('communities', [CommunityController::class,'indexAdmin'])->name('community.indexAdmin');
+  Route::get('myCommunities', [CommunityController::class,'myCommunities'])->name('community.myCommunities');
+  Route::get('myEvents', [EventController::class,'myEvents'])->name('event.myEvents');
   Route::get('events', [EventController::class,'indexAdmin'])->name('event.indexAdmin');
   Route::get('communities/{community}/edit', [CommunityController::class,'editAdmin'])->name('community.editAdmin');
   Route::get('events/{event}/edit', [EventController::class,'editAdmin'])->name('event.editAdmin');

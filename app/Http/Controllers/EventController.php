@@ -217,4 +217,12 @@ class EventController extends Controller
     }
     return redirect($previousURL);
   }
+  public function myEvents(){
+    $events= Event::where('creator_id',Auth::user()->id)->get();
+    $events = $events->map(function ($event) {
+      $event->location = json_decode($event->location, true); // Convert JSON string to an array
+      return $event;
+    });
+    return view('event.myEvents',compact('events'));
+  }
 }

@@ -173,4 +173,8 @@ class CommunityController extends Controller
     }
     return redirect($previousURL);
   }
+  public function myCommunities(){
+    $communities = Community::where('creator_id',Auth::user()->id)->get();
+    return view('community.myCommunities',compact('communities'));
+  }
 }

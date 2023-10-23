@@ -115,11 +115,17 @@
               <a href="{{ route('community.index') }}">Communities</a>
               <ul class="sub-menu">
                 <li><a href="{{ route('community.index') }}">Communities List</a></li>
-                <li><a href="{{ route('community.create') }}">Create Community</a></li>
+                <li><a href="{{ route('community.myCommunities') }}">My Communities</a></li>
+<li><a href="{{ route('community.create') }}">Create Community</a></li>
               </ul>
             </li>
             <li>
-              <a href="{{ route('event.index') }}">Events</a>
+              <a href="{{ route('community.index') }}">Events</a>
+              <ul class="sub-menu">
+                <li>
+                  <a href="{{ route('event.myEvents') }}">My Events</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -245,7 +251,8 @@
         <a href="{{ route('community.index') }}">Communities</a>
         <ul class="sub-menu">
           <li><a href="{{ route('community.index') }}">Communities List</a></li>
-          <li><a href="{{ route('community.create') }}">Create Community</a></li>
+          <li><a href="{{ route('community.myCommunities') }}">My Communities</a></li>
+<li><a href="{{ route('community.create') }}">Create Community</a></li>
         </ul>
       </li>
       <li>
