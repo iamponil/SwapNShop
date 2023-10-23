@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class ConversationRepository {
 
@@ -13,11 +14,25 @@ class ConversationRepository {
     }
 
     public function getConversations(int $userId) {
-  return    $this->user->newQuery()
-     ->select('name','id')
-     ->where('id','!=',$userId)
-     ->get();
-    } 
+      $conversations = DB::table('conversations')
+          ->join('conversation_participants as cp1', 'conversations.id', '=', 'cp1.conversation_id')
+          ->join('users as current_user', 'cp1.user_id', '=', 'current_user.id')
+          ->join('conversation_participants as cp2', 'conversations.id', '=', 'cp2.conversation_id')
+          ->join('users as other_user', 'cp2.user_id', '=', 'other_user.id')
+          ->select(
+              'conversations.id as conversation_id',
+              'conversations.name as conversation_name',
+              'current_user.name as current_user_name',
+              'current_user.id as current_user_id',
+              'other_user.name as other_user_name',
+              'other_user.id as other_user_id'
+          )
+          ->where('cp1.user_id', $userId)
+          ->where('cp2.user_id', '!=', $userId)
+          ->get();
+      return $conversations;
+  }
+  
     public function createMessage( $content,int $from,int $to){
    return  $this->message->newQuery()->create([
   'content'=> $content,

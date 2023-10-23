@@ -287,38 +287,8 @@ $("#status-options ul li").click(function() {
 	$("#status-options").removeClass("active");
 });
 
-function newMessage() {
-    message = $(".message-input input").val();
-    if ($.trim(message) == '') {
-        return false;
-    }
 
-    // Append the new message to the message list
-    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
 
-    // Clear the message input field
-    $('.message-input input').val('');
-
-    // Scroll to the bottom of the message list
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-
-    // You can add AJAX logic to send the message to the server here
-}
-
-// Handle clicking the "submit" button
-$('.submit').click(function (e) {
-    e.preventDefault(); // Prevent the form from submitting (which would refresh the page)
-    newMessage(); // Call the newMessage function to handle the message
-});
-
-// Handle pressing the Enter key in the input field
-$('.message-input input').on('keydown', function (e) {
-    if (e.which === 13) { // Check if Enter key is pressed (keyCode 13)
-        e.preventDefault(); // Prevent the default Enter key behavior (e.g., adding new lines)
-        newMessage(); // Call the newMessage function to handle the message
-        return false;
-    }
-});
 
 
 //# sourceURL=pen.js

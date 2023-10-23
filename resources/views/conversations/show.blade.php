@@ -16,11 +16,13 @@
                 
                     @if ($message->sender_id === $currentUser->id)
                     <x-heroicon-o-ellipsis-horizontal class="custom-heroicon" />
+                    
+                        {{-- <i class="fa fa-trash"></i> --}}
                     <div class="message-options-container row" style="display: none;">
-                        <ul style="list-style-type: none; padding: 0; margin-left:40px ; display: flex; flex-direction: row;">
-                            <li><a href="#" class="edit-message">Edit</a></li>
-                            <li><a href="#" class="delete-message" data-message-id="{{ $message->id }}">Delete</a></li>
-                        </ul>
+                        <ol style="list-style-type: none; padding: 0; margin-left:40px ; display: flex; flex-direction: row;">
+                            <li><a style="color: blue" class="fa fa-pencil edit-message"></a></li>
+                            <li><a style="color: red" class="fa fa-trash delete-message" data-message-id="{{ $message->id }}"></a></li>
+                        </ol>
                     </div>
                     @endif
                 </div>
@@ -36,19 +38,70 @@
     <div class="message-input">
         <div class="wrap">
             @if(isset($receiver))
-            <form id="message-form" action="{{ route('conversations.sendMessage', ['from' => $currentUser->id, 'to' => $receiver->id]) }}" method="post">
+            <form id="message-form" data-receiver="{{ $receiver->id }}">
                 @csrf <!-- Include the CSRF token field -->
-
-                <input type="text" name="content" value="" placeholder="Write your message..." />
-                <button type="submit" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                <input type="text" id="content" name="content" value="" placeholder="Write your message..." />
+                <button type="button" id="submit-message" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </form>
             @endif
         </div>
-</div>
-
-</div>
+    </div>
 <script> 
 $(document).ready(function () {
+    $('#submit-message').click(function() {
+        sendMessage();
+    });
+
+    $('.message-input input').on('keydown', function (e) {
+        if (e.which === 13 && !e.shiftKey) { // Check if Enter key is pressed without Shift
+            e.preventDefault(); // Prevent the default Enter key behavior (e.g., adding new lines)
+            sendMessage();
+        }
+    });
+
+    // Function to send a new message asynchronously
+    function sendMessage() {
+        var content = $('#content').val();
+        var receiverId = $('#message-form').data('receiver');
+        var fromUserId = {{ $currentUser->id }};
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('conversations.sendMessage', ['from' => ':from', 'to' => ':to']) }}'
+                .replace(':from', fromUserId)
+                .replace(':to', receiverId),
+            data: {
+                _token: '{{ csrf_token() }}',
+                content: content,
+                receiver_id: receiverId
+            },
+            success: function(response) {
+                // Fetch the rendered message item HTML using an AJAX request
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route('message_item', ['message' => ':message', 'timestamp' => ':timestamp', 'message_id' => ':message_id']) }}'
+                        .replace(':message', response.message)
+                        .replace(':timestamp', response.timestamp)
+                        .replace(':message_id', response.message_id),
+                    success: function(response) {
+                        console.log(response);
+                        // Append the new message item to the message list
+                        $(response.messageItemHtml).appendTo($('.messages ul'));
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+                $('#content').val('');
+                $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+});
+
     // Add a click event handler to the Heroicon
     $('.custom-heroicon').click(function (e) {
         // Prevent the default behavior of the Heroicon (if any)
@@ -106,6 +159,24 @@ $.ajaxSetup({
         }
     });
 });	
+function newMessage() {
+    message = $(".message-input input").val();
+    if ($.trim(message) == '') {
+        return false;
+    }
+
+    // Append the new message to the message list
+    $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+
+    // Clear the message input field
+    $('.message-input input').val('');
+
+    // Scroll to the bottom of the message list
+    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+    // You can add AJAX logic to send the message to the server here
+}
+
 function updateMessageInDatabase(messageId, updatedMessage) {
         // Example AJAX request to update the message
         $.ajax({
@@ -125,7 +196,6 @@ function updateMessageInDatabase(messageId, updatedMessage) {
             }
         });
     }
-});
 </script>
 </body>
 </html>

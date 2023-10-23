@@ -30,18 +30,20 @@
 <div id="contacts">
 	<ul>
 		<!-- Display existing contacts -->
-		@foreach ($users as $user)
-		<li class="contact" id="user-{{ $user->id }}">
-			<div class="wrap">
-				<span class="contact-status online"></span>
-				<img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-				<div class="meta">
-					<!-- Add a data attribute with user ID to each list item -->
-					<p class="name" data-user={{$user}} data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}">{{ $user->name }}</p>
-				</div>
-			</div>
-		</li>
-		@endforeach
+		@foreach($conversations as $conversation)
+    <li class="contact" id="user-{{ $conversation->current_user_id }}">
+        <div class="wrap">
+            <span class="contact-status online"></span>
+            <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
+            <div class="meta">
+                <p class="name" data-user-id="{{ $conversation->other_user_id }}" data-user-name="{{ $conversation->other_user_name }}">{{ $conversation->conversation_name }}</p>
+            </div>
+        </div>
+    </li>
+@endforeach
+
+	
+
 
 		<!-- Display searched users below existing contacts -->
 		@if (isset($searchedUsers) && count($searchedUsers) > 0)
@@ -78,7 +80,7 @@
 			var searchText = $(this).val();
 			
 			$.ajax({
-				url: '/search-users',
+				url: '/search-conversations',
 				type: 'GET',
 				data: { searchText: searchText },
 				success: function (data) {

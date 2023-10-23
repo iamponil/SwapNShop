@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -49,7 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function wishlist()
+    {
+        return $this->belongsToMany(Product::class, 'wishlist', 'user_id', 'product_id');
+    }
     /**
      * The accessors to append to the model's array form.
      *
