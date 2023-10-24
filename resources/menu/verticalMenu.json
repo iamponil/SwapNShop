@@ -100,6 +100,16 @@
       "icon": "menu-icon tf-icons bx bx-detail",
       "name": "Reclamtion_desarchive",
       "slug": "reclamationdes"
+      "url": "/communities",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Communities",
+      "slug": "community.indexAdmin"
+    },
+    {
+      "url": "/events",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Events",
+      "slug": "event.indexAdmin"
     },
     {
       "url": "/Blog",
@@ -131,8 +141,11 @@
     {
       "menuHeader": "Components"
     },
-
-
+      "name": "Livraison",
+      "icon": "menu-icon tf-icons bx bx-taxi",
+      "slug": "showLivraison",
+      "url": "/Livraison"
+    },
     {
       "name": "User interface",
       "icon": "menu-icon tf-icons bx bx-box",
