@@ -1077,7 +1077,6 @@ $.ajax({
 
 
     
-            Effectuez une requête AJAX pour envoyer un e-mail
 	$.ajax({
     type: 'POST', // Si c'est une requête POST
     url: '/sendConfirmationEmail/' + userId + '/' + productId,
