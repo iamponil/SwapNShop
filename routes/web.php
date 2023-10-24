@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReponceReclamationController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
@@ -58,7 +59,7 @@ use App\Http\Controllers\WishlistController;
 
 use App\Http\Controllers\OffreController;
 use App\Models\Conversation;
-
+use App\Http\Controllers\reclamation\ReclamtionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,6 +175,20 @@ Route::middleware([
 
 
 // Reclamtion
+
+Route::get('/Reclamtion/show/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@show')->name('showR');
+Route::get('/Reclamtion/archive/{id}', $controller_path . '\reclamation\ReclamtionController@archive')->name('archivee');
+Route::get('/Reclamtion/desarchivee/{id}', $controller_path . '\reclamation\ReclamtionController@desarchive')->name('desarchivee');
+Route::get('/Reclamtion_desarchive', $controller_path . '\reclamation\ReclamtionController@indexdesarchive')->name('reclamationdes');
+Route::get('/Reclamtion/filtrer-reclamations',$controller_path . '\reclamation\ReclamtionController@filtrerReclamations')->name('filtrageStatue');
+Route::get('/Reclamtionn', $controller_path . '\reclamation\ReclamtionController@filtree')->name('filtreeR');
+
+//reponse
+//Route::post('reclamations/{reclamationId}', '\reclamation\ReclamtionController@repondre')->name('reclamationsrepondre');
+//Route::get('/repondre/add/{reclamationId}', $controller_path . '\reclamation\ReclamtionController@create')->name('repondre');
+Route::get('/reclamation/{reclamationId}/comment', [ReponceReclamationController::class, 'showCommentForm'])->name('comment.form');
+Route::post('/reclamation/{reclamationId}/comment', [ReponceReclamationController::class, 'storeComment'])->name('comment.store');
+Route::get('/reclamation/{reclamationId}/comments', [ReponceReclamationController::class, 'showComments'])->name('comment.show');
   Route::get('/Reclamtion', [ReclamtionController::class , 'index'])->name('reclamation');
   Route::get('/Reclamtion/add', [ReclamtionController::class , 'create'])->name('createR');
   Route::post('/Reclamtion/addR', [ReclamtionController::class , 'store'])->name('store');
@@ -191,7 +206,9 @@ Route::middleware([
     return view('Template.about');
   })->name('about');
 
-
+Route::get('/blog-detail', function () {
+  return view('Template.blog-detail');
+})->name('blog-detail');
 
   Route::get('/contact', function () {
     return view('Template.contact');
@@ -203,8 +220,10 @@ Route::middleware([
   })->name('reclamtion');
 
 
-  Route::get('/history', [ReclamtionController::class , 'indexh'])->name('history');
 
+  Route::get('/history', [ReclamtionController::class , 'indexh'])->name('historyFR');
+
+Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@updateF')->name('updateFR');
 
   Route::get('/cart', function () {
     return view('Template.cart');
@@ -261,6 +280,7 @@ Route::get('/wishlist/show',[WishlistController::class,'showWishlist'])->name('w
 Route::get('/wishlist', [WishlistController::class,'index'])->name('wishlist.index');
 Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
 
+
 Route::post('/sendConfirmationEmail/{userId}/{productId}', [EmailController::class,'sendConfirmationEmail'])->name('sendConfirmationEmail');
 Route::post('/createEchange', );
 Route::post('/confirmEchange/{offreId}', [EchangeController::class,'confirmEchange'])->name('confirmEchange');
@@ -288,6 +308,6 @@ Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct
   Route::get('/message/item/{message}/{timestamp}/{message_id}',[ConversationController::class,'messageItem'] )
       ->name('message_item');
   
-  
+ 
 });
 

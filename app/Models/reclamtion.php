@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\User;
+use App\Models\reponceReclamation;
 class reclamtion extends Model
 {
     use HasFactory;
@@ -13,6 +14,23 @@ class reclamtion extends Model
       'nomRec',
       'body',
       'image',
-      "user_id"
+      'statue',
+      'archived',
+      'user_id',
     ];
+
+    // Relation avec l'utilisateur
+
+
+    public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+public function reclR()
+   {
+       return $this->hasMany(reponceReclamation::class,'reclamation_id');
+   }
+
+
+
 }

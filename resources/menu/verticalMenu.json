@@ -96,6 +96,10 @@
       "slug": "reclamation"
     },
     {
+      "url": "Reclamtion_desarchive",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Reclamtion_desarchive",
+      "slug": "reclamationdes"
       "url": "/communities",
       "icon": "menu-icon tf-icons bx bx-detail",
       "name": "Communities",
@@ -114,7 +118,29 @@
       "icon": "menu-icon tf-icons bx bx-cube-alt",
       "target": "_blank"
     },
+
     {
+      "name": "Misc",
+      "icon": "menu-icon tf-icons bx bx-cube-alt",
+      "slug": "pages-misc",
+      "submenu": [
+        {
+          "url": "/pages/misc-error",
+          "name": "Error",
+          "slug": "pages-misc-error",
+          "target": "_blank"
+        },
+        {
+          "url": "/pages/misc-under-maintenance",
+          "name": "Under Maintenance",
+          "slug": "pages-misc-under-maintenance",
+          "target": "_blank"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Components"
+    },
       "name": "Livraison",
       "icon": "menu-icon tf-icons bx bx-taxi",
       "slug": "showLivraison",

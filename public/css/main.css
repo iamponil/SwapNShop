@@ -299,6 +299,48 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 
+
+
+
+
+
+
+
+
+/* Styles for the floating card */
+.floating-card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.floating-card:hover {
+  transform: translateY(0);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the content container */
+.content-container {
+  background-color: #5bc0de; /* Couleur d'arrière-plan du contenu (changez-la selon vos préférences) */
+  padding: 50px; /* Marge intérieure pour l'espace autour du contenu */
+}
+
+/* Styles for the centered button */
+.centered-button {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  height: 60%;
+}
+
+.center-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+
 /*---------------------------------------------*/
 .limiter-menu-desktop {
   height: 100%;

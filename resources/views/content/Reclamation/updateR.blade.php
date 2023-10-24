@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('update', $reclamtion->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('updateRR', $reclamtion->id) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('PUT')
                 <div class="mb-3">
@@ -42,6 +42,21 @@
                     <input id="image" name="image" type="file" class="form-control">
                     <img class="mt-2" src="/img/{{ $reclamtion->image }}" width="300px">
                 </div>
+<div class="mb-3">
+    <label for="statue" class="form-label">Statut <span class="text-danger">*</span></label>
+    <div>
+        <label class="form-check-label">
+            <input type="radio" name="statue" value=" traitée" {{ $reclamtion->statue === ' traitée' ? 'checked' : '' }}>
+            traitée
+        </label>
+    </div>
+    <div>
+        <label class="form-check-label">
+            <input type="radio" name="statue" value="En Cours" {{ $reclamtion->statue === 'En Cours' ? 'checked' : '' }}>
+            En Cours
+        </label>
+    </div>
+</div>
 
                 <div>
                     <button type="submit" class="btn btn-success btn-icon-text mb-2 mb-md-0">

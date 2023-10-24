@@ -360,18 +360,18 @@
                 <div class="p-r-45 p-r-0-lg">
                     @foreach($blogs as $post)
                     <div class="p-b-63">
-                   
+
                             <img alt="img" src="/img/{{ $post->picture }}">
                             <div class="flex-col-c-m size-123 bg9 how-pos5">
                                 <span class="ltext-107 cl2 txt-center">
                                     {{ $post->created_at }}
                                 </span>
-                              
+
                             </div>
                         </a>
                         <div class="p-t-32">
                             <h4 class="p-b-15">
-                            
+
                                     {{ $post->title }}
                                 </a>
                             </h4>
@@ -380,10 +380,11 @@
                             </p>
                             <div class="flex-w flex-sb-m p-t-18">
                                 <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-                                   
-                               
-                                    Continue Reading
-                                    <i class="fa fa-long-arrow-right m-l-9"></i>
+
+
+                                   <a href="{{ route('blog-detail') }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+										Continue Reading
+
                                 </a>
                             </div>
                         </div>
