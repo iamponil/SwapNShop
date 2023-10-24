@@ -50,10 +50,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function wishlist()
-    {
-        return $this->belongsToMany(Product::class, 'wishlist', 'user_id', 'product_id');
-    }
+  
     /**
      * The accessors to append to the model's array form.
      *
