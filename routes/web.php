@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\ReponceReclamationController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
 use App\Models\Conversation;
-
+use App\Http\Controllers\reclamation\ReclamtionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,10 +90,23 @@ Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tab
 // Reclamtion
 Route::get('/Reclamtion', $controller_path . '\reclamation\ReclamtionController@index')->name('reclamation');
 Route::get('/Reclamtion/add', $controller_path . '\reclamation\ReclamtionController@create')->name('createR');
-Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('store');
+Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('storeR');
 Route::get('/Reclamtion/update/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@edit')->name('updateR');
-Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('update');
+Route::put('/Reclamtion/updateRR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('updateRR');
 Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
+Route::get('/Reclamtion/show/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@show')->name('showR');
+Route::get('/Reclamtion/archive/{id}', $controller_path . '\reclamation\ReclamtionController@archive')->name('archivee');
+Route::get('/Reclamtion/desarchivee/{id}', $controller_path . '\reclamation\ReclamtionController@desarchive')->name('desarchivee');
+Route::get('/Reclamtion_desarchive', $controller_path . '\reclamation\ReclamtionController@indexdesarchive')->name('reclamationdes');
+Route::get('/Reclamtion/filtrer-reclamations',$controller_path . '\reclamation\ReclamtionController@filtrerReclamations')->name('filtrageStatue');
+Route::get('/Reclamtionn', $controller_path . '\reclamation\ReclamtionController@filtree')->name('filtreeR');
+
+//reponse
+//Route::post('reclamations/{reclamationId}', '\reclamation\ReclamtionController@repondre')->name('reclamationsrepondre');
+//Route::get('/repondre/add/{reclamationId}', $controller_path . '\reclamation\ReclamtionController@create')->name('repondre');
+Route::get('/reclamation/{reclamationId}/comment', [ReponceReclamationController::class, 'showCommentForm'])->name('comment.form');
+Route::post('/reclamation/{reclamationId}/comment', [ReponceReclamationController::class, 'storeComment'])->name('comment.store');
+Route::get('/reclamation/{reclamationId}/comments', [ReponceReclamationController::class, 'showComments'])->name('comment.show');
 
 
 
@@ -104,7 +118,9 @@ Route::get('/about', function () {
   return view('Template.about');
 })->name('about');
 
-
+Route::get('/blog-detail', function () {
+  return view('Template.blog-detail');
+})->name('blog-detail');
 
 Route::get('/contact', function () {
   return view('Template.contact');
@@ -116,8 +132,10 @@ Route::get('/Reclations', function () {
 })->name('reclamtion');
 
 
-Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('history');
+Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('historyFR');
 
+
+Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@updateF')->name('updateFR');
 
 Route::get('/cart', function () {
   return view('Template.cart');
@@ -142,7 +160,11 @@ Route::get('/Blog/updateB/{blog}', $controller_path . '\blog\BlogController@edit
 Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@update')->name('update');
 Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
-
+//commentaire
+Route::get('/Commentss', $controller_path . '\BlogCommentaireController@index')->name('commentss');
+Route::get('/Comments/add', $controller_path . '\BlogCommentaireController@create')->name('createComments');
+Route::post('/Comments/addC', $controller_path . '\BlogCommentaireController@store')->name('storeC');
+Route::delete('/Comments/delet/{blogCommentaire}', $controller_path . '\BlogCommentaireController@destroy')->name('destroyC');
 
 Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
@@ -169,4 +191,10 @@ Route::middleware([
     ->name('community.join');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
+  Route::post('/Reclamtion/addF',[ReclamtionController::class,'storeF'])->name('storeFR');
+  Route::delete('/Reclamtion/deletRclation/{reclamtion}',[ReclamtionController::class,'destroyFR'])->name('destroyFR');
+  Route::get('/Reclamtion/updateF/{reclamtion}', [ReclamtionController::class,'editF'])->name('updateFRR');
+
+  Route::put('/Reclamtion/updateR/{reclamtion}', [ReclamtionController::class,'updateF'])->name('updateFR');
+
 });

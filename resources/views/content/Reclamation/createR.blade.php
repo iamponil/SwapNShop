@@ -29,7 +29,7 @@
     </div>
 @endif
 
-            <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('storeR') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="nomRec" class="form-label">Nom Reclamtion <span class="text-danger">*</span></label>

@@ -96,12 +96,19 @@
       "slug": "reclamation"
     },
     {
+      "url": "Reclamtion_desarchive",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Reclamtion_desarchive",
+      "slug": "reclamationdes"
+    },
+    {
       "url": "/Blog",
       "name": "blog",
       "slug": "blog",
       "icon": "menu-icon tf-icons bx bx-cube-alt",
       "target": "_blank"
     },
+
     {
       "name": "Misc",
       "icon": "menu-icon tf-icons bx bx-cube-alt",
@@ -124,12 +131,8 @@
     {
       "menuHeader": "Components"
     },
-    {
-      "name": "Cards",
-      "icon": "menu-icon tf-icons bx bx-collection",
-      "slug": "cards-basic",
-      "url": "/cards/basic"
-    },
+
+
     {
       "name": "User interface",
       "icon": "menu-icon tf-icons bx bx-box",
