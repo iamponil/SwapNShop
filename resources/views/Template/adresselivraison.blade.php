@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Reclamation</title>
+	<title>Processus Livraison</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -105,7 +105,6 @@
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
-
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -328,60 +327,114 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Reclamation
+			Livraison
 		</h2>
 	</section>
 
   <h4 class="fw-bold py-3 mb-4"></h4>
-
- <section class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-        <div>
-
+<!--Notification-->
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
         </div>
-        <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('history')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-               Add New Reclamation
-            </a>
-        </div>
-    </section>
-
-	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
+    @endif
+  
+<section class="bg0 p-t-104 p-b-116">
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+					<span class="lnr lnr-map-marker"></span>
+						</span>
+         	<span class="mtext-110 cl2">
+							Address details
+							</span>
+    <div class="mb-4"></div>
+                <!-- Afficher les attributs l'un sous l'autre -->
+<style>
+    /* Style personnalisé pour les boutons */
+    .custom-btn {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        padding: 0;
+    }
 
-					<form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-						 {{ csrf_field() }}
-            <h4 class="mtext-105 cl2 txt-center p-b-30">
-							Send A Reclamtion Message
-						</h4>
-  
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input id="nomRec" name="nomRec" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text"  placeholder="object">
-							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-						</div>
+    /* Style personnalisé pour les icônes */
+    .custom-icon {
+        margin: 0 10px; /* Espace autour de l'icône */
+        color: gray; /* Couleur grise pour les icônes */
+    }
+</style>
 
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="body" id="body"  placeholder="Reclamation Message "></textarea>
-						</div>
-  <div class="mb-3">
-                    <label for="image" class="form-label">Reclamtion Image <span class="text-danger">*</span></label>
-                    <input id="image" name="image" type="file" class="form-control">
+<div class="row">
+    @foreach($adresse as $index => $val)
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">My Address</h5>
+                 <div class="card-text">
+    <div class="name">
+        {{$val->nom}}
+        <br>
+        {{$val->prenom}}
+    </div>
+    <div class="contact-info">
+        <p class="stext-115 cl1 size-213 p-t-8">
+        +216 {{$val->tel}}
+        </p>
+        {{$val->pays}}
+
+        <br>
+         {{$val->ville}}
+        <br>
+        {{$val->codepostal}}
+    </div>
+    <div class="address">
+        {{$val->Adressecomp}}
+    </div>
+</div>
+
+                    <hr> <!-- Ligne de séparation -->
+                    <div style="text-align: center;">
+                        <form action="{{ route('destroyL',$val->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            @method('DELETE')
+                           <a href="{{route('updateLIV', $val->id)}}" class="custom-btn">
+    <i class="fa fa-pencil custom-icon"></i><span style="color: black;">Edit</span>
+</a>
+
+                            <button class="custom-btn" data-toggle="modal" data-target="#deleteModal">
+                                <i class="fa fa-trash custom-icon"></i>Delete
+                            </button>
+                        </form>
+                    </div>
                 </div>
-						<button  type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
-						</button>
-					</form>
-				</div>
+            </div>
+        </div>
+    @endforeach
+</div>
 
 
-				</div>
+
+
+              <div class="mb-4"></div><!-- Espace vertical entre les divs et le bouton -->
+      <div class="d-flex align-items-center flex-wrap text-nowrap">
+    <a href="{{ route('createL') }}" class="btn btn-dark btn-icon-text mb-2 mb-md-0">
+        <i class="fa fa-plus"></i> <!-- Icône d'ajout -->
+        Add New Adresse
+    </a>
+</div>
+
+
 			</div>
 		</div>
 	</section>
 
 
+	<!-- Map -->
+	<div class="map">
+		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+	</div>
 
 
 
@@ -575,7 +628,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

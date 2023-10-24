@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
 
+use App\Models\AdresseLivraison;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -66,4 +67,10 @@ public function wishlist()
     return $this->belongsToMany(Product::class, 'wishlist', 'user_id', 'product_id');
 }
 
+
+     // Relation avec les adresses
+     public function adresses()
+     {
+         return $this->hasMany(AdresseLivraison::class);
+     }
 }

@@ -9,17 +9,17 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
-    
+
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
-    
+
     <script src="https://use.typekit.net/hoy3lrg.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-    
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -31,7 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('vendor/animsition/css/animsition.min.css') }}">
@@ -45,7 +45,7 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition d-inline">
-	
+
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -53,8 +53,8 @@
 			<!-- Topbar -->
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="#" class="logo">
 						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
@@ -74,24 +74,24 @@
 							</li>
 
 							<li class="label1" data-label1="hot">
-								
+
 								<a href="{{ route('cart') }}">Features</a>
 							</li>
 
 							<li>
-								
+
                                 <a href="{{ route('blog') }}">Blog</a>
 							</li>
 
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
-                            
+
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
@@ -108,12 +108,12 @@
 						</a>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -142,8 +142,8 @@
 		</div>
 
 
-	
-	
+
+
 	</header>
 
 	<!-- Cart -->
@@ -160,7 +160,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -211,7 +211,7 @@
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -235,7 +235,7 @@
 	<!-- Title page -->
         <video autoplay loop muted style="width: 100%">
             <source src="{{ asset('images/banner.mp4') }}" type="video/mp4">
-        </video>	
+        </video>
 
 
 	<!-- Content page -->
@@ -271,7 +271,7 @@ $("#status-options ul li").click(function() {
 	$("#status-busy").removeClass("active");
 	$("#status-offline").removeClass("active");
 	$(this).addClass("active");
-	
+
 	if($("#status-online").hasClass("active")) {
 		$("#profile-img").addClass("online");
 	} else if ($("#status-away").hasClass("active")) {
@@ -283,7 +283,7 @@ $("#status-options ul li").click(function() {
 	} else {
 		$("#profile-img").removeClass();
 	};
-	
+
 	$("#status-options").removeClass("active");
 });
 
@@ -300,7 +300,7 @@ $("#status-options ul li").click(function() {
 		</span>
 	</div>
 
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>

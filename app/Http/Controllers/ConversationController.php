@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\Conversation;
-
+use App\Models\ConversationParticipant;
 use App\Repository\ConversationRepository;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
@@ -136,4 +136,38 @@ public function messageItem(Request $request, $message, $timestamp, $messageId)
 
     return response()->json(['messageItemHtml' => $messageItemHtml]);
 }
+public function directMessage(Request $request, $userId, $productId, $offreId)
+{
+    // Get the current user's ID
+    $currentUser = auth()->user();
+    
+    // Check if a conversation already exists between these two users in the `conversation_participants` table
+    $conversation = ConversationParticipant::whereHas('conversation', function ($query) use ($currentUser, $userId) {
+        $query->whereHas('participants', function ($q) use ($currentUser, $userId) {
+            $q->whereIn('user_id', [$currentUser->id, $userId]);
+        });
+    })->first();
+    
+    // If no conversation exists, create a new conversation in the `conversations` table
+    if (!$conversation) {
+        $conversation = Conversation::create([
+            'name' => ``, // You can set the conversation name as needed
+            'timestamp' => now(), // You can set the timestamp as needed
+        ]);
+        
+        // Add both users to the conversation in the `conversation_participants` table
+        ConversationParticipant::create([
+            'user_id' => $currentUser->id,
+            'conversation_id' => $conversation->id,
+        ]);
+        ConversationParticipant::create([
+            'user_id' => $userId,
+            'conversation_id' => $conversation->id,
+        ]);
+    }
+
+    // Redirect to the conversation
+    return redirect()->route('conversations.show');
+}
+
 }

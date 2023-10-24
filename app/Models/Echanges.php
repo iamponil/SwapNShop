@@ -25,8 +25,14 @@ class Echanges extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+    //livraison feha l many************************
 
     // Ajoutez la relation vers la table "livraisons" une fois qu'elle est créée
+
+  public function livraisons()
+  {
+    return $this->belongsTo(Livraison::class, 'id_livraison');
+  }
 
     // Autres méthodes ou propriétés du modèle Echange
 }

@@ -47,6 +47,7 @@ use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
+use App\Http\Controllers\AdresseLivraisonController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EchangeController;
@@ -56,6 +57,7 @@ use App\Http\Controllers\WishlistController;
 
 use App\Http\Controllers\OffreController;
 use App\Models\Conversation;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -210,6 +212,40 @@ Route::middleware([
   Route::get('/product',[ProductController::class,'affichefront'])->name('shop');;
   Route::get('/myproduct',[ProductController::class,'afficherMesproduits'])->name('myproduct');;
   Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
+Route::get('/cart', function () {
+  return view('Template.cart');
+})->name('cart');
+//******************Livraison********************************
+Route::get('/Livraison', $controller_path . '\LivraisonnnController@index')->name('showLivraison');
+Route::post('/Livraison', $controller_path . '\LivraisonnnController@store')->name('showLivraisonadded');
+Route::get('/addLivraison', $controller_path . '\LivraisonnnController@create')->name('view');
+Route::get('/updateLivraison/{id}', [\App\Http\Controllers\LivraisonnnController::class,'updateStatus'])->name('updateStatusLivraison');
+Route::get('pdf', $controller_path . '\LivraisonnnController@pdf')->name('pdf');
+
+
+//**********************************************************
+
+
+//AdresseLivraison
+Route::get('/AdrresseLivraison', [AdresseLivraisonController::class, 'showDeliveryAddresses'], function () {
+  return view('Template.adresselivraison');
+})->name('AdrresseLivraison');
+
+
+//Route::post('/adresselivraison/add', $controller_path . '\AdresseLivraisonController@store')->name('addAddreslivraison');
+//Route::get('/livraisons', [AdresseLivraisonController::class, 'showDeliveryAddresses'])->name('livraisons');
+Route::group(['middleware' => 'auth'], function () {
+  // Vos routes protégées ici
+  Route::post('/adresselivraison/add', [AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
+});
+Route::delete('/delet/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@destroy')->name('destroyL');
+Route::get('/update/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@edit')->name('updateLIV');
+Route::put('/updateLIV/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@update')->name('updateL');
+
+
+Route::get('/product', [ProductController::class, 'affichefront'])->name('shop');;
+Route::get('/myproduct', [ProductController::class, 'afficherMesproduits'])->name('myproduct');;
+Route::get('/products', [ProductController::class, 'index'])->name('products.affiche');;
 // Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
 Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');;
 Route::get('/createprod',[ProductController::class,'create'])->name('create');;

@@ -1022,7 +1022,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
                             var messageButton = $('<button>')
                                 .text(' Direct Message')
-                                .data('userId', offer.user.id);
+                                .data('userId', offer.user.id)
+							    .data('productId', offer.produit_pour_echanger.id)
+								.data('offreId', offer.id)
 		            if (offer.is_confirmed) {
 		            hasConfirmedOffer = true;
 			        $('#productNameToExchange').text(offer.produit_a_echanger.product_name);
@@ -1092,10 +1094,32 @@ $.ajax({
         });
 
         // Écoutez les clics sur les boutons "Message direct" pour la redirection
-    $('#productOffers').on('click', 'button:contains("Message direct")', function () {
-            var userId = $(this).data('userId');
-             window.location.href = '/conversations';
+		$('#productOffers').on('click', 'button:contains("Direct Message")', function () {
+    var userId = $(this).data('userId');
+    var productId = $(this).data('productId');
+    var offreId = $(this).data('offreId');
+
+    // Use AJAX to create a new conversation
+    $.ajax({
+        type: 'POST',
+        url: '/conversations/create-or-find', // Create a route for this
+        data: {
+            _token: '{{ csrf_token() }}', // Include your CSRF token
+            userId: userId,
+            productId: productId,
+            offreId: offreId
+        },
+        success: function(response) {
+            // Redirect to the newly created conversation
+            window.location.href = '/conversations';
+        },
+        error: function(error) {
+            console.log(error);
+        }
     });
+});
+
+
     });
 
 
