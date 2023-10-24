@@ -11,9 +11,11 @@
                 <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
                 <div class="message-content-container">
                     <p data-message-id="{{ $message->id }}" class="message-content">{{ $message->content }}</p>
+                   
                     <input type="text" class="message-edit-input" data-message-id="{{ $message->id }}" value="{{ $message->content }}" readonly style="display: none;">
                     <span class="message-timestamp">{{ $message->created_at->format('H:i') }}</span>
-                
+                    @component('conversations.message_translation', ['message' => $message->text, 'sourceLanguage' => 'en', 'targetLanguage' => 'ar'])
+                    @endcomponent
                     @if ($message->sender_id === $currentUser->id)
                     <x-heroicon-o-ellipsis-horizontal class="custom-heroicon" />
                     
@@ -196,6 +198,44 @@ function updateMessageInDatabase(messageId, updatedMessage) {
             }
         });
     }
+ 
+    function translateMessage(message, sourceLanguage, targetLanguage) {
+        console.log('Hovered over a message');
+
+        // Make an API request to translate the message
+        console.log("first");
+        // You can use JavaScript's fetch or any other library to make the request
+        // Update this logic to match your API and error handling
+        const translationTooltip = document.getElementById('translation-tooltip');
+        const translatedMessage = document.getElementById('translated-message');
+
+        translationTooltip.style.display = 'block';
+        translatedMessage.innerText = 'Translating...';
+
+        // Send the translation request to your server using JavaScript (e.g., fetch)
+        fetch('/translate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                message: message,
+                source: sourceLanguage,
+                target: targetLanguage,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                translatedMessage.innerText = data.translatedMessage;
+            })
+            .catch((error) => {
+                console.error(error);
+                translatedMessage.innerText = 'Translation error';
+            });
+            console.log('test');
+    }
+
 </script>
 </body>
 </html>

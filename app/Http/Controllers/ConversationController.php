@@ -6,9 +6,14 @@ use App\Models\Message;
 use App\Models\User;
 use App\Models\Conversation;
 use App\Models\ConversationParticipant;
+use App\Models\Offre;
+use App\Models\Product;
 use App\Repository\ConversationRepository;
+use GuzzleHttp\Promise\Promise;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class ConversationController extends Controller
 {
@@ -136,38 +141,92 @@ public function messageItem(Request $request, $message, $timestamp, $messageId)
 
     return response()->json(['messageItemHtml' => $messageItemHtml]);
 }
-public function directMessage(Request $request, $userId, $productId, $offreId)
+public function createOrFindConversation( $userId, $productId, $offreId)
 {
     // Get the current user's ID
     $currentUser = auth()->user();
     
     // Check if a conversation already exists between these two users in the `conversation_participants` table
-    $conversation = ConversationParticipant::whereHas('conversation', function ($query) use ($currentUser, $userId) {
-        $query->whereHas('participants', function ($q) use ($currentUser, $userId) {
-            $q->whereIn('user_id', [$currentUser->id, $userId]);
-        });
-    })->first();
+    $conversation = ConversationParticipant::select('conversation_id')
+    ->where(function ($query) use ($currentUser, $userId) {
+        $query->where('user_id', $currentUser->id)
+              ->orWhere('user_id', $userId);
+    })->groupBy('conversation_id')
+      ->havingRaw('COUNT(*) = 2') // Make sure both users are in the same conversation
+      ->first();
+      $productName = Product::find($productId)->product_name;
+      $offre_to_exchange = Offre::find($offreId)->idproduit_a_echanger;
+
+      $offerName = Product::find($offre_to_exchange)->product_name;
+      $conversationName = $productName . ' exchange ' . $offerName;
     
     // If no conversation exists, create a new conversation in the `conversations` table
+
     if (!$conversation) {
-        $conversation = Conversation::create([
-            'name' => ``, // You can set the conversation name as needed
-            'timestamp' => now(), // You can set the timestamp as needed
-        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $conversation = Conversation::create([
+                'name' => $conversationName,
+            ]);
         
-        // Add both users to the conversation in the `conversation_participants` table
-        ConversationParticipant::create([
-            'user_id' => $currentUser->id,
-            'conversation_id' => $conversation->id,
-        ]);
-        ConversationParticipant::create([
-            'user_id' => $userId,
-            'conversation_id' => $conversation->id,
-        ]);
-    }
+            $conversationId = $conversation->id;
+        
+            ConversationParticipant::create([
+                'user_id' => $userId,
+                'conversation_id' => $conversationId,
+            ]);
+        
+            ConversationParticipant::create([
+                'user_id' => auth()->id(),
+                'conversation_id' => $conversationId,
+            ]);
+        
+            DB::commit(); // All changes are saved if this line is reached
+        } catch (\Exception $e) {
+            DB::rollBack(); // Something went wrong, so we roll back the changes
+            // Handle the exception as needed
+        }
 
     // Redirect to the conversation
-    return redirect()->route('conversations.show');
+    return redirect()->route('conversations.show', ['user' => $conversationId]);
 }
 
+}
+public function translateMessage(Request $request)
+{
+    // Get the message, source language, and target language from the request
+    $message = $request->input('message');
+    $sourceLanguage = $request->input('source');
+    $targetLanguage = $request->input('target');
+
+    // Make a request to the Google Translate API
+    $response = Http::post('https://google-translate1.p.rapidapi.com/language/translate/v2', [
+        'form_params' => [
+            'q' => $message,
+            'target' => $targetLanguage,
+            'source' => $sourceLanguage,
+        ],
+        'headers' => [
+            'Accept-Encoding' => 'application/gzip',
+            'X-RapidAPI-Host' => 'google-translate1.p.rapidapi.com',
+            'X-RapidAPI-Key' => 'a68f0c02b5msha97ea6e56a40a38p19f9b1jsn2f8d55fcb73b',
+            'content-type' => 'application/x-www-form-urlencoded',
+        ],
+    ]);
+    dd($response);
+
+    // Check if the translation request was successful
+    if ($response->successful()) {
+        // Parse the response JSON to get the translated message
+        $translatedMessage = $response->json()['data']['translations'][0]['translatedText'];
+
+        // Return the translated message as JSON
+        return response()->json(['translatedMessage' => $translatedMessage]);
+    } else {
+        // Handle errors if the translation request fails
+        return response()->json(['error' => 'Translation failed'], 500);
+    }
+}
 }

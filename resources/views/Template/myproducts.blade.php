@@ -1102,7 +1102,7 @@ $.ajax({
     // Use AJAX to create a new conversation
     $.ajax({
         type: 'POST',
-        url: '/conversations/create-or-find', // Create a route for this
+        url: '/conversations/create-or-find/' + userId + '/' + productId+'/' + offreId, // Create a route for this
         data: {
             _token: '{{ csrf_token() }}', // Include your CSRF token
             userId: userId,
@@ -1111,7 +1111,7 @@ $.ajax({
         },
         success: function(response) {
             // Redirect to the newly created conversation
-            window.location.href = '/conversations';
+          window.location.href = '/conversations';
         },
         error: function(error) {
             console.log(error);

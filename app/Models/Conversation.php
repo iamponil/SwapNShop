@@ -15,6 +15,10 @@ class Conversation extends Model
     {
         return $this->belongsToMany(User::class, 'conversation_user');
     }
+    public function participants()
+{
+    return $this->belongsToMany(User::class, 'conversation_participants', 'conversation_id', 'user_id');
+}
     
 
 }
