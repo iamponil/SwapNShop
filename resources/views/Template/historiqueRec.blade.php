@@ -346,28 +346,31 @@
 	<!-- Content page -->
 
 
-
 <section class="bg0 p-t-104 p-b-116">
     <h5 class="pb-1 mb-4">All Reclamation</h5>
     <div class="row mb-5">
-        @foreach($reclamtions as $reclamation)
-        <div class="col-md-6 col-xl-4">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $reclamation->nomRec }}</h5>
-                    <p class="card-text">{{ $reclamation->body }}</p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated {{ $reclamation->updated_at->diffForHumans() }}</small>
-                    </p>
-                </div>
+       @foreach($reclamtions as $reclamation)
+<div class="col-md-6 col-xl-4">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ $reclamation->nomRec }}</h5>
+            <p   class="card-text">{{ $reclamation->body }}</p>
+            <p class="card-text">
+                <small class="text-muted">Last updated {{ $reclamation->updated_at->diffForHumans() }}</small>
+            </p>
+              <p  class="card-text">Votre Reclamation est : {{ $reclamation->statue }}</p>
+         <hr> <!-- Ligne de séparation -->
+              <a href="{{route('updateFRR', $reclamation->id)}}" class="custom-btn">
+    <i class="fa fa-pencil custom-icon"></i><span style="color: black;">Edit</span>
+</a>
 
-                <img alt="img" src="/img/{{ $reclamation->image }}" class="img-fluid" style="max-height: 300px;" />
-            </div>
         </div>
-        @endforeach
+        <img alt="img" src="/img/{{ $reclamation->image }}" class="img-fluid" style="max-height: 300px;" />
+    </div>
+</div>
+@endforeach
     </div>
 </section>
-
 
 
 	<!-- Footer -->

@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamtions', function (Blueprint $table) {
+        Schema::create('blog_commentaires', function (Blueprint $table) {
             $table->id();
-            $table->string('nomRec');
-            $table->string('body');
-            $table->string('image');
-            $table->string('statue');
+            $table->foreignId('blog_id')->constrained('blogs');
+            $table->string( 'comment');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reclamtions');
+        Schema::dropIfExists('blog_commentaires');
     }
 };

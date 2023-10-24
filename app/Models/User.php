@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-
+use App\Models\reclamtion;
+use App\Models\BlogCommentaire;
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -58,4 +59,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+   // Relation avec les adresses
+   public function reclamations()
+   {
+       return $this->hasMany(Reclamtion::class,'user_id');
+   }
+
+   public function comments()
+    {
+        return $this->hasMany(BlogCommentaire::class,'user_id');
+    }
+
 }

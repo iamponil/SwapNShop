@@ -338,8 +338,8 @@
 
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('history')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-               Add New Reclamation
+            <a href="{{route('historyFR')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
+               List Reclamation
             </a>
         </div>
     </section>
@@ -350,7 +350,7 @@
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 
-					<form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ route('storeFR') }}" method="POST" enctype="multipart/form-data">
 						 {{ csrf_field() }}
             <h4 class="mtext-105 cl2 txt-center p-b-30">
 							Send A Reclamtion Message
@@ -365,7 +365,7 @@
 							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="body" id="body"  placeholder="Reclamation Message "></textarea>
 						</div>
   <div class="mb-3">
-                    <label for="image" class="form-label">Reclamtion Image <span class="text-danger">*</span></label>
+                    <label for="image" class="form-label"> Document To Attach </span></label>
                     <input id="image" name="image" type="file" class="form-control">
                 </div>
 						<button  type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">

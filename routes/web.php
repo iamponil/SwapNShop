@@ -6,7 +6,8 @@ use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
 use App\Models\Conversation;
-
+use App\Http\Controllers\reclamation\ReclamtionController;                
+use App\Http\Controllers\BlogCommentaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,22 +90,23 @@ Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tab
 // Reclamtion
 Route::get('/Reclamtion', $controller_path . '\reclamation\ReclamtionController@index')->name('reclamation');
 Route::get('/Reclamtion/add', $controller_path . '\reclamation\ReclamtionController@create')->name('createR');
-Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('store');
+Route::post('/Reclamtion/addR', $controller_path . '\reclamation\ReclamtionController@store')->name('storeR');
 Route::get('/Reclamtion/update/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@edit')->name('updateR');
-Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('update');
+Route::put('/Reclamtion/updateRR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@update')->name('updateRR');
 Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
+Route::get('/Reclamtion/show/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@show')->name('showR');
 
 
 
-
-Route::get('/bloggggs', $controller_path . '\blog\BlogController@indexF')->name('blog');
 
 
 Route::get('/about', function () {
   return view('Template.about');
 })->name('about');
 
-
+Route::get('/blog-detail/{blogId}', function () {
+  return view('Template.blog-detail');
+})->name('blog-detail');
 
 Route::get('/contact', function () {
   return view('Template.contact');
@@ -115,8 +117,11 @@ Route::get('/Reclations', function () {
   return view('Template.reclamation');
 })->name('reclamtion');
 
+Route::get('/Reclamtion/updateF/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@editF')->name('updateFRR');
+Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('historyFR');
+//Route::post('/Reclamtion/addF', $controller_path . '\reclamation\ReclamtionController@storeF')->name('storeFR');
 
-Route::get('/history', $controller_path . '\reclamation\ReclamtionController@indexh')->name('history');
+Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@updateF')->name('updateFR');
 
 
 Route::get('/cart', function () {
@@ -141,8 +146,21 @@ Route::post('/Blog/addB', $controller_path . '\blog\BlogController@store')->name
 Route::get('/Blog/updateB/{blog}', $controller_path . '\blog\BlogController@edit')->name('updateB');
 Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@update')->name('update');
 Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
-
-
+Route::get('/Blog/show/{blog}', $controller_path . '\blog\BlogController@show')->name('showB');
+//blogFont
+Route::get('/bloggggs', $controller_path . '\blog\BlogController@indexF')->name('blog');
+//commentaire
+Route::get('/Commentss', $controller_path . '\BlogCommentaireController@index')->name('commentss');
+Route::get('/Comments/add', $controller_path . '\BlogCommentaireController@create')->name('createComments');
+Route::post('/Comments/addC', $controller_path . '\BlogCommentaireController@store')->name('storeC');
+Route::delete('/Comments/delet/{blogCommentaire}', $controller_path . '\BlogCommentaireController@destroy')->name('destroyC');
+Route::get('/Comments/show/{blogCommentaire}', $controller_path . '\BlogCommentaireController@show')->name('showC');
+Route::get('/Comments/{blogId}', [BlogCommentaireController::class, 'showCommentFormBlog'])->name('commentBlog.form');
+Route::post('/Comments/{blogId}', [BlogCommentaireController::class, 'storeCommentBlog'])->name('commentBlog.store');
+//commentaireFront
+Route::get('/CommentsF/{blogId}', [BlogCommentaireController::class, 'showCommentFormBlogF'])->name('commentBlogF.form');
+Route::post('/CommentsF/{blogId}', [BlogCommentaireController::class, 'storeCommentBlogF'])->name('commentBlogF.store');
+Route::get('/CommentsF/{blogId}', [BlogCommentaireController::class, 'showCommentsF'])->name('commentF.show');
 
 Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
@@ -169,4 +187,5 @@ Route::middleware([
     ->name('community.join');
   Route::resource('event', EventController::class);
   Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
+  Route::post('/Reclamtion/addF',[ReclamtionController::class,'storeF'])->name('storeFR');
 });

@@ -15,6 +15,9 @@ class blog extends Model
         'picture'
 
     ];
-
+    public function commentsss()
+    {
+        return $this->hasMany(BlogCommentaire::class,'blog_id');
+    }
 
 }

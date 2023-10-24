@@ -25,7 +25,8 @@
         </div>
     @endif
 
-
+    @notifyCss
+  
 <div class="card">
   <h5 class="card-header"></h5>
   <div class="table-responsive text-nowrap">
@@ -56,8 +57,7 @@
                                 <form action="" method="POST">
                                     {{ csrf_field()  }}
                                     @method('DELETE')
-                                    <a class="btn btn-sm btn-success" href=""><i data-feather="eye"></i> Show</a>
-
+                                    <a class="btn btn-sm btn-success" href="{{ route('showB',$val->id) }}"><i data-feather="eye"></i> Show</a>
                                 </form>
                             </td>
                              <td>
@@ -73,10 +73,15 @@
               </div>
             </div>
           </td>
+          <td>
+            <!-- Ajoutez le lien "Answer" pointant vers la route createComments -->
+            <a class="btn btn-sm btn-info" href="{{ route('commentBlog.form', $val->id) }}"><i data-feather="message-circle"></i> Answer</a>
+        </td>
 
                         </tr>
                     @endforeach
-
+                    @notifyJs
+                    <x-notify::notify />
       </tbody>
     </table>
   </div>
@@ -86,6 +91,7 @@
 
 <!--/ Contextual Classes -->
 
-
+@notifyJs
 <!--/ Responsive Table -->
+
 @endsection

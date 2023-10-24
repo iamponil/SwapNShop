@@ -102,6 +102,7 @@
       "icon": "menu-icon tf-icons bx bx-cube-alt",
       "target": "_blank"
     },
+
     {
       "name": "Misc",
       "icon": "menu-icon tf-icons bx bx-cube-alt",
@@ -124,12 +125,14 @@
     {
       "menuHeader": "Components"
     },
+    
     {
-      "name": "Cards",
+      "name": "BlogCommentaire",
       "icon": "menu-icon tf-icons bx bx-collection",
-      "slug": "cards-basic",
-      "url": "/cards/basic"
+      "slug": "commentss",
+      "url": "/Commentss"
     },
+
     {
       "name": "User interface",
       "icon": "menu-icon tf-icons bx bx-box",
