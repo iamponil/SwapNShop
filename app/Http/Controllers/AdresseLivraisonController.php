@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\AdresseLivraison;
 
 use App\Models\User;

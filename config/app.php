@@ -181,6 +181,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
+    Barryvdh\DomPDF\ServiceProvider::class,
 
   ],
 
@@ -198,5 +199,7 @@ return [
   'aliases' => Facade::defaultAliases()->merge([
     'Socialite' => Laravel\Socialite\Facades\Socialite::class,
   ])->toArray(),
+  'PDF' => Barryvdh\DomPDF\Facade::class,
+  
 
 ];

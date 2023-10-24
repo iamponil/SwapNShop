@@ -100,15 +100,12 @@ Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\
 Route::delete('/Reclamtion/delet/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@destroy')->name('destroyR');
 
 
-
-
 Route::get('/bloggggs', $controller_path . '\blog\BlogController@indexF')->name('blog');
 
 
 Route::get('/about', function () {
   return view('Template.about');
 })->name('about');
-
 
 
 Route::get('/contact', function () {
@@ -127,6 +124,16 @@ Route::get('/history', $controller_path . '\reclamation\ReclamtionController@ind
 Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
+//******************Livraison********************************
+Route::get('/Livraison', $controller_path . '\LivraisonnnController@index')->name('showLivraison');
+Route::post('/Livraison', $controller_path . '\LivraisonnnController@store')->name('showLivraisonadded');
+Route::get('/addLivraison', $controller_path . '\LivraisonnnController@create')->name('view');
+Route::get('/updateLivraison/{id}', [\App\Http\Controllers\LivraisonnnController::class,'updateStatus'])->name('updateStatusLivraison');
+Route::get('pdf', $controller_path . '\LivraisonnnController@pdf')->name('pdf');
+
+
+//**********************************************************
+
 
 //AdresseLivraison
 Route::get('/AdrresseLivraison', [AdresseLivraisonController::class, 'showDeliveryAddresses'], function () {
@@ -138,36 +145,33 @@ Route::get('/AdrresseLivraison', [AdresseLivraisonController::class, 'showDelive
 //Route::get('/livraisons', [AdresseLivraisonController::class, 'showDeliveryAddresses'])->name('livraisons');
 Route::group(['middleware' => 'auth'], function () {
   // Vos routes protégées ici
-  Route::post('/adresselivraison/add',[AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
+  Route::post('/adresselivraison/add', [AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
 });
 Route::delete('/delet/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@destroy')->name('destroyL');
 Route::get('/update/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@edit')->name('updateLIV');
 Route::put('/updateLIV/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@update')->name('updateL');
 
 
-
-Route::get('/product',[ProductController::class,'affichefront'])->name('shop');;
-Route::get('/myproduct',[ProductController::class,'afficherMesproduits'])->name('myproduct');;
-Route::get('/products',[ProductController::class,'index'])->name('products.affiche');;
+Route::get('/product', [ProductController::class, 'affichefront'])->name('shop');;
+Route::get('/myproduct', [ProductController::class, 'afficherMesproduits'])->name('myproduct');;
+Route::get('/products', [ProductController::class, 'index'])->name('products.affiche');;
 // Route::get('/allproducts',[ProductController::class,'affichefront'])->name('products.affichefront');;
-Route::delete('/products/{id}',[ProductController::class,'destroy'])->name('products.destroy');;
-Route::get('/createprod',[ProductController::class,'create'])->name('create');;
-Route::post('/products/store',[ProductController::class,'store'])->name('products.store');;
-Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('products.edit');
-Route::get('/productsedit/{id}', [ProductController::class,'editfront'])->name('productseditf');
-Route::put('/product/{id}', [ProductController::class,'update'])->name('products.update');
-Route::post('/create-offre', [OffreController::class,'create'])->name('offre.create');
-Route::get('/getProductOffers/{productId}', [OffreController::class,'getProductOffers'])->name('product.offers');
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');;
+Route::get('/createprod', [ProductController::class, 'create'])->name('create');;
+Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');;
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::get('/productsedit/{id}', [ProductController::class, 'editfront'])->name('productseditf');
+Route::put('/product/{id}', [ProductController::class, 'update'])->name('products.update');
+Route::post('/create-offre', [OffreController::class, 'create'])->name('offre.create');
+Route::get('/getProductOffers/{productId}', [OffreController::class, 'getProductOffers'])->name('product.offers');
 
-Route::get('/product-details/{productId}', [ProductController::class,'productDetails'])->name('product.details');
+Route::get('/product-details/{productId}', [ProductController::class, 'productDetails'])->name('product.details');
 
-Route::post('/sendConfirmationEmail/{userId}/{productId}', [EmailController::class,'sendConfirmationEmail'])->name('sendConfirmationEmail');
-Route::post('/createEchange', );
-Route::post('/confirmEchange/{offreId}', [EchangeController::class,'confirmEchange'])->name('confirmEchange');
+Route::post('/sendConfirmationEmail/{userId}/{productId}', [EmailController::class, 'sendConfirmationEmail'])->name('sendConfirmationEmail');
+Route::post('/createEchange',);
+Route::post('/confirmEchange/{offreId}', [EchangeController::class, 'confirmEchange'])->name('confirmEchange');
 
-Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct']);
-
-
+Route::post('/deleteOffers/{productId}', [OffreController::class, 'deleteByProduct']);
 
 
 //Blog
@@ -179,33 +183,32 @@ Route::put('/Blog/update/{blog}', $controller_path . '\blog\BlogController@updat
 Route::delete('/Blog/delet/{blog}', $controller_path . '\blog\BlogController@destroy')->name('destroyB');
 
 
-
 Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
 Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
 Route::post('/conversations/{user}', [ConversationController::class, 'store'])->name('conversations.store');
 Route::get('/search-users', [ConversationController::class, 'searchUsers']);
 Route::get('/conversations/{from}/{to}', [ConversationController::class, 'getMessagesBetweenUsers']);
 Route::post('/conversations/send-message/{from}/{to}', [ConversationController::class, 'sendMessage'])->name('conversations.sendMessage');
-Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class,'deleteMessage'])->name('conversations.deleteMessage');
+Route::delete('/conversations/delete-message/{messageId}', [ConversationController::class, 'deleteMessage'])->name('conversations.deleteMessage');
 Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
 
 
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
+  'auth:sanctum',
+  config('jetstream.auth_session'),
+  'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+  Route::get('/dashboard', function () {
+    return view('dashboard');
+  })->name('dashboard');
   Route::get('/frontoffice', function () {
     return view('Template.master');
   })->name('index');
-  Route::resource('community',CommunityController::class);
-  Route::post('/join-community/{community}', [CommunityController::class,'join'])
+  Route::resource('community', CommunityController::class);
+  Route::post('/join-community/{community}', [CommunityController::class, 'join'])
     ->name('community.join');
   Route::resource('event', EventController::class);
-  Route::get('event/create/{id}', [EventController::class,'form'])->name('event.form');
-  Route::get('/addlivraisonAdresse',[AdresseLivraisonController::class, 'create'])->name('createL');
-  Route::post('/adresselivraison/add',[AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
+  Route::get('event/create/{id}', [EventController::class, 'form'])->name('event.form');
+  Route::get('/addlivraisonAdresse', [AdresseLivraisonController::class, 'create'])->name('createL');
+  Route::post('/adresselivraison/add', [AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
 });

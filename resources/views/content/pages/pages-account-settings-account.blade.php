@@ -92,7 +92,6 @@
                 <option value="Germany">Germany</option>
                 <option value="India">India</option>
                 <option value="Indonesia">Indonesia</option>
-                <option value="Israel">Israel</option>
                 <option value="Italy">Italy</option>
                 <option value="Japan">Japan</option>
                 <option value="Korea">Korea, Republic of</option>
