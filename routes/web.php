@@ -52,6 +52,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EchangeController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\LivraisonnnController;
 use App\Http\Controllers\WishlistController;
 
 
@@ -216,11 +217,11 @@ Route::get('/cart', function () {
   return view('Template.cart');
 })->name('cart');
 //******************Livraison********************************
-Route::get('/Livraison', $controller_path . '\LivraisonnnController@index')->name('showLivraison');
-Route::post('/Livraison', $controller_path . '\LivraisonnnController@store')->name('showLivraisonadded');
-Route::get('/addLivraison', $controller_path . '\LivraisonnnController@create')->name('view');
-Route::get('/updateLivraison/{id}', [\App\Http\Controllers\LivraisonnnController::class,'updateStatus'])->name('updateStatusLivraison');
-Route::get('pdf', $controller_path . '\LivraisonnnController@pdf')->name('pdf');
+Route::get('/Livraison', [LivraisonnnController::class ,'index'])->name('showLivraison');
+Route::post('/Livraison', [LivraisonnnController::class ,'store'])->name('showLivraisonadded');
+Route::get('/addLivraison', [LivraisonnnController::class ,'create'])->name('view');
+Route::get('/updateLivraison/{id}', [LivraisonnnController::class,'updateStatus'])->name('updateStatusLivraison');
+Route::get('/pdf', [LivraisonnnController::class ,'pdf'])->name('pdf');
 
 
 //**********************************************************
@@ -238,9 +239,9 @@ Route::group(['middleware' => 'auth'], function () {
   // Vos routes protégées ici
   Route::post('/adresselivraison/add', [AdresseLivraisonController::class, 'store'])->name('addAddreslivraison');
 });
-Route::delete('/delet/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@destroy')->name('destroyL');
-Route::get('/update/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@edit')->name('updateLIV');
-Route::put('/updateLIV/{adresseLivraison}', $controller_path . '\AdresseLivraisonController@update')->name('updateL');
+Route::delete('/delet/{adresseLivraison}', [LivraisonnnController::class ,'destroy'])->name('destroyL');
+Route::get('/update/{adresseLivraison}',  [LivraisonnnController::class ,'edit'])->name('updateLIV');
+Route::put('/updateLIV/{adresseLivraison}',  [LivraisonnnController::class ,'update'])->name('updateL');
 
 
 Route::get('/product', [ProductController::class, 'affichefront'])->name('shop');;
