@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Models\Conversation;
+
 use App\Repository\ConversationRepository;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
@@ -14,8 +16,9 @@ class ConversationController extends Controller
 
     public function __construct(private ConversationRepository $conversationRepository,private AuthManager $authManager){}
     public function index (){
+        
 return view ('conversations/index',[
-    'users' => $this->conversationRepository->getConversations($this->authManager->user()->id),  
+    'conversations' => $this->conversationRepository->getConversations($this->authManager->user()->id),  
     'currentUser'=>$this->authManager->user(),
 ]);
     }
@@ -29,21 +32,24 @@ return view ('conversations/index',[
     }
 
 
-    public function searchUsers(Request $request)
-{
-    $searchText = $request->input('searchText');
-
-    try {
-        $users = User::where('name', 'like', '%' . $searchText . '%')
-        ->where('id', '!=', $this->authManager->user()->id)
-        ->get();
+    public function searchConversation(Request $request)
+    {
+        $searchText = $request->input('searchText');
+        $currentUserId = $this->authManager->user()->id;
+    
+        try {
+            $conversations = Conversation::select('conversations.*')
+                ->join('conversation_participants', 'conversation_participants.conversation_id', '=', 'conversations.id')
+                ->where('conversations.name', 'like', '%' . $searchText . '%')
+                ->where('conversation_participants.user_id', $currentUserId)
+                ->get();
         } catch (\Exception $e) {
-        dd($e->getMessage());
+            dd($e->getMessage());
+        }
+    
+        return view('conversations.search', ['searchedConversation' => $conversations]);
     }
-        
-    return view('conversations/search', ['searchedUsers' => $users]);
-}
-
+    
 
   public function store (Request $request, User $user){
     $this->conversationRepository->createMessage(
@@ -58,7 +64,6 @@ return view ('conversations/index',[
 public function getMessagesBetweenUsers(Request $request)
 {
     $messages =$this->conversationRepository->getMessagesFor($request->get('from'), $request->get('to'))->get();
-//    if ($message->sender_id == Auth::user()->id || $message->receiver_id == Auth::user()->id ) {
         return view('conversations.show', [
             'users' => $this->conversationRepository->getConversations($this->authManager->user()->id),  
             'currentUser' => $this->authManager->user(),
@@ -76,10 +81,17 @@ public function sendMessage(Request $request, $from, $to)
     ]);
 
     // Create a new message and save it to the database
-    $this->conversationRepository->createMessage($request->input('content'), $from, $to);
+    $message = $this->conversationRepository->createMessage($request->input('content'), $from, $to);
 
-    // Redirect back to the conversation view
-    return redirect()->route('conversations', ['user' => $to]);
+    // Retrieve additional data for the message, such as timestamp and buttons
+    $timestamp = $message->created_at->format('H:i');
+   
+    // Return a JSON response with the message data
+    return response()->json([
+        'message' => $message->content,
+        'timestamp' => $timestamp,
+        'message_id' => $message->id,
+    ]);
 }
 public function deleteMessage($messageId)
 {
@@ -109,5 +121,19 @@ public function update(Request $request)
     $message->save();
 
     return response()->json(['message' => 'Message updated successfully']);
+}
+public function messageItem(Request $request, $message, $timestamp, $messageId)
+{
+    // Pass the parameters to the view and render it
+    $viewData = [
+        'message' => $message,
+        'timestamp' => $timestamp,
+        'message_id' => $messageId,
+    ];
+
+    // Render the view and return it as HTML in the response
+    $messageItemHtml = view('conversations.message_item', $viewData)->render();
+
+    return response()->json(['messageItemHtml' => $messageItemHtml]);
 }
 }

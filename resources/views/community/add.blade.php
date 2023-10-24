@@ -1,7 +1,13 @@
-<!DOCTYPE html>
+<!-- Include Styles -->
+@extends('layouts/sections/styles')
+<!-- Include Scripts for customizer, helper, analytics, config -->
+@extends('layouts/sections/scriptsIncludes')
+<!-- Include Scripts -->
+@include('layouts/sections/scripts')
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Contact</title>
+  <title>Add Community</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
@@ -9,7 +15,8 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css"
         href="{{asset('fonts/iconic/css/material-design-iconic-font.min.css')}}">
@@ -329,7 +336,7 @@
 <section class="bg-img1 txt-center p-lr-15 p-tb-92"
          style="background-image: url('{{asset('images/bg-01.jpg')}}');">
   <h2 class="ltext-105 cl0 txt-center">
-    Contact
+    Add Community
   </h2>
 </section>
 
@@ -339,6 +346,16 @@
   <div class="container" style="
     display: flex;justify-content: center;">
     <div class="size-209 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+      @if ($errors->any())
+        <div class="alert alert-danger">
+          <strong>Whoops!</strong> There were some problems with your input.<br><br>
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
       <form action="{{route('community.store')}}" method="POST">
         @csrf
         <h4 class="mtext-105 cl2 txt-center p-b-30">
@@ -364,13 +381,6 @@
     </div>
   </div>
 </section>
-
-
-<!-- Map -->
-<div class="map">
-  <div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png"
-       data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-</div>
 
 
 <!-- Footer -->

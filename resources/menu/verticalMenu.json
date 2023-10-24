@@ -96,6 +96,18 @@
       "slug": "reclamation"
     },
     {
+      "url": "/communities",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Communities",
+      "slug": "community.indexAdmin"
+    },
+    {
+      "url": "/events",
+      "icon": "menu-icon tf-icons bx bx-detail",
+      "name": "Events",
+      "slug": "event.indexAdmin"
+    },
+    {
       "url": "/Blog",
       "name": "blog",
       "slug": "blog",

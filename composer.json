@@ -11,6 +11,7 @@
     "php": "^8.0.2",
     "barryvdh/laravel-dompdf": "^2.0",
     "blade-ui-kit/blade-heroicons": "^2.1",
+    "doctrine/dbal": "^3.7",
     "fruitcake/laravel-cors": "^2.0.5",
     "guzzlehttp/guzzle": "^7.2",
     "laravel/framework": "^9.0",
@@ -18,7 +19,8 @@
     "laravel/sanctum": "^2.14",
     "laravel/socialite": "^5.9",
     "laravel/tinker": "^2.7",
-    "livewire/livewire": "^2.11"
+    "livewire/livewire": "^2.11",
+    "simplesoftwareio/simple-qrcode": "^4.2"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9.1",
