@@ -9,7 +9,7 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
   <!--===============================================================================================-->
-  <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('fonts/iconic/css/material-design-iconic-font.min.css') }}">
   <!--===============================================================================================-->
@@ -27,6 +27,10 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -105,6 +109,9 @@
             </li>
             <li>
               <a href="{{ route('create') }}">Add product</a>
+            </li>
+            <li>
+              <a href="{{ route('myproduct') }}">My products </a>
             </li>
           </ul>
         </div>
@@ -335,18 +342,18 @@
 <!-- breadcrumb -->
 <div class="container">
   <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-    <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+    <a href="{{route('index')}}" class="stext-109 cl8 hov-cl1 trans-04">
       Home
       <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
     </a>
 
-    <a href="blog.html" class="stext-109 cl8 hov-cl1 trans-04">
-      Blog
+    <a href="{{route('event.index')}}" class="stext-109 cl8 hov-cl1 trans-04">
+      Events
       <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
     </a>
 
     <span class="stext-109 cl4">
-				8 Inspiring Ways to Wear Dresses in the Winter
+				{{$event->title}}
 			</span>
   </div>
 </div>
@@ -360,38 +367,37 @@
         <div class="p-r-45 p-r-0-lg">
           <!--  -->
           <div class="wrap-pic-w how-pos5-parent">
-            <img src="{{asset('images/blog-04.jpg')}}" alt="IMG-BLOG">
+            <img src="{{asset('images/exchange3.jpg')}}" alt="IMG-BLOG">
 
             <div class="flex-col-c-m size-123 bg9 how-pos5">
-								<span class="ltext-107 cl2 txt-center">
-									22
-								</span>
-
+    <span class="ltext-107 cl2 txt-center">
+        {{ $event->date_time->format('d') }}
+    </span>
               <span class="stext-109 cl3 txt-center">
-									Jan 2018
-								</span>
+        {{ $event->date_time->format('M Y') }}
+    </span>
+            </div>
+            <div class="flex-col-c-m size-123 bg9 how-pos1">
+    <span class="ltext-107 cl2 txt-center">
+        {{ $event->date_time->format('H:i') }}
+    </span>
             </div>
           </div>
 
           <div class="p-t-32">
 							<span class="flex-w flex-m stext-111 cl2 p-b-19">
 								<span>
-									<span class="cl4">By</span> Admin
+									<span class="cl4">Created By</span> {{$event->creator->name}}
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
 								<span>
-									22 Jan, 2018
+                  {{$event->created_at->format('d M, Y H:i')}}
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
 								<span>
-									StreetStyle, Fashion, Couple
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-									8 Comments
+									{{$event->community->name}}
 								</span>
 							</span>
 
@@ -400,23 +406,15 @@
             </h4>
 
             <p class="stext-117 cl6 p-b-26">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est vel orci luctus sollicitudin.
-              Duis eleifend vestibulum justo, varius semper lacus condimentum dictum. Donec pulvinar a magna ut
-              malesuada. In posuere felis diam, vel sodales metus accumsan in. Duis viverra dui eu pharetra
-              pellentesque. Donec a eros leo. Quisque sed ligula vitae lorem efficitur faucibus. Praesent sit amet
-              imperdiet ante. Nulla id tellus auctor, dictum libero a, malesuada nisi. Nulla in porta nibh, id
-              vestibulum ipsum. Praesent dapibus tempus erat quis aliquet. Donec ac purus id sapien condimentum feugiat.
-            </p>
-
-            <p class="stext-117 cl6 p-b-26">
-              Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet
-              suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit.
-              Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel
-              placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh
-              arcu. Vivamus sagittis accumsan felis, quis vulputate
+              {{$event->description}}
             </p>
           </div>
-
+          <!-- Map -->
+          <hr>
+          <h4 class="ltext-109 cl3 p-b-28">
+            Location :
+          </h4>
+          <div id="map" style="height: 400px;"></div>
           <div class="flex-w flex-t p-t-16">
 							<span class="size-216 stext-116 cl8 p-t-4">
 								Tags
@@ -432,40 +430,6 @@
               </a>
             </div>
           </div>
-
-          <!--  -->
-          <div class="p-t-40">
-            <h5 class="mtext-113 cl2 p-b-12">
-              Leave a Comment
-            </h5>
-
-            <p class="stext-107 cl6 p-b-40">
-              Your email address will not be published. Required fields are marked *
-            </p>
-
-            <form>
-              <div class="bor19 m-b-20">
-                <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt"
-                          placeholder="Comment..."></textarea>
-              </div>
-
-              <div class="bor19 size-218 m-b-20">
-                <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Name *">
-              </div>
-
-              <div class="bor19 size-218 m-b-20">
-                <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="email" placeholder="Email *">
-              </div>
-
-              <div class="bor19 size-218 m-b-30">
-                <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="web" placeholder="Website">
-              </div>
-
-              <button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
-                Post Comment
-              </button>
-            </form>
-          </div>
         </div>
       </div>
 
@@ -473,57 +437,29 @@
         <div class="side-menu">
           <div class="p-t-65">
             <h4 class="mtext-112 cl2 p-b-33">
-              Featured Products
+              Participants
             </h4>
-
             <ul>
-              <li class="flex-w flex-t p-b-30">
-                <a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-                  <img style="width: 110px ; height: 110px" src="{{asset('assets/images/user.jpg')}}" alt="PRODUCT">
-                </a>
-
-                <div class="size-215 flex-col-t p-t-8">
-                  <a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-                    White Shirt With Pleat Detail Back
+              @foreach($event->attendees as  $attendee)
+                <li class="flex-w flex-t p-b-30">
+                  <a class="wrao-pic-w size-214 m-r-20">
+                    {{--<img style="width: 110px ; height: 110px" src="{{asset('assets/images/user.jpg')}}"
+                    alt="PRODUCT">--}}
+                    <img style="width: 105px ; height: 100px; border-radius: 15%;" src="{{asset('assets/img/avatars/user.jpg')}}" alt="PRODUCT">
                   </a>
 
-                  <span class="stext-116 cl6 p-t-20">
-											$19.00
-										</span>
-                </div>
-              </li>
-
-              <li class="flex-w flex-t p-b-30">
-                <a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-                  <img src="{{asset('images/product-min-02.jpg')}}" alt="PRODUCT">
-                </a>
-
-                <div class="size-215 flex-col-t p-t-8">
-                  <a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-                    Converse All Star Hi Black Canvas
-                  </a>
-
-                  <span class="stext-116 cl6 p-t-20">
-											$39.00
-										</span>
-                </div>
-              </li>
-
-              <li class="flex-w flex-t p-b-30">
-                <a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-                  <img src="{{asset('images/product-min-03.jpg')}}" alt="PRODUCT">
-                </a>
-
-                <div class="size-215 flex-col-t p-t-8">
-                  <a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-                    Nixon Porter Leather Watch In Tan
-                  </a>
-
-                  <span class="stext-116 cl6 p-t-20">
-											$17.00
-										</span>
-                </div>
-              </li>
+                  <div class="size-215 flex-col-t p-t-8">
+                    <a class="stext-116 cl8 hov-cl1 trans-04">
+                      {{$attendee->name}}
+                    </a>
+                    <div style="width: 90px;margin-top: 30px;"
+                         class="flex-c-m stext-106 cl6 size-107 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                      <i class="fa-solid fa-message cl2 m-r-6 fs-15 trans-04"></i>
+                      Chat
+                    </div>
+                  </div>
+                </li>
+              @endforeach
             </ul>
           </div>
         </div>
@@ -531,7 +467,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
@@ -699,6 +634,19 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
 <script src="{{asset('vendor/select2/select2.min.js')}}"></script>
+<script>
+  var eventMarkerIcon = L.icon({
+    iconUrl: "{{asset('images/icons/location-pin.png')}}",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+  });
+  var map = L.map('map').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
+  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], {icon: eventMarkerIcon}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+</script>
 <script>
   $(".js-select2").each(function () {
     $(this).select2({

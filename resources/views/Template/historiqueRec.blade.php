@@ -28,6 +28,14 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body class="animsition">
 
@@ -327,7 +335,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			history
+			Reclamation
 		</h2>
 	</section>
 
@@ -337,9 +345,13 @@
 
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('reclamtion')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-           Back to Send Reclamation
-            </a>
+
+
+         <a href="{{ route('reclamtion') }}" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+               Back to Send Reclamation
+  </a>
+
+
         </div>
     </section>
 
@@ -347,28 +359,103 @@
 
 
 <section class="bg0 p-t-104 p-b-116">
-    <h5 class="pb-1 mb-4">All Reclamation</h5>
-    <div class="row mb-5">
-       @foreach($reclamtions as $reclamation)
-<div class="col-md-6 col-xl-4">
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">{{ $reclamation->nomRec }}</h5>
-            <p   class="card-text">{{ $reclamation->body }}</p>
-            <p class="card-text">
-                <small class="text-muted">Last updated {{ $reclamation->updated_at->diffForHumans() }}</small>
-            </p>
-              <p  class="card-text">Votre Reclamation est : {{ $reclamation->statue }}</p>
-         <hr> <!-- Ligne de séparation -->
-              <a href="{{route('updateFRR', $reclamation->id)}}" class="custom-btn">
-    <i class="fa fa-pencil custom-icon"></i><span style="color: black;">Edit</span>
-</a>
 
+   <h5 class="pb-1 mb-4 txt-center ltext-101 c1 text-dark">
+  All Reclamation
+</h5>
+
+
+    <div class="row mb-5">
+    <style>
+    /* Style personnalisé pour les boutons */
+    .custom-btn {
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        padding: 0;
+    }
+
+    /* Style personnalisé pour les icônes */
+    .custom-icon {
+        margin: 0 10px; /* Espace autour de l'icône */
+        color: gray; /* Couleur grise pour les icônes */
+    }
+</style>
+<script>
+function showPopup(url) {
+    // Créer une fenêtre modale Bootstrap
+    $('#myModal').modal('show');
+
+    // Charger le contenu de la page dans la fenêtre modale
+    $('#myModal .modal-content').load(url);
+}
+</script>
+      @foreach($reclamtions as $reclamation)
+
+    <div class="col-md-6 col-xl-4">
+        <div class="card mb-3 @if ($reclamation->statue == 'traitée') floating-card @endif">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title font-weight-bold text-dark">
+                        @if ($reclamation->statue == 'traitée')
+                            <i class="fas fa-check text-success"></i>
+                            <span class="font-weight-bold">{{ $reclamation->nomRec }}</span>
+                        @else
+                            <i class="fas fa-times text-danger"></i>
+                            <span class="font-weight-bold">{{ $reclamation->nomRec }}</span>
+                        @endif
+                    </h5>
+
+                </div>
+                <p class="card-text">{{ $reclamation->body }}</p>
+                <p class="card-text">
+                    <small class="text-muted">Last updated {{ $reclamation->updated_at->diffForHumans() }}</small>
+                </p>
+                <br>
+                <p class="card-text font-weight-bold">Votre réclamation est:
+                    @if ($reclamation->statue == 'traitée')
+                        <span class="font-weight-bold text-success">Traitée</span>
+                    @else
+                        <span class="font-weight-bold text-danger">En cours</span>
+                    @endif
+                </p>
+
+                @if ($reclamation->statue == 'traitée')
+                      <a href="{{ route('comment.show', $reclamation->id) }}" class="custom-btn float-right" style="background-color: #ffffff;" onclick="showPopup('{{ route('comment.show', $reclamation->id) }}')">
+    <i class="fa fa-reply custom-icon text-white"></i> Votre Réponse
+</a>
+                @endif
+                <br>
+                <hr>
+                @if ($reclamation->statue == 'traitée')
+                    <div class="alert alert-danger font-weight-bold">
+                        Votre réclamation est déjà traitée.
+                    </div>
+                @else
+                    <div style="text-align: center;">
+                        <form action="{{ route('destroyFR', $reclamation->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            @method('DELETE')
+                            <a href="{{ route('updateFRR', $reclamation->id) }}" class="custom-btn">
+                                <i class="fa fa-pencil custom-icon text-dark"></i><span style="color: black;">Edit</span>
+                            </a>
+                            <button class="custom-btn" data-toggle="modal" data-target="#deleteModal">
+                                <i class="fa fa-trash custom-icon"></i>Delete
+                            </button>
+                        </form>
+                    </div>
+                @endif
+            </div>
+            <img alt="img" src="/img/{{ $reclamation->image }}" class="img-fluid" style="max-height: 300px;" />
         </div>
-        <img alt="img" src="/img/{{ $reclamation->image }}" class="img-fluid" style="max-height: 300px;" />
     </div>
-</div>
 @endforeach
+
+
+
+
+
     </div>
 </section>
 

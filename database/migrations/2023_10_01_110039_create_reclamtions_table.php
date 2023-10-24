@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('body');
             $table->string('image');
             $table->string('statue');
+            $table->boolean('archived')->default(0); // Définir la valeur par défaut
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

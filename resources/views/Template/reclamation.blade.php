@@ -105,6 +105,7 @@
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
+
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -332,29 +333,33 @@
 	</section>
 
   <h4 class="fw-bold py-3 mb-4"></h4>
-
- <section class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+<section class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
 
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('historyFR')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-               List Reclamation
-            </a>
+             <a href="{{ route('historyFR') }}" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                List Reclamation
+ </a>
+
         </div>
     </section>
 
-	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
-		<div class="container">
+<ul id="error-list" style="display: none;" class="text-danger"></ul>
+
+</section>
+<section class="content-container  bg0 p-t-104 p-b-116">
+
+    <div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 
 					<form action="{{ route('storeFR') }}" method="POST" enctype="multipart/form-data">
 						 {{ csrf_field() }}
-            <h4 class="mtext-105 cl2 txt-center p-b-30">
-							Send A Reclamtion Message
-						</h4>
+
+          <h4 class="mtext-105 cl2 txt-center p-b-35 center-title">
+  Send A Reclamtion Message
+</h4>
 
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input id="nomRec" name="nomRec" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text"  placeholder="object">
@@ -574,6 +579,45 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		});
 	</script>
 <!--===============================================================================================-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const nomRecInput = document.getElementById('nomRec');
+        const bodyInput = document.getElementById('body');
+
+        form.addEventListener('submit', function (e) {
+            let errors = [];
+
+            if (nomRecInput.value.trim() === '') {
+                errors.push('Le champ "object" est requis.');
+            }
+
+            if (!/^[A-Za-z\s]+$/.test(nomRecInput.value)) {
+                errors.push('Le champ "object" ne doit contenir que des lettres et des symboles.');
+            }
+
+            if (bodyInput.value.trim() === '') {
+                errors.push('Le champ "Reclamation Message" est requis.');
+            }
+
+            if (errors.length > 0) {
+                e.preventDefault(); // Empêche la soumission du formulaire
+
+                // Affiche les alertes d'erreur
+                const errorList = document.getElementById('error-list');
+                errorList.innerHTML = ''; // Efface les alertes précédentes
+
+                errors.forEach(function (error) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = error;
+                    errorList.appendChild(listItem);
+                });
+
+                errorList.style.display = 'block'; // Affiche la liste d'erreurs
+            }
+        });
+    });
+</script>
 
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

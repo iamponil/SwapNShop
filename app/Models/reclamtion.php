@@ -14,6 +14,7 @@ class reclamtion extends Model
       'body',
       'image',
       'statue',
+      'archived',
       'user_id',
     ];
 
@@ -24,4 +25,11 @@ class reclamtion extends Model
 {
     return $this->belongsTo(User::class, 'user_id');
 }
+public function reclR()
+   {
+       return $this->hasMany(reponceReclamation::class,'reclamation_id');
+   }
+
+
+
 }

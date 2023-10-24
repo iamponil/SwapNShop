@@ -5,6 +5,7 @@ namespace App\Http\Controllers\blog;
 use App\Models\blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -44,6 +45,7 @@ class BlogController extends Controller
               $picture->move($destinationPath, $productImage);
               $input['picture'] = "$productImage";
           }
+          $input['user_id'] = Auth::user()->id;
           blog::create($input);
           return redirect()->route('blogg')
               ->with('success','Blog created successfully.');
@@ -81,7 +83,7 @@ class BlogController extends Controller
           } else {
               unset($input['picture']);
           }
-
+          $input['user_id'] = Auth::user()->id;
           $blog->update($input);
           return redirect()->route('blogg')
               ->with('success','Blog updated successfully.');

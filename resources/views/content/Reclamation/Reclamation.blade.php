@@ -1,5 +1,7 @@
 @extends('layouts/contentNavbarLayout')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   @stack('scripts')
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
@@ -7,11 +9,7 @@
         <div>
 
         </div>
-        <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <a href="{{route('createR')}}" class="btn btn-info btn-icon-text mb-2 mb-md-0">
-               <i class='bx bx-plus-circle'></i> </i> Add New Reclamation
-            </a>
-        </div>
+
     </div>
 <h4 class="fw-bold py-3 mb-4">
 
@@ -29,10 +27,22 @@
 <div class="card">
   <h5 class="card-header">Reclamation</h5>
   <div class="table-responsive text-nowrap">
+<style>
+.text-blue {
+    color:#6a5acd;
+}
+</style>
+<div class="text-center mb-3">
+    <a href="{{ route('filtreeR', ['statue' => 'En Cours']) }}" class="btn btn-white text-blue">Réclamations en Cours</a>
+    <a href="{{ route('filtreeR', ['statue' => 'traitée']) }}" class="btn btn-white text-blue">Réclamations Traitées</a>
+    <a href="{{ route('filtreeR') }}" class="btn btn-white text-blue">Toutes_les_Réclamations</a>
+</div>
+
+<br>
+
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
           <th>object Claim</th>
           <th>Reclamtion Content</th>
           <th>attached File </th>
@@ -40,15 +50,16 @@
             <th>Email User </th>
           <th>Creation date </th>
              <th>statue</th>
+              <th>Archive</th>
           <th>Actions</th>
 
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
+                    @foreach($reclamtions as $val)
 
-                    @foreach($reclamtions as $index => $val)
                         <tr>
-                            <td>{{++$index}}</td>
+
                             <td>{{$val->nomRec}}</td>
                             <td>{{$val->body}}</td>
                             <td><img alt="img" src="/img/{{ $val->image }}" width="100px"></td>
@@ -68,6 +79,15 @@
                 {{ $val->statue }}
             @endif
         </td>
+<td>
+    @if ($val->statue == 'traitée')
+        <a href="{{ route('archivee', $val->id) }}" class="btn btn-sm btn-primary">Archiver</a>
+    @else
+        <button class="btn btn-sm btn-primary" disabled>Archiver</button>
+    @endif
+</td>
+
+
                             <td>
                                 <form action="" method="POST">
                                     {{ csrf_field()  }}
@@ -76,6 +96,13 @@
 
                                 </form>
                             </td>
+                            <td>
+    @if ($val->statue == 'traitée')
+        <a href="{{route('comment.form',  $val->id)}}" class="btn btn-sm btn-secondary"></i> Repondre</a>
+    @else
+        <button class="btn btn-sm btn-secondary" disabled></i> Repondre</button>
+    @endif
+</td>
                              <td>
                               <form action="{{ route('destroyR',$val->id) }}" method="POST">
                                 {{ csrf_field()  }}
@@ -85,6 +112,9 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{route('updateR', $val->id)}}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
 
+
+
+
                     <button class="dropdown-item" type="submit" button class="btn btn-sm btn-danger"><i class="bx bx-trash me-1"></i>Delete</button>
               </div>
             </div>
@@ -93,11 +123,14 @@
                         </tr>
                     @endforeach
 
-      </tbody>
-    </table>
-  </div>
-</div>
 
+
+      </tbody>
+
+    </table>
+
+</div>
+</div>
 
 
 <!--/ Contextual Classes -->

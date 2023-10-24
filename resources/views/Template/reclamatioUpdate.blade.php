@@ -79,12 +79,12 @@
             <h4 class="form-title py-3 mb-4">
                 <i class="fas fa-paint-brush"></i> Update Reclamation
             </h4>
-                @if ($errors->any())
+               @if ($errors->any())
     <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+      <strong style="color: red;">Whoops!</strong> There were some problems with your input.<br><br>
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li style="color: red;">{{ $error }}</li>
             @endforeach
         </ul>
     </div>

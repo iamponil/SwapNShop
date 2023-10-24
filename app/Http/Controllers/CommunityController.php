@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\blog;
 use App\Models\Community;
+use App\Models\Event;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class CommunityController extends Controller
 {
@@ -41,13 +47,16 @@ class CommunityController extends Controller
    */
   public function store(Request $request)
   {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
     $community=new Community();
     $community->name=$request->name;
     $community->description=$request->description;
-    $community->creator_id=1;
+    $community->creator_id=Auth::user()->id;
     $community->save();
     $user = Auth::user();
-    //$user = User::find(2);
     $community->members()->attach($user);
     return redirect('/community');
   }
@@ -60,7 +69,17 @@ class CommunityController extends Controller
    */
   public function show(Community $community)
   {
-    return view('community.detail',compact('community'));
+    $events = Event::where('community_id',$community->id)
+      ->where('date_time', '>', now())
+      ->orderBy('date_time', 'asc')
+      ->take(3)->get();
+    $events = $events->map(function ($event) {
+      $event->location = json_decode($event->location, true); // Convert JSON string to an array
+      return $event;
+    });
+    $products = Product::whereIn('user_id', $community->members->pluck('id'))->get();
+    $blogs = blog::whereIn('user_id', $community->members->pluck('id'))->inRandomOrder()->take(6)->get();
+    return view('community.detail',compact('products','blogs' , 'community', 'events'));
   }
 
   /**
@@ -74,6 +93,11 @@ class CommunityController extends Controller
     return view('community.edit',compact('community'));
   }
 
+  public function editAdmin(Community $community)
+  {
+    return view('community.editAdmin',compact('community'));
+  }
+
   /**
    * Update the specified resource in storage.
    *
@@ -83,15 +107,23 @@ class CommunityController extends Controller
    */
   public function update(Request $request, Community $community)
   {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
     $c = Community::find($community->id);
     if (!$c) {
       return redirect()->route('community.list');
     }
     $c->name=$request->input('name');
     $c->description=$request->input('description');
-    //$c->creator_id=1;
     $c->save();
-    return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/communities/')) {
+      return redirect('/communities');
+    } else {
+      return redirect('/community');
+    }
   }
 
   /**
@@ -104,7 +136,12 @@ class CommunityController extends Controller
   {
     $c=Community::find($community->id);
     $c->delete();
-    return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/communities')) {
+      return redirect('/communities');
+    } else {
+      return redirect('/community');
+    }
   }
   public function join(Community $community)
   {
@@ -115,6 +152,29 @@ class CommunityController extends Controller
     }
     //return redirect()->route('community.show', ['community' => $community])
     //  ->with('success', 'You have successfully joined the community.');
-    return redirect('/community');
+    //return redirect('/community');
+    $previousURL = URL::previous();
+    if (Str::contains($previousURL, '/event')) {
+      return redirect('/event');
+    } else {
+      return redirect('/community');
+    }
+  }
+  public function indexAdmin(){
+    $communities=Community::all();
+    return view('community.listAdmin',compact('communities'));
+  }
+  public function leave(Community $community)
+  {
+    $previousURL = URL::previous();
+    $user = Auth::user();
+    if ($community->members()->contains($user)) {
+      $community->attendees()->detach($user);
+    }
+    return redirect($previousURL);
+  }
+  public function myCommunities(){
+    $communities = Community::where('creator_id',Auth::user()->id)->get();
+    return view('community.myCommunities',compact('communities'));
   }
 }

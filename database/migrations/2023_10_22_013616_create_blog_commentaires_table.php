@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('blog_id')->constrained('blogs');
             $table->string( 'comment');
             $table->foreignId('user_id')->constrained('users');
+            
             $table->timestamps();
         });
     }

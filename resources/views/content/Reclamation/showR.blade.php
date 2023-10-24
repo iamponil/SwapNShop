@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <div class="form-group">
-                <strong>Name:</strong>
+                <strong>Object:</strong>
 
                 {{ $reclamtion->nomRec }}
             </div>
@@ -25,7 +25,16 @@
                 {{ $reclamtion->body }}
             </div>
 <br>
-
+           <div class="form-group">
+                <strong>Name:</strong>
+                {{ $reclamtion->user->name  }}
+            </div>
+<br>
+           <div class="form-group">
+                <strong>Email:</strong>
+                {{ $reclamtion->user->email }}
+            </div>
+<br>
             <div class="form-group">
                 <strong>Statue:</strong>
                @if($reclamtion->statue == 'En Cours')

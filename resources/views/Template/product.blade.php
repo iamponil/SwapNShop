@@ -112,8 +112,8 @@
 								<a href="{{ route('contact') }}">Contact</a>
 							</li>
 							<li>
-								<a href="{{ route('create') }}">Add product</a>
-						</li>
+								<a href="{{ route('myproduct') }}">My products </a>
+							  </li>
 						</ul>
 					</div>
 					<!-- Icon header -->
@@ -122,13 +122,14 @@
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+						{{-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+							<i class="zmdi zmdi-favorite-outline"></i>
+						</div> --}}
 
-						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2" id="wishlistButton">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
+						
 					</div>
 				</nav>
 			</div>
@@ -151,9 +152,8 @@
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
+				
+				
 			</div>
 
 			<!-- Button show menu -->
@@ -233,7 +233,7 @@
 			</ul>
 		</div>
 
-		<!-- Modal Search -->
+		{{-- <!-- Modal Search -->
 		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
 			<div class="container-search-header">
 				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
@@ -247,17 +247,34 @@
 					<input class="plh3" type="text" name="search" placeholder="Search...">
 				</form>
 			</div>
-		</div>
+		</div> --}}
 	</header>
-
-	<!-- Cart -->
+{{-- wishlist----------------------------------- --}}
+	{{-- <div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Wishlist
+				</span>
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full" id="wishlistContainer">
+					<!-- Wishlist items will be dynamically added here using JavaScript -->
+				</ul>
+			</div>
+		</div>
+	</div> --}}
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Your Wishlist
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -266,130 +283,44 @@
 			</div>
 
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+				
+				<ul class="header-cart-wrapitem w-full" id="wishlistContainer">
+					<!-- Wishlist items will be dynamically added here using JavaScript -->
 				</ul>
-
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
-
-						<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
+
+	
 
 
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
 			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter
+				
+				<div class="flex-w flex-sb-m p-b-52">
+					<div class="flex-w flex-c-m m-tb-10">
+						<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+							<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+							<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+							Search
+						</div>
 					</div>
-
-					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						Search
+				
+					<!-- Search product -->
+					<div class="dis-none panel-search w-full p-t-10 p-b-15">
+						<div class="bor8 dis-flex p-l-15">
+							<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+								<i class="zmdi zmdi-search"></i>
+							</button>
+							<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" id="search-product" placeholder="Search">
+						</div>
 					</div>
 				</div>
-
-				<!-- Search product -->
-				<div class="dis-none panel-search w-full p-t-10 p-b-15">
-					<div class="bor8 dis-flex p-l-15">
-						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-							<i class="zmdi zmdi-search"></i>
-						</button>
-
-						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-					</div>
-				</div>
+				
+				
 
 				<!-- Filter -->
 				<div class="dis-none panel-filter w-full p-t-10">
@@ -589,6 +520,7 @@
 
 			<div class="row isotope-grid">
 				@foreach($listproductss as $product)
+				@if($product->user_id !== auth()->user()->id)
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
@@ -598,16 +530,13 @@
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 show-product" data-bs-toggle="modal" data-bs-target="#Modal1" data-product-name="{{ $product->product_name }}"
 								data-product-price="{{ $product->price }}"
 								data-product-description="{{ $product->description }}"
-								data-product-image="{{ asset('images/' . $product->image) }}" >
+								data-product-order="{{ $product->order }}"
+								data-product-image="{{ asset('images/' . $product->image) }}" 
+								data-product-id="{{ $product->id }}"
+								>
 								Quick View
 							</a>
-							{{-- <button type="button" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 show-product" data-bs-toggle="modal" data-bs-target="#basicModal"
-						data-product-name="{{ $product->product_name }}"
-						data-product-price="{{ $product->price }}"
-						data-product-description="{{ $product->description }}"
-						data-product-image="{{ asset('images/' . $product->image) }}">
-						Quick View
-				</button> --}}
+						
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
@@ -622,14 +551,16 @@
 							</div>
 
 							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2" data-product-id="{{ $product->id }}">
 									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				@endif
 				@endforeach
 			</div>
 
@@ -775,27 +706,7 @@
 			</div>
 
 			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
+				
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -815,7 +726,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 <!-- Modal1 -->
-<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="#Modal1" >
+<div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="#Modal1"  >
 	<div class="overlay-modal1 js-hide-modal1"></div>
 
 	<div class="container">
@@ -848,16 +759,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							<span id="productName"></span>
-						</h4>
-
+						<h1 class="mtext-105 cl2 js-name-detail p-b-14">
+						<h1>	<span id="productName"></span></h1>
+						</h1>
+<br/>
 						<span class="mtext-106 cl2">
-							$<span id="productPrice"></span>
+						 	$<span id="productPrice"></span>
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
 							<span id="productDescription"></span>	</p>
+
+							<p class="stext-102 cl3 p-t-23">
+							<h5>	I WANT TO EXCHANGE FOR:</h5>
+								<br/>
+								<span id="productorder"></span>	</p>
 						
 						<!--  -->
 					
@@ -868,11 +784,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						<br/>
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
+									<div class="p-b-10">
+										
+										<span id="productId" style="display: none;"></span>
+										<label id="selectedProduct" style="display: none;">Sélectionnez un produit :</label>
+										<select id="userProducts" style="display: none; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+											@foreach ($listproductss as $productt)
+											@if($productt->user_id === auth()->user()->id)
+												<option value="{{ $productt->id }}" data-product-id="{{ $productt->id }}" style="padding: 10px;">{{ $productt->product_name }}</option>
+											@endif
+											@endforeach
+										</select>
+									</div>
 									
-
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-										Add to cart
-									</button>
+									<!-- Boutons "Besoin", "Confirmer" et "Annuler" -->
+									<div class="flex-w flex-r-m p-b-10">
+										<div class="size-204 flex-w flex-m respon6-next">
+											<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-show-products" data-product-id="{{ $product->id }}">
+												Besoin
+											</button>
+											<div class="flex-w flex-r-m p-b-10">
+												<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-confirm" style="display: none;">
+													Confirmer
+												</button>
+												<button class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-cancel" style="display: none; margin-top: 20px">
+													Annuler
+												</button>
+											</div>
+											
+											
+										</div>
+									</div>
 								</div>
 							</div>	
 						</div>
@@ -903,89 +845,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 </div>
-
-
-<!-- Modal -->
-{{-- <div class="modal fade col-lg-12 col-md-4" id="basicModal" tabindex="-1" aria-hidden="true" style="height: 400px; width:1900px;  margin-top: 200px;" >
-    
-<div class="modal-dialog  modal-content  " role="document">
-		
-<div class="row ">
-
-        <div class="col">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Product Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col mb-3">
-                        <p><strong>Name:</strong> <span id="productName"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Price:</strong> <span id="productPrice"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Description:</strong> <span id="productDescription"></span></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mb-0">
-                        <p><strong>Image:</strong></p>
-                        <img id="productImage" src="" alt="Product Image" width="400">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-		<div class="col " style="margin-right: 100px">
-			<br/><br/><br/><br/><br/>
-			<div class="p-t-33">
-				<div class="flex-w flex-r-m p-b-12">
-					<div class="size-204 flex-w flex-m respon6-next">
-						
-						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-							Add to cart
-						</button>
-					</div>
-				</div>	
-			</div>
-		
-			
-			<div class="flex-w flex-m p-l-100 p-t-40 respon7" style="margin-left: 50px">
-				<div class="flex-m bor9 p-r-10 m-r-11">
-					<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-						<i class="zmdi zmdi-favorite"></i>
-					</a>
-				</div>
-			
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook" style="display: inline-block;">
-					<i class="fa fa-facebook"></i>
-				</a>
-			
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter" style="display: inline-block;">
-					<i class="fa fa-twitter"></i>
-				</a>
-			
-				<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus" style="display: inline-block;">
-					<i class="fa fa-google-plus"></i>
-				</a>
-			</div>
-			
-
-		</div>
-
-	</div>
-    </div>
-</div> --}}
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
@@ -995,15 +854,115 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             
             console.log('Button clicked'); // Add this line
             var productName = $(this).data('product-name');
+			var productId = $(this).data('product-id');
             var productPrice = $(this).data('product-price');
             var productDescription = $(this).data('product-description');
+			var productorder = $(this).data('product-order');
             var productImage = $(this).data('product-image');
 
             // Set the modal content with product details
             $('#productName').text(productName);
+			$('#productId').text(productId);
             $('#productPrice').text(productPrice);
             $('#productDescription').text(productDescription);
+			$('#productorder').text(productorder);
             $('#productImage').attr('src', productImage);
+        });
+    });
+</script>
+{{-- addwishliste --}}
+{{-- <script>
+    $(document).ready(function() {
+        $('.js-addwish-b2').click(function(e) {
+            e.preventDefault();
+            var productId = $(this).data('product-id');
+            var button = $(this);
+
+            $.ajax({
+                url: '{{ route('wishlist.toggle') }}',
+                method: 'POST',
+                data: { product_id: productId, _token: '{{ csrf_token() }}' },
+                success: function(response) {
+                    if (response.success) {
+                        if (response.added) {
+                            // Product added to wishlist
+                            button.find('.icon-heart1').hide();
+                            button.find('.icon-heart2').show();
+                            // Show an alert message when liked
+							swal(nameProduct, "is added to wishlist !", "success");
+
+                          $(this).addClass('js-addedwish-b2');
+                          $(this).off('click');
+                        } else {
+                            // Product removed from wishlist
+                            button.find('.icon-heart2').hide();
+                            button.find('.icon-heart1').show();
+                            // Show an alert message when unliked
+                           alert('Product removed from wishlist');
+							
+                        }
+                    } else {
+                        // Handle errors
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    // Handle errors
+                    alert('Error: ' + xhr.statusText);
+                }
+            });
+        });
+    });
+</script> --}}
+
+
+{{-- getwishliste --}}
+<script>
+    $(document).ready(function() {
+        var wishlistContainer = $('.wrap-header-cart'); // Wishlist container
+        var wishlistButton = $('#wishlistButton');
+
+        wishlistButton.on('click', function(e) {
+            e.preventDefault();
+            wishlistContainer.toggleClass('show'); // Toggle the visibility of the wishlist container
+
+            // Check if the wishlist is visible and load it only when it's shown
+            if (wishlistContainer.hasClass('show')) {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ route("wishlist.show") }}', // Make sure this route exists in your Laravel routes
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            var wishlistProducts = response.wishlistProducts;
+                            var wishlistContent = wishlistContainer.find('#wishlistContainer');
+
+                            // Clear the existing content
+                            wishlistContent.empty();
+
+                            // Loop through the wishlist products and append them to the container
+                            $.each(wishlistProducts, function(index, product) {
+                                wishlistContent.append(
+                                    '<li class="header-cart-item flex-w flex-t m-b-12">' +
+                                    '   <div class="header-cart-item-img">' +
+                                    '       <img src="{{ asset('images/') }}/' + product.image + '" alt="Product Image">' +
+                                    '   </div>' +
+                                    '   <div class="header-cart-item-txt p-t-8">' +
+                                    '       <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">' +
+                                    '           ' + product.product_name +
+                                    '       </a>' +
+                                    '       <span class="header-cart-item-info">Price: $' + product.price + '</span>' +
+                                    '   </div>' +
+                                    '</li>'
+                                );
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
         });
     });
 </script>
@@ -1011,7 +970,63 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
+{{-- Exchange_____________________ --}}
+<script>
+	let productExchangeId; 
+    const showProductsButton = document.querySelector('.js-show-products');
+    const confirmButton = document.querySelector('.js-confirm');
+    const cancelButton = document.querySelector('.js-cancel');
+    const userProductsSelect = document.querySelector('#userProducts');
+	const selectedProductLabel = document.querySelector('#selectedProduct');
+	
+	const productIdLabel = document.querySelector('#productId');
+    showProductsButton.addEventListener('click', function() {
+		console.log()
+        showProductsButton.style.display = 'none';
+        confirmButton.style.display = 'inline';
+        cancelButton.style.display = 'inline';
+        userProductsSelect.style.display = 'inline';
+		selectedProductLabel.style.display = 'inline'; 
+		productExchangeId = productIdLabel.textContent;
+		console.log('productExchangeId:', productExchangeId);
+		//const productExchangeId = showProductsButton.getAttribute('data-product-id');
+		
+    });
 
+    cancelButton.addEventListener('click', function() {
+        showProductsButton.style.display = 'inline';
+        confirmButton.style.display = 'none';
+        cancelButton.style.display = 'none';
+        userProductsSelect.style.display = 'none';
+		selectedProductLabel.style.display = 'none';
+    });
+
+
+	confirmButton.addEventListener('click', function() {
+        const selectedOption = userProductsSelect.options[userProductsSelect.selectedIndex];
+        const selectedProductId = selectedOption.value;
+        const selectedProductText = selectedOption.textContent;
+		const modalElement = document.querySelector('.js-modal1');
+		 // Envoyer une requête AJAX au serveur pour créer une offre
+        $.ajax({
+            type: 'POST',
+            url: '{{ route('offre.create') }}', // L'URL du contrôleur qui crée l'offre
+            data: {
+                _token: '{{ csrf_token() }}', // Assurez-vous d'inclure le jeton CSRF
+                id_produit_a_echanger: selectedProductId, // L'ID du produit à échanger
+                id_produit_pour_echanger_avec: productExchangeId, 
+            },
+            success: function(data) {
+                // Traitez la réponse du serveur, par exemple, affichez un message de succès
+                alert('Offre créée avec succès pour le produit : ' + selectedProductText + productExchangeId);
+            },
+            error: function(xhr) {
+                // Traitez les erreurs, par exemple, affichez un message d'erreur
+                alert('Une erreur s\'est produite : ' + xhr.responseText);
+            }
+        });
+    });
+</script>
 
 
 
@@ -1074,41 +1089,124 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
+		$(document).ready(function() {
+			$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+				e.preventDefault();
+			});
+	
+			$('.js-addwish-b2').each(function(){
+				$(this).on('click', function(){
+					var productId = $(this).data('product-id');
+					var button = $(this);
+	
+					$.ajax({
+						url: '{{ route('wishlist.toggle') }}',
+						method: 'POST',
+						data: { product_id: productId, _token: '{{ csrf_token() }}' },
+						success: function(response) {
+							
+							if (response.success) {
+								if (response.added) {
+									// Product added to wishlist
+									button.find('.icon-heart1').hide();
+									button.find('.icon-heart2').show();
+									var nameProduct = button.parent().parent().find('.js-name-b2').html();
+									swal(nameProduct, "is added to wishlist !", "success");
+								} else {
+									// Product removed from wishlist
+									swal({
+										title: 'Remove from Wishlist',
+										text: 'Do you want to remove this product from your wishlist?',
+										icon: 'warning',
+										buttons: ["Cancel", "Remove"],
+									})
+									.then((confirmed) => {
+										if (confirmed) {
+											//button.find('.icon-heart2').hide();
+											button.find('.icon-heart1').show();
+											var nameProduct = button.parent().parent().find('.js-name-b2').html();
+											swal(nameProduct, "Product removed from wishlist !", "success");
+										}
+									});
+								}
+							} else {
+								// Handle errors
+								swal('Error', response.message, "error");
+							}
+						},
+						error: function(xhr) {
+							// Handle errors
+							swal('Error', xhr.statusText, "error");
+						}
+					});
+	
+					$(this).addClass('js-addedwish-b2');
+					$(this).off('click');
+				});
+			});
+	
+			$('.js-addwish-detail').each(function(){
+				$(this).on('click', function(){
+					var productId = $(this).data('product-id');
+					var button = $(this);
+	
+					$.ajax({
+						url: '{{ route('wishlist.toggle') }}',
+						method: 'POST',
+						data: { product_id: productId, _token: '{{ csrf_token() }}' },
+						success: function(response) {
+							if (response.success) {
+								if (response.added) {
+									// Product added to wishlist
+									button.find('.icon-heart1').hide();
+									button.find('.icon-heart2').show();
+									var nameProduct = button.parent().parent().parent().find('.js-name-detail').html();
+									swal(nameProduct, "is added to wishlist !", "success");
+								} else {
+									// Product removed from wishlist
+									swal({
+										title: 'Remove from Wishlist',
+										text: 'Do you want to remove this product from your wishlist?',
+										icon: 'warning',
+										buttons: ["Cancel", "Remove"],
+									})
+									.then((confirmed) => {
+										if (confirmed) {
+											button.find('.icon-heart2').hide();
+											button.find('.icon-heart1').show();
+											var nameProduct = button.parent().parent().parent().find('.js-name-detail').html();
+											swal(nameProduct, "Product removed from wishlist !", "success");
+										}
+									});
+								}
+							} else {
+								// Handle errors
+								swal('Error', response.message, "error");
+							}
+						},
+						error: function(xhr) {
+							// Handle errors
+							swal('Error', xhr.statusText, "error");
+						}
+					});
+	
+					$(this).addClass('js-addedwish-detail');
+					$(this).off('click');
+				});
+			});
+	
+			/*---------------------------------------------*/
+	
+			$('.js-addcart-detail').each(function(){
+				var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+				$(this).on('click', function(){
+					swal(nameProduct, "is added to cart !", "success");
+				});
 			});
 		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-
 	</script>
+	
+	
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -1126,6 +1224,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
+
+<script>
+    $(document).ready(function () {
+        $('#search-product').on('input', function () {
+            var searchValue = $('#search-product').val().toLowerCase();
+
+            $('.isotope-item').each(function () {
+                var productName = $(this).find('.js-name-b2').text().toLowerCase();
+
+                if (productName.includes(searchValue) || searchValue === '') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
