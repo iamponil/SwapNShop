@@ -89,4 +89,8 @@ public function wishlist()
      {
          return $this->hasMany(AdresseLivraison::class);
      }
+     public function conversations()
+     {
+         return $this->belongsToMany(Conversation::class, 'conversation_participants', 'user_id', 'conversation_id');
+     }
 }

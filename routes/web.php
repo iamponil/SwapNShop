@@ -59,7 +59,6 @@ use App\Http\Controllers\WishlistController;
 
 use App\Http\Controllers\OffreController;
 use App\Models\Conversation;
-use App\Http\Controllers\reclamation\ReclamtionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,12 +175,12 @@ Route::middleware([
 
 // Reclamtion
 
-Route::get('/Reclamtion/show/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@show')->name('showR');
-Route::get('/Reclamtion/archive/{id}', $controller_path . '\reclamation\ReclamtionController@archive')->name('archivee');
-Route::get('/Reclamtion/desarchivee/{id}', $controller_path . '\reclamation\ReclamtionController@desarchive')->name('desarchivee');
-Route::get('/Reclamtion_desarchive', $controller_path . '\reclamation\ReclamtionController@indexdesarchive')->name('reclamationdes');
-Route::get('/Reclamtion/filtrer-reclamations',$controller_path . '\reclamation\ReclamtionController@filtrerReclamations')->name('filtrageStatue');
-Route::get('/Reclamtionn', $controller_path . '\reclamation\ReclamtionController@filtree')->name('filtreeR');
+Route::get('/Reclamtion/show/{reclamtion}', [ReclamtionController::class,'show'])->name('showR');
+Route::get('/Reclamtion/archive/{id}',  [ReclamtionController::class,'archive'])->name('archivee');
+Route::get('/Reclamtion/desarchivee/{id}', [ReclamtionController::class,'desarchive'])->name('desarchivee');
+Route::get('/Reclamtion_desarchive',  [ReclamtionController::class,'indexdesarchive'])->name('reclamationdes');
+Route::get('/Reclamtion/filtrer-reclamations',[ReclamtionController::class,'filtrerReclamations'])->name('filtrageStatue');
+Route::get('/Reclamtionn', [ReclamtionController::class,'filtree'])->name('filtreeR');
 
 //reponse
 //Route::post('reclamations/{reclamationId}', '\reclamation\ReclamtionController@repondre')->name('reclamationsrepondre');
@@ -223,7 +222,7 @@ Route::get('/blog-detail', function () {
 
   Route::get('/history', [ReclamtionController::class , 'indexh'])->name('historyFR');
 
-Route::put('/Reclamtion/updateR/{reclamtion}', $controller_path . '\reclamation\ReclamtionController@updateF')->name('updateFR');
+Route::put('/Reclamtion/updateR/{reclamtion}', [ReclamtionController::class,'updateF']  )->name('updateFR');
 
   Route::get('/cart', function () {
     return view('Template.cart');
@@ -307,7 +306,10 @@ Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct
   Route::post('/update-message', [ConversationController::class, 'update'])->name('conversations.update');
   Route::get('/message/item/{message}/{timestamp}/{message_id}',[ConversationController::class,'messageItem'] )
       ->name('message_item');
-  
+      Route::post('/conversations/create-or-find/{userId}/{productId}/{offreId}', [ConversationController::class, 'createOrFindConversation']);
+      Route::post('/create/conversation/{conversationName}', [ConversationController::class, 'createConversation']);
+      Route::post('/translate',[ConversationController::class,'translate']);
+    
  
 });
 
