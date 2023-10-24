@@ -10,8 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\reclamtion;
-use App\Models\reponceReclamation;
 use App\Models\BlogCommentaire;
+use App\Models\reponceReclamation;
+
 use App\Models\Product;
 use App\Models\AdresseLivraison;
 

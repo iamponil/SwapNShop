@@ -16,6 +16,10 @@ class blog extends Model
         'user_id'
 
     ];
+    public function commentsss()
+    {
+        return $this->hasMany(BlogCommentaire::class,'blog_id');
+    }
   public function author()
   {
     return $this->belongsTo(User::class, 'user_id');

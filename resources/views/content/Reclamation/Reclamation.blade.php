@@ -43,7 +43,6 @@
     <table class="table">
       <thead>
         <tr>
-
           <th>object Claim</th>
           <th>Reclamtion Content</th>
           <th>attached File </th>

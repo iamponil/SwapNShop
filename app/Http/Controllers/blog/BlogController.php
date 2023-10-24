@@ -13,6 +13,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = blog::all();
+        notify()->success('Welcome to blog⚡️') ;
         return view('content.blog.blog', compact('blogs'));
     }
     public function indexF()
@@ -55,7 +56,7 @@ class BlogController extends Controller
 
     public function show(blog $blog)
     {
-        //
+        return view('content.blog.showB',compact('blog'));
     }
 
 

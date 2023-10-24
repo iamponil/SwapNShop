@@ -294,7 +294,27 @@ Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct
   Route::get('/Blog/updateB/{blog}', [BlogController::class,'edit'])->name('updateB');
   Route::put('/Blog/update/{blog}', [BlogController::class,'update'])->name('update');
   Route::delete('/Blog/delet/{blog}', [BlogController::class, 'destroy'])->name('destroyB');
+//Blog
 
+Route::get('/Blog/show/{blog}', [BlogCommentaireController::class, 'show'])->name('showB');
+//blogFont
+Route::get('/bloggggs', [BlogCommentaireController::class, 'indexF'])->name('blog');
+//commentaire
+Route::get('/Commentss', [BlogCommentaireController::class, 'index'])->name('commentss');
+Route::get('/Comments/add',[BlogCommentaireController::class, 'create'])->name('createComments');
+Route::post('/Comments/addC',[BlogCommentaireController::class, 'store'])->name('storeC');
+Route::delete('/Comments/delet/{blogCommentaire}', [BlogCommentaireController::class, 'destroy'])->name('destroyC');
+Route::get('/Comments/show/{blogCommentaire}', [BlogCommentaireController::class, 'show'])->name('showC');
+Route::get('/Comments/{blogId}', [BlogCommentaireController::class, 'showCommentFormBlog'])->name('commentBlog.form');
+Route::post('/Comments/{blogId}', [BlogCommentaireController::class, 'storeCommentBlog'])->name('commentBlog.store');
+//commentaireFront
+Route::get('/CommentsF/{blogId}', [BlogCommentaireController::class, 'showCommentFormBlogF'])->name('commentBlogF.form');
+Route::post('/CommentsF/{blogId}', [BlogCommentaireController::class, 'storeCommentBlogF'])->name('commentBlogF.store');
+Route::get('/CommentsF/{blogId}', [BlogCommentaireController::class, 'showCommentsF'])->name('commentF.show');
+
+Route::get('/blog-detail/{blogId}', function () {
+  return view('Template.blog-detail');
+})->name('blog-detail');
 
   Route::get('/conversations', [ConversationController::class, 'index'])->name('conversations');
   Route::get('/conversations/{user}', [ConversationController::class, 'show'])->name('conversations.show');
@@ -312,4 +332,3 @@ Route::post('/deleteOffers/{productId}',[OffreController::class,'deleteByProduct
     
  
 });
-
