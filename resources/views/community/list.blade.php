@@ -98,7 +98,7 @@
 
             <li>
 
-              <a href="{{ route('blog') }}">Blog</a>
+              <a href="{{ route('blog.index') }}">Blog</a>
             </li>
 
             <li>
@@ -382,7 +382,6 @@
       @foreach ($communities as $c)
         <div class="col-md-4">
           {{-- <i class="fa-solid fa-ellipsis-vertical" style="position: relative;left: 345px;top: 40px;"></i> --}}
-          @if ($c->creator_id == Auth::user()->id)
           <div class="dropdown">
             <button style="position: relative;
                               left: 400px;
@@ -392,10 +391,10 @@
               <i class="bx bx-dots-vertical-rounded"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-              <a class="dropdown-item" href="{{ route('community.edit', ['community' => $c]) }}"><i
+              <a class="dropdown-item" href="{{ route('community.editForm', ['id' => $c['id']]) }}"><i
                   class="fa-solid fa-pen-to-square"></i>Edit</a>
               {{-- <a class="dropdown-item" href="{{route('community.destroy',['community'=>$c])}}"><i class="fa-solid fa-trash"></i>Delete</a> --}}
-              <form method="POST" action="{{ route('community.destroy', ['community' => $c]) }}">
+              <form method="POST" action="{{ route('community.delete', ['community' => $c['id']]) }}">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="dropdown-item">
@@ -404,52 +403,15 @@
               </form>
             </div>
           </div>
-          @endif
           <div class="service-item">
             <div class="icon">
               {{-- <img  style="height: 140px; width: 200px;" src="{{asset('assets/images/blog-01.jpg')}}"> --}}
               <i class="fa-solid fa-people-group"></i>
             </div>
             <div class="down-content">
-              <a href="{{route('community.show',['community'=>$c])}}"><h4>{{ $c->name }}</h4></a>
-              <p class="n-m"><em>{{ $c->description }}</em></p>
+              <a href="{{route('community.getById',['community'=>$c['id']])}}"><h4>{{ $c['name'] }}</h4></a>
+              <p class="n-m"><em>{{ $c['description'] }}</em></p>
               <hr>
-              {{ $c->members->count() }} <i class="fa-solid fa-user"></i>
-              @if ($c->events->where('date_time', '>', now())->count() > 0)
-                • <i class="fa-solid fa-calendar-days"></i>
-                {{ $c->events->where('date_time', '>', now())->sortBy('date_time')->first()->date_time->format('d M, Y H:i') }}
-              @endif
-              @if ($c->members->contains('id',Auth::user()->id))
-                <div>
-                  <a href="{{ route('event.form', ['id' => $c->id]) }}">
-                    <button style="margin-top : 5px;" class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                      Create Event <i class="fa-solid fa-plus"></i>
-                    </button>
-                  </a>
-                </div>
-                <form method="POST" action="{{ route('community.leave', ['community' => $c]) }}">
-                  @csrf
-                  <button type="submit" style="margin-top : 5px;"
-                          class="stext-101 cl0 size-104 bg10 bor1 hov-btn1 p-lr-15 trans-04">
-                    Leave Community <i class="fa-solid fa-person-walking-arrow-right"></i>
-                  </button>
-                </form>
-              @else
-                <form method="POST" action="{{ route('community.join', ['community' => $c]) }}">
-                  @csrf
-                  <button type="submit" style="margin-top : 5px;"
-                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                    Join <i class="fa-solid fa-right-to-bracket"></i>
-                  </button>
-                  {{--           <div style="margin-top : 10px;">
-                                        <span class="badge rounded-pill bg-label-primary">Primary</span>
-                            <span class="badge rounded-pill bg-label-success">Success</span>
-                                      <span class="badge rounded-pill bg-label-danger">Danger</span>
-                            <span class="badge rounded-pill bg-label-warning">Warning</span>
-                            <span class="badge rounded-pill bg-label-info">Info</span>
-                            </div>--}}
-                </form>
-              @endif
             </div>
           </div>
         </div>

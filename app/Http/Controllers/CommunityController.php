@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
@@ -22,11 +23,13 @@ class CommunityController extends Controller
    */
   public function index()
   {
-    //$comms = Community::factory()->count(10)->create();
-    //$c = Community::factory()->create();
-
-    $communities=Community::all();
-    return view('community.list',compact('communities'));
+    $response = Http::get('http://localhost:8089/community/all');
+    if ($response->successful()) {
+      $communities = $response->json();
+      return view('community.list', compact('communities'));
+    } else {
+      return view('error');
+    }
   }
 
   /**
@@ -60,6 +63,26 @@ class CommunityController extends Controller
     $community->members()->attach($user);
     return redirect('/community');
   }
+  public function storeApi(Request $request)
+  {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
+
+    $data = [
+      'name' => $request->input('name'),
+      'description' => $request->input('description'),
+    ];
+
+    $response = Http::post('http://localhost:8089/community/add', $data);
+
+    if ($response->successful()) {
+      return redirect('/community');
+    } else {
+      return redirect('/community/create')->with('error', 'Community creation failed');
+    }
+  }
 
   /**
    * Display the specified resource.
@@ -81,6 +104,26 @@ class CommunityController extends Controller
     $blogs = blog::whereIn('user_id', $community->members->pluck('id'))->inRandomOrder()->take(6)->get();
     return view('community.detail',compact('products','blogs' , 'community', 'events'));
   }
+  public function getById(int $community)
+  {
+    //dd($community);
+    $response = Http::get('http://localhost:8089/community/'.$community);
+    if ($response->successful()) {
+      $community = $response->json();
+      return view('community.detail',compact('community'));
+    } else {
+      return view('error');
+    }
+  }
+  public function delete(int $community)
+  {
+    $response = Http::delete('http://localhost:8089/community/'.$community);
+    if ($response->successful()) {
+      return redirect('/community');
+    } else {
+      return view('error');
+    }
+  }
 
   /**
    * Show the form for editing the specified resource.
@@ -91,6 +134,16 @@ class CommunityController extends Controller
   public function edit(Community $community)
   {
     return view('community.edit',compact('community'));
+  }
+  public function editForm(int $id)
+  {
+    $response = Http::get('http://localhost:8089/community/'.$id);
+    if ($response->successful()) {
+      $community = $response->json();
+      return view('community.edit', compact('community'));
+    }else{
+      return view('community.edit');
+    }
   }
 
   public function editAdmin(Community $community)
@@ -123,6 +176,24 @@ class CommunityController extends Controller
       return redirect('/communities');
     } else {
       return redirect('/community');
+    }
+  }
+  public function updateApi(Request $request, int $community)
+  {
+    $request->validate([
+      'name' => 'required',
+      'description' => 'required',
+    ]);
+    $data = [
+      'name' => $request->input('name'),
+      'description' => $request->input('description'),
+    ];
+
+    $response = Http::put('http://localhost:8089/community/'.$community, $data);
+    if ($response->successful()) {
+      return redirect('/community');
+    } else {
+      return redirect('/community/edit')->with('error', 'Community update failed');
     }
   }
 

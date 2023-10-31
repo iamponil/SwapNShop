@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Blog Detail</title>
+  <title>Add product</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--===============================================================================================-->
-  <link rel="icon" type="image/png" href=" {{ asset('images/icons/favicon.png') }}"/>
+  <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.png') }}"/>
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
   <!--===============================================================================================-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('fonts/iconic/css/material-design-iconic-font.min.css') }}">
   <!--===============================================================================================-->
@@ -27,10 +27,6 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -71,11 +67,10 @@
 
         <!-- Logo desktop -->
         <a href="#" class="logo">
-          <img src="{{asset('images/icons/logo-01.png')}}" alt="IMG-LOGO">
+          <img src="images/icons/logo-01.png" alt="IMG-LOGO">
         </a>
 
         <!-- Menu desktop -->
-
         <div class="menu-desktop">
           <ul class="main-menu">
             <li class="active-menu">
@@ -104,18 +99,15 @@
             <li>
               <a href="{{ route('about') }}">About</a>
             </li>
+
             <li>
-              <a href="{{ route('reclamation.index') }}">Reclamation</a>
-            </li>
-            <li>
-              <a href="{{ route('create') }}">Add product</a>
+              <a href="{{ route('contact') }}">Contact</a>
             </li>
             <li>
               <a href="{{ route('myproduct') }}">My products </a>
             </li>
           </ul>
         </div>
-
         <!-- Icon header -->
         <div class="wrap-icon-header flex-w flex-r-m">
           <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
@@ -139,7 +131,7 @@
   <div class="wrap-header-mobile">
     <!-- Logo moblie -->
     <div class="logo-mobile">
-      <a href="index.html"><img src="{{asset('images/icons/logo-01.png')}}" alt="IMG-LOGO"></a>
+      <a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
     </div>
 
     <!-- Icon header -->
@@ -230,7 +222,7 @@
         <a href="contact.html">Contact</a>
       </li>
       <li>
-        <a href="addproduct.html">Add product</a>
+        <a href="addproduct.html">Add Product</a>
       </li>
     </ul>
   </div>
@@ -239,7 +231,7 @@
   <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
     <div class="container-search-header">
       <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-        <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE">
+        <img src="images/icons/icon-close2.png" alt="CLOSE">
       </button>
 
       <form class="wrap-search-header flex-w p-l-15">
@@ -271,7 +263,7 @@
       <ul class="header-cart-wrapitem w-full">
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="{{asset('images/item-cart-01.jpg')}}" alt="IMG">
+            <img src="images/item-cart-01.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
@@ -287,7 +279,7 @@
 
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="{{asset('images/item-cart-02.jpg')}}" alt="IMG">
+            <img src="images/item-cart-02.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
@@ -303,7 +295,7 @@
 
         <li class="header-cart-item flex-w flex-t m-b-12">
           <div class="header-cart-item-img">
-            <img src="{{asset('images/item-cart-03.jpg')}}" alt="IMG">
+            <img src="images/item-cart-03.jpg" alt="IMG">
           </div>
 
           <div class="header-cart-item-txt p-t-8">
@@ -339,134 +331,63 @@
 </div>
 
 
-<!-- breadcrumb -->
-<div class="container">
-  <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-    <a href="{{route('index')}}" class="stext-109 cl8 hov-cl1 trans-04">
-      Home
-      <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-    </a>
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{asset('images/bg-01.jpg')}});">
+  <h2 class="ltext-105 cl0 txt-center">
+    Add Product
+  </h2>
+</section>
 
-    <a href="{{route('event.index')}}" class="stext-109 cl8 hov-cl1 trans-04">
-      Events
-      <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-    </a>
 
-    <span class="stext-109 cl4">
-				{{$event->title}}
-			</span>
+<div class=" size-310 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+
+  <div class="card-body" style="margin-left: 250px">
+    <form action="{{ route('products.store') }}" method="Post" enctype="multipart/form-data">
+      @csrf
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-fullname">Product Name</label>
+        <input type="text" class="form-control" name="title" value="{{$product['title']}}"
+               style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-email">Category</label>
+
+
+        <select name="category" class="form-select form-select-lg"
+                style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;">
+          <option>Select Category</option>
+          <option value="CLOTHING" @if ($product['category'] === 'CLOTHING') selected @endif>Clothing</option>
+          <option value="ELECTRONICS" @if ($product['category'] === 'ELECTRONICS') selected @endif> Electronics</option>
+          <option value="BOOKS" @if ($product['category'] === 'BOOKS') selected @endif>Books</option>
+        </select>
+
+
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-message">Price</label>
+        <input type="text" class="form-control" name="price" value="{{$product['price']}}"
+               style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-message">Quantity</label>
+        <input type="text" class="form-control" name="quantity" value="{{$product['quantity']}}"
+               style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"/>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Image</label>
+        <input class="form-control" type="file" name="image" id="formFileMultiple"
+               style="width: 80%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5; font-size: 16px; color: #333;"
+               multiple>
+      </div>
+      <button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
+              style="width:60% ; margin-left: 150px">Send
+      </button>
+    </form>
   </div>
 </div>
 
-
-<!-- Content page -->
-<section class="bg0 p-t-52 p-b-20">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-lg-9 p-b-80">
-        <div class="p-r-45 p-r-0-lg">
-          <!--  -->
-          <div class="wrap-pic-w how-pos5-parent">
-            <img src="{{asset('images/exchange3.jpg')}}" alt="IMG-BLOG">
-
-            <div class="flex-col-c-m size-123 bg9 how-pos5">
-    <span class="ltext-107 cl2 txt-center">
-        {{ $event->date_time->format('d') }}
-    </span>
-              <span class="stext-109 cl3 txt-center">
-        {{ $event->date_time->format('M Y') }}
-    </span>
-            </div>
-            <div class="flex-col-c-m size-123 bg9 how-pos1">
-    <span class="ltext-107 cl2 txt-center">
-        {{ $event->date_time->format('H:i') }}
-    </span>
-            </div>
-          </div>
-
-          <div class="p-t-32">
-							<span class="flex-w flex-m stext-111 cl2 p-b-19">
-								<span>
-									<span class="cl4">Created By</span> {{$event->creator->name}}
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-                  {{$event->created_at->format('d M, Y H:i')}}
-									<span class="cl12 m-l-4 m-r-6">|</span>
-								</span>
-
-								<span>
-									{{$event->community->name}}
-								</span>
-							</span>
-
-            <h4 class="ltext-109 cl2 p-b-28">
-              {{$event->title}}
-            </h4>
-
-            <p class="stext-117 cl6 p-b-26">
-              {{$event->description}}
-            </p>
-          </div>
-          <!-- Map -->
-          <hr>
-          <h4 class="ltext-109 cl3 p-b-28">
-            Location :
-          </h4>
-          <div id="map" style="height: 400px;"></div>
-          <div class="flex-w flex-t p-t-16">
-							<span class="size-216 stext-116 cl8 p-t-4">
-								Tags
-							</span>
-
-            <div class="flex-w size-217">
-              <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                Streetstyle
-              </a>
-
-              <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                Crafts
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4 col-lg-3 p-b-80">
-        <div class="side-menu">
-          <div class="p-t-65">
-            <h4 class="mtext-112 cl2 p-b-33">
-              Participants
-            </h4>
-            <ul>
-              @foreach($event->attendees as  $attendee)
-                <li class="flex-w flex-t p-b-30">
-                  <a class="wrao-pic-w size-214 m-r-20">
-                    {{--<img style="width: 110px ; height: 110px" src="{{asset('assets/images/user.jpg')}}"
-                    alt="PRODUCT">--}}
-                    <img style="width: 105px ; height: 100px; border-radius: 15%;" src="{{asset('assets/img/avatars/user.jpg')}}" alt="PRODUCT">
-                  </a>
-
-                  <div class="size-215 flex-col-t p-t-8">
-                    <a class="stext-116 cl8 hov-cl1 trans-04">
-                      {{$attendee->name}}
-                    </a>
-                    <div style="width: 90px;margin-top: 30px;"
-                         class="flex-c-m stext-106 cl6 size-107 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-                      <i class="fa-solid fa-message cl2 m-r-6 fs-15 trans-04"></i>
-                      Chat
-                    </div>
-                  </div>
-                </li>
-              @endforeach
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
@@ -584,23 +505,23 @@
     <div class="p-t-40">
       <div class="flex-c-m flex-w p-b-18">
         <a href="#" class="m-all-1">
-          <img src="{{asset('images/icons/icon-pay-01.png')}}" alt="ICON-PAY">
+          <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
         </a>
 
         <a href="#" class="m-all-1">
-          <img src="{{asset('images/icons/icon-pay-02.png')}}" alt="ICON-PAY">
+          <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
         </a>
 
         <a href="#" class="m-all-1">
-          <img src="{{asset('images/icons/icon-pay-03.png')}}" alt="ICON-PAY">
+          <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
         </a>
 
         <a href="#" class="m-all-1">
-          <img src="{{asset('images/icons/icon-pay-04.png')}}" alt="ICON-PAY">
+          <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
         </a>
 
         <a href="#" class="m-all-1">
-          <img src="{{asset('images/icons/icon-pay-05.png')}}" alt="ICON-PAY">
+          <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
         </a>
       </div>
 
@@ -626,27 +547,14 @@
 </div>
 
 <!--===============================================================================================-->
-<script src="{{asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script src="{{asset('vendor/animsition/js/animsition.min.js')}}"></script>
+<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-<script src="{{asset('vendor/bootstrap/js/popper.js')}}"></script>
-<script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script src="{{asset('vendor/select2/select2.min.js')}}"></script>
-<script>
-  var eventMarkerIcon = L.icon({
-    iconUrl: "{{asset('images/icons/location-pin.png')}}",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
-  });
-  var map = L.map('map').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
-  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], {icon: eventMarkerIcon}).addTo(map);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-</script>
+<script src="vendor/select2/select2.min.js"></script>
 <script>
   $(".js-select2").each(function () {
     $(this).select2({
@@ -656,9 +564,9 @@
   })
 </script>
 <!--===============================================================================================-->
-<script src="{{asset('vendor/MagnificPopup/jquery.magnific-popup.min.js')}}"></script>
+<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <!--===============================================================================================-->
-<script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
   $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');
@@ -675,7 +583,10 @@
   });
 </script>
 <!--===============================================================================================-->
-<script src="{{asset('js/main.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+<script src="js/map-custom.js"></script>
+<!--===============================================================================================-->
+<script src="js/main.js"></script>
 
 </body>
 </html>

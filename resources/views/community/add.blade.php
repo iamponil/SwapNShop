@@ -356,7 +356,7 @@
           </ul>
         </div>
       @endif
-      <form action="{{route('community.store')}}" method="POST">
+      <form action="{{route('community.addCommunity')}}" method="POST">
         @csrf
         <h4 class="mtext-105 cl2 txt-center p-b-30">
           Create a New Community

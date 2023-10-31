@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
@@ -25,8 +26,13 @@ class ProductController extends Controller
     */
    public function affichefront()
    {
-       $listproductss = \App\Models\Product::all();
-          return view('Template.product',compact('listproductss'));
+     $response = Http::get('http://localhost:8085/product');
+     if ($response->successful()) {
+       $listproductss = $response->json();
+       return view('Template.product',compact('listproductss'));
+     } else {
+       return view('error');
+     }
    }
 /**
      * Display a listing of the resource.
@@ -60,23 +66,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product=new Product();
-        $product->product_name=$request->product_name;
-        $product->description=$request->description;
-        $product->category=$request->category;
-        $product->price=$request->price;
-        $product->order=$request->order;
-        $product->user_id = auth()->user()->id;
-// Handle image upload
-if ($request->hasFile('image')) {
-    $image = $request->file('image');
-    $imageName = time() . '.' . $image->getClientOriginalExtension();
-    $image->move(public_path('images'), $imageName);
-    $product->images = $imageName;
-    $product->user_id = Auth::user()->id;
-}
-        $product->save();
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $imageName);
+      $data = [
+        'title' => $request->input('title'),
+        'image' => $imageName,
+        'price' => $request->input('price'),
+        'quantity' => $request->input('quantity'),
+        'category' =>$request->input('category')
+      ];
+      $response = Http::post('http://localhost:8085/addproduct', $data);
+
+      if ($response->successful()) {
         return redirect('/product');
+      } else {
+        return redirect('/createprod')->with('error', 'Community creation failed');
+      }
     }
  /**
      * Display the specified resource.
@@ -118,6 +124,16 @@ if ($request->hasFile('image')) {
         $product = Product::findOrFail($id); // Retrieve the product by ID
         return view('content.Product.Editproduct', compact('product'));
     }
+  public function editForm(int $id)
+  {
+    $response = Http::get('http://localhost:8085/product/'.$id);
+    if ($response->successful()) {
+      $product = $response->json();
+      return view('Template.editProduct', compact('product'));
+    }else{
+      return redirect('/product');
+    }
+  }
 
     /**
      * Show the form for editing the specified resource.

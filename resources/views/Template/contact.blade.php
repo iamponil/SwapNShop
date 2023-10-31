@@ -93,14 +93,14 @@
 
 							<li>
 
-                                <a href="{{ route('blog') }}">Blog</a>
+                                <a href="{{ route('blog.index') }}">Blog</a>
 							</li>
 
 							<li>
 								<a href="{{ route('about') }}">About</a>
 							</li>
                  <li>
-								<a href="{{ route('reclamtion') }}">Reclamation</a>
+								<a href="{{ route('reclamation.index') }}">Reclamation</a>
 							</li>
 							<li>
 								<a href="{{ route('contact') }}">Contact</a>

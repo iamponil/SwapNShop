@@ -423,7 +423,7 @@
   <div class="container">
     <div class="p-b-10">
       <h3 class="ltext-103 cl5">
-        Product By {{$community->name}} Members
+        Product By {{$community['name']}} Members
       </h3>
     </div>
 
@@ -670,41 +670,6 @@
     </div>
 
     <div class="row isotope-grid">
-      @foreach($products as $prod)
-        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-          <!-- Block2 -->
-          <div class="block2">
-            <div class="block2-pic hov-img0">
-              <img src="{{ asset('images/' . $prod->images) }}" alt="IMG-PRODUCT">
-              <a href="#"
-                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                Quick View
-              </a>
-            </div>
-
-            <div class="block2-txt flex-w flex-t p-t-14">
-              <div class="block2-txt-child1 flex-col-l ">
-                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                  {{$prod->product_name}}
-                </a>
-
-                <span class="stext-105 cl3">
-									$16.64
-								</span>
-              </div>
-
-              <div class="block2-txt-child2 flex-r p-t-3">
-                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                  <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}"
-                       alt="ICON">
-                  <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}"
-                       alt="ICON">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      @endforeach
     </div>
     <hr>
   </div>
@@ -713,34 +678,9 @@
 <div class="sec-banner bg0 p-t-10 p-b-50">
   <div class="container">
     <h4 class="ltext-109 cl3 p-b-28">
-      Blogs By {{$community->name}} Members
+      Blogs By {{$community['name']}} Members
     </h4>
     <div class="row">
-      @foreach($blogs as $blog)
-        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-          <!-- Block1 -->
-          <div class="block1 wrap-pic-w">
-            <img src="/img/{{ $blog->picture }}" alt="IMG-BANNER">
-            <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-              <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-title ltext-102 trans-04 p-b-8">
-									{{$blog->title}}
-								</span>
-
-                <span class="block1-info stext-102 trans-04">
-									By {{$blog->author->name}}
-								</span>
-              </div>
-
-              <div class="block1-txt-child2 p-b-4 trans-05">
-                <div class="block1-link stext-101 cl0 trans-09">
-                  Read
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      @endforeach
     </div>
     <hr>
   </div>
@@ -752,66 +692,6 @@
       Upcoming Events
     </h4>
     <div class="row">
-      @foreach ($events as $e)
-        <div class="col-md-4">
-          @if ($e->creator_id == Auth::user()->id)
-            <div class="dropdown">
-              <button style="position: relative;
-                              left: 400px;
-                              top: 40px;" class="btn p-0"
-                      type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                <a class="dropdown-item" href="{{ route('event.edit', ['event' => $e]) }}"><i
-                    class="fa-solid fa-pen-to-square"></i>Edit</a>
-                <form method="POST" action="{{ route('event.destroy', ['event' => $e]) }}">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="dropdown-item">
-                    <i class="fa-solid fa-trash"></i> Delete
-                  </button>
-                </form>
-              </div>
-            </div>
-          @endif
-          <div class="service-item">
-            <div class="icon">
-              <i class="fa-solid fa-calendar-day"></i>
-            </div>
-            <div class="down-content">
-              <a href="{{route('event.show',['event'=>$e])}}"><h4>{{ $e->title }}</h4></a>
-              <p class="n-m"><em>{{ $e->description }}</em></p>
-              <hr>
-              {{ $e->attendees->count() }} <i class="fa-solid fa-user"></i>
-              • <i class="fa-solid fa-calendar-days"></i>
-              {{ $e->date_time->format('d M, Y H:i')}}
-              @if ($e->community->members->contains('id',Auth::user()->id) && !$e->attendees->contains('id',Auth::user()->id))
-                <form method="POST" action="{{ route('event.join', ['event' => $e]) }}">
-                  @csrf
-                  <button type="submit" style="margin-top : 5px;"
-                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                    Join Event<i class="fa-solid fa-right-to-bracket"></i>
-                  </button>
-                </form>
-              @endif
-              @if (!$e->community->members->contains('id',Auth::user()->id))
-                <form method="POST" action="{{ route('community.join', ['community' => $e->community]) }}">
-                  @csrf
-                  <button type="submit" style="margin-top : 5px;"
-                          class="stext-101 cl0 size-104 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                    Join Community<i class="fa-solid fa-right-to-bracket"></i>
-                  </button>
-                </form>
-              @endif
-            </div>
-            <input type="hidden" id="latitude" name="latitude" value="{{$e->location['latitude']}}">
-            <input type="hidden" id="longitude" name="{{$e->location['longitude']}}">
-            <div id="map_{{ $e->id }}" style="height: 200px;"></div>
-          </div>
-        </div>
-      @endforeach
     </div>
   </div>
 </div>
@@ -1234,18 +1114,7 @@
   });
 </script>
 <!--===============================================================================================-->
-<script>
-  @foreach ($events as $event)
-  var map_{{ $event->id }} = L.map('map_{{ $event->id }}').setView([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}], 15);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map_{{ $event->id }});
-
-  var eventMarker = L.marker([{{ $event->location['latitude'] }}, {{ $event->location['longitude'] }}]).addTo(map_{{ $event->id }});
-  eventMarker.bindPopup('{{ $event->title }}<br> Will be Held Here @ ');
-  @endforeach
-</script>
 <!--===============================================================================================-->
 <script src="{{asset('js/main.js')}}"></script>
 <!-- Bootstrap core JavaScript -->
